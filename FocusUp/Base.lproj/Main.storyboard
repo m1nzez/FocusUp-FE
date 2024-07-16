@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Gtd-Tb-Nhc">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Main View Controller-->
+        <!--Home-->
         <scene sceneID="uwk-BB-WRg">
             <objects>
                 <viewController id="wK8-le-rud" customClass="MainViewController" customModule="FocusUp" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,13 +18,75 @@
                         <viewLayoutGuide key="safeArea" id="PZE-dV-Bkd"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Home" image="home_gray" selectedImage="home_primary" id="rTG-A0-acU"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S48-2C-QZu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="210" y="494"/>
+            <point key="canvasLocation" x="-572" y="1267"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="srg-iQ-2hz">
+            <objects>
+                <viewController id="qYc-NW-qEm" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0Wr-u7-fDk">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="5wy-2S-EqV"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="character_btn_before" selectedImage="character_btn_after" id="XFB-Vz-38E">
+                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-35"/>
+                        <inset key="largeContentSizeImageInsets" minX="0.0" minY="10" maxX="0.0" maxY="0.0"/>
+                    </tabBarItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DVQ-NP-lQK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="256" y="1267"/>
+        </scene>
+        <!--MyPage-->
+        <scene sceneID="xpH-mD-q4B">
+            <objects>
+                <viewController id="ivx-ep-J1P" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3DS-Xb-IgI">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="sdJ-1w-hDY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="MyPage" image="mypage_gray" selectedImage="mypage_primary" id="e38-lt-Smp"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7aQ-Ca-Kr2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1085" y="1267"/>
+        </scene>
+        <!--Custom Tab Bar Controller-->
+        <scene sceneID="gjQ-74-foH">
+            <objects>
+                <tabBarController storyboardIdentifier="CustomTabBarController" automaticallyAdjustsScrollViewInsets="NO" id="Gtd-Tb-Nhc" customClass="CustomTabBarController" customModule="FocusUp" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Pll-0l-x6R">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" red="0.23137254900000001" green="0.57254901960000004" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="wK8-le-rud" kind="relationship" relationship="viewControllers" id="U3q-FP-Rem"/>
+                        <segue destination="qYc-NW-qEm" kind="relationship" relationship="viewControllers" id="0Iw-dr-XtQ"/>
+                        <segue destination="ivx-ep-J1P" kind="relationship" relationship="viewControllers" id="nHj-pm-tFj"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hf6-a7-SBq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="255.72519083969465" y="515.49295774647885"/>
         </scene>
     </scenes>
     <resources>
+        <image name="character_btn_after" width="70" height="83"/>
+        <image name="character_btn_before" width="70" height="83"/>
+        <image name="home_gray" width="25" height="24"/>
+        <image name="home_primary" width="25" height="24"/>
+        <image name="mypage_gray" width="25" height="24"/>
+        <image name="mypage_primary" width="25" height="24"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
