@@ -9,7 +9,7 @@ import UIKit
 
 // MARK: - CustomTabBar
 class CustomTabBar: UITabBar {
-    let customHeight: CGFloat = 100
+    let customHeight: CGFloat = 98
     
     override func sizeThatFits(_ size: CGSize) -> CGSize {
         var sizeThatFits = super.sizeThatFits(size)
@@ -27,6 +27,7 @@ class CustomTabBarController: UITabBarController {
         addBorder()
         setItemImageTint()
         setTitleFont()
+        setBackground()
     }
     
     override func viewDidLayoutSubviews() {
@@ -85,5 +86,8 @@ class CustomTabBarController: UITabBarController {
         }
     }
     
+    func setBackground() {
+        tabBar.backgroundColor = UIColor.white
+    }
     
 }
