@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "item_fish.png",
+      "filename" : "item_fish.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },

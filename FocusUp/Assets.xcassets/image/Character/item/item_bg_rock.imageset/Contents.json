@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "item_bg_rock.png",
+      "filename" : "item_bg_rock.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },

@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "item_shell.png",
+      "filename" : "item_shell.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },

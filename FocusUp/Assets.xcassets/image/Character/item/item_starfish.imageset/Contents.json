@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "item_starfish.png",
+      "filename" : "item_starfish.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },

@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "item_glasses.png",
+      "filename" : "item_glasses.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },

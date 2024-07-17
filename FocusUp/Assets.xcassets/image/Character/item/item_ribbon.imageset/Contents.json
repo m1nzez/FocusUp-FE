@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "item_ribbon.png",
+      "filename" : "item_ribbon.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },

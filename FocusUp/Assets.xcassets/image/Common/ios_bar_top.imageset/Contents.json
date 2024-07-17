@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "ios_bar_top.png",
+      "filename" : "ios_bar_top.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
