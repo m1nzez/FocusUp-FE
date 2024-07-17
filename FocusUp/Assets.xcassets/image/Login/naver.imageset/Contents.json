@@ -1,7 +1,11 @@
 {
   "images" : [
     {
+<<<<<<< HEAD
       "filename" : "naver.svg",
+=======
+      "filename" : "Naver.svg",
+>>>>>>> 6944dae (Feat : 기본 로그인 화면 틀 (#4))
       "idiom" : "universal",
       "scale" : "1x"
     },
