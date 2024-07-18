@@ -25,23 +25,26 @@ class LoginViewController: UIViewController {
         setFont()
     }
     
+    
+    // MARK: - Action
+    
+    
     // MARK: - Function
     func setAttribute() {
-        emailTextField.layer.borderColor = UIColor.blueGray2.cgColor
-        emailTextField.layer.borderWidth = 1
-        emailTextField.layer.cornerRadius = 8
-        emailTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 14, height: 0))
-        emailTextField.leftViewMode = .always
-        
-        passwordTextField.layer.borderColor = UIColor.blueGray2.cgColor
-        passwordTextField.layer.borderWidth = 1
-        passwordTextField.layer.cornerRadius = 8
-        passwordTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 14, height: 0))
-        passwordTextField.leftViewMode = .always
+        setTextFieldAttribute(for: emailTextField)
+        setTextFieldAttribute(for: passwordTextField)
         
         loginButton.layer.borderColor = UIColor.primary4.cgColor
         loginButton.layer.borderWidth = 1
         loginButton.layer.cornerRadius = 28
+    }
+    
+    func setTextFieldAttribute(for textField: UITextField) {
+        textField.layer.borderColor = UIColor.blueGray2.cgColor
+        textField.layer.borderWidth = 1
+        textField.layer.cornerRadius = 8
+        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 14, height: 0))
+        textField.leftViewMode = .always
     }
     
     func setFont() {
@@ -55,4 +58,17 @@ class LoginViewController: UIViewController {
         snsLabel.font = UIFont(name: "Pretendard-Medium", size: 13)
     }
 
+}
+
+// MARK: - UITextFieldDelegate
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.layer.borderColor = UIColor.primary4.cgColor
+        textField.textColor = UIColor.primary4
+        textField.tintColor = UIColor.primary4
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.layer.borderColor = UIColor.primary2.cgColor
+    }
 }
