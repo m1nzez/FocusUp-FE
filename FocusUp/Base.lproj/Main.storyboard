@@ -2,7 +2,8 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y5u-GS-7LQ">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -50,32 +51,8 @@
                     <view key="view" contentMode="scaleToFill" id="3DS-Xb-IgI">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="마이페이지" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sl3-lT-uM2">
-                                <rect key="frame" x="157" y="71" width="79" height="22"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nwR-zZ-LaN">
-                                <rect key="frame" x="345" y="71" width="24" height="24"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="24" id="7s0-U5-Lik"/>
-                                    <constraint firstAttribute="height" constant="24" id="bCm-E7-9DD"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="setting"/>
-                            </button>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="sdJ-1w-hDY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="sdJ-1w-hDY" firstAttribute="trailing" secondItem="nwR-zZ-LaN" secondAttribute="trailing" constant="24" id="8vS-AA-n0z"/>
-                            <constraint firstItem="sl3-lT-uM2" firstAttribute="leading" secondItem="sdJ-1w-hDY" secondAttribute="leading" constant="157" id="PWG-C2-rsI"/>
-                            <constraint firstItem="nwR-zZ-LaN" firstAttribute="top" secondItem="sdJ-1w-hDY" secondAttribute="top" constant="12" id="QIZ-26-v00"/>
-                            <constraint firstItem="nwR-zZ-LaN" firstAttribute="leading" secondItem="sl3-lT-uM2" secondAttribute="trailing" constant="109" id="k7N-QX-q7n"/>
-                            <constraint firstItem="sl3-lT-uM2" firstAttribute="top" secondItem="sdJ-1w-hDY" secondAttribute="top" constant="12" id="pyd-Ia-am6"/>
-                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="MyPage" image="mypage_gray" selectedImage="mypage_primary" id="e38-lt-Smp"/>
                 </viewController>
@@ -202,12 +179,40 @@
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="kakao"/>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="올바르지 않은 이메일입니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lpu-Gy-vWm">
+                                <rect key="frame" x="39.666666666666657" y="458" width="124" height="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <color key="textColor" name="EmphasizeError"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_error" translatesAutoresizingMaskIntoConstraints="NO" id="mSe-X9-btK">
+                                <rect key="frame" x="25.666666666666668" y="459" width="12.000000000000004" height="12"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="12" id="jvL-JS-ner"/>
+                                    <constraint firstAttribute="height" constant="12" id="zaz-uH-Imf"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="올바르지 않은 비밀번호입니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Evm-qG-DEo">
+                                <rect key="frame" x="39.666666666666657" y="556" width="134" height="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <color key="textColor" name="EmphasizeError"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_error" translatesAutoresizingMaskIntoConstraints="NO" id="hvG-UE-Nnr">
+                                <rect key="frame" x="25.666666666666668" y="557" width="12.000000000000004" height="12"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="12" id="DjX-CF-7IV"/>
+                                    <constraint firstAttribute="height" constant="12" id="sKC-hI-uoJ"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="QAu-KF-O9q"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="mSe-X9-btK" firstAttribute="leading" secondItem="W78-Lx-XZC" secondAttribute="leading" id="1ag-qK-YF9"/>
                             <constraint firstItem="uDh-rg-3Hs" firstAttribute="top" secondItem="8by-HI-hfb" secondAttribute="bottom" constant="30" id="1zO-bn-PeU"/>
                             <constraint firstItem="8by-HI-hfb" firstAttribute="top" secondItem="Jo5-rK-rNc" secondAttribute="bottom" constant="6" id="478-oY-vk9"/>
+                            <constraint firstItem="hvG-UE-Nnr" firstAttribute="top" secondItem="8by-HI-hfb" secondAttribute="bottom" constant="4" id="4Na-RX-IKz"/>
                             <constraint firstItem="cka-Jh-nPm" firstAttribute="centerX" secondItem="OWd-ni-i2h" secondAttribute="centerX" id="58T-QB-ZnJ"/>
                             <constraint firstItem="Cd0-xe-ckg" firstAttribute="leading" secondItem="W78-Lx-XZC" secondAttribute="leading" constant="3" id="5R5-Ts-hB9"/>
                             <constraint firstItem="4NG-Oz-j9P" firstAttribute="centerX" secondItem="OWd-ni-i2h" secondAttribute="centerX" constant="-30" id="9tn-H3-RK7"/>
@@ -220,19 +225,29 @@
                             <constraint firstItem="Jo5-rK-rNc" firstAttribute="top" secondItem="W78-Lx-XZC" secondAttribute="bottom" constant="26" id="Qx5-gX-abU"/>
                             <constraint firstItem="Jo5-rK-rNc" firstAttribute="leading" secondItem="8by-HI-hfb" secondAttribute="leading" constant="3" id="S7L-oo-Bvc"/>
                             <constraint firstItem="W78-Lx-XZC" firstAttribute="centerX" secondItem="OWd-ni-i2h" secondAttribute="centerX" id="Smh-PH-3CA"/>
+                            <constraint firstItem="Evm-qG-DEo" firstAttribute="centerY" secondItem="hvG-UE-Nnr" secondAttribute="centerY" id="Yc9-MM-b9h"/>
+                            <constraint firstItem="Evm-qG-DEo" firstAttribute="leading" secondItem="hvG-UE-Nnr" secondAttribute="trailing" constant="2" id="eak-wl-Fmn"/>
+                            <constraint firstItem="Lpu-Gy-vWm" firstAttribute="centerY" secondItem="mSe-X9-btK" secondAttribute="centerY" id="imu-hN-DfO"/>
                             <constraint firstItem="Pt3-jx-Y1A" firstAttribute="centerX" secondItem="OWd-ni-i2h" secondAttribute="centerX" id="kY1-PG-Hu2"/>
                             <constraint firstItem="Pt3-jx-Y1A" firstAttribute="top" secondItem="OWd-ni-i2h" secondAttribute="top" constant="121" id="kbA-wD-JTh"/>
                             <constraint firstItem="cka-Jh-nPm" firstAttribute="top" secondItem="Tfn-yo-9zz" secondAttribute="bottom" constant="48" id="kei-K9-Wg6"/>
                             <constraint firstItem="Hqy-Y1-nLo" firstAttribute="centerX" secondItem="OWd-ni-i2h" secondAttribute="centerX" constant="30" id="ojM-3V-E3l"/>
+                            <constraint firstItem="hvG-UE-Nnr" firstAttribute="leading" secondItem="8by-HI-hfb" secondAttribute="leading" id="wVa-Nr-H8i"/>
+                            <constraint firstItem="mSe-X9-btK" firstAttribute="top" secondItem="W78-Lx-XZC" secondAttribute="bottom" constant="4" id="xoU-Jx-GdB"/>
+                            <constraint firstItem="Lpu-Gy-vWm" firstAttribute="leading" secondItem="mSe-X9-btK" secondAttribute="trailing" constant="2" id="ym8-32-Hz9"/>
                             <constraint firstItem="Hqy-Y1-nLo" firstAttribute="top" secondItem="cka-Jh-nPm" secondAttribute="bottom" constant="12" id="zRr-fe-2Tx"/>
                             <constraint firstItem="W78-Lx-XZC" firstAttribute="top" secondItem="Pt3-jx-Y1A" secondAttribute="bottom" constant="48" id="zXl-al-Zg5"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="emailErrorImage" destination="mSe-X9-btK" id="NYq-ml-80d"/>
+                        <outlet property="emailErrorLabel" destination="Lpu-Gy-vWm" id="7Xn-H9-dFP"/>
                         <outlet property="emailLabel" destination="Cd0-xe-ckg" id="940-gH-R9F"/>
                         <outlet property="emailTextField" destination="W78-Lx-XZC" id="vRR-mg-Pli"/>
                         <outlet property="findPasswordButton" destination="9xu-bo-JME" id="tlY-zc-8FB"/>
                         <outlet property="loginButton" destination="uDh-rg-3Hs" id="92l-ad-3Ja"/>
+                        <outlet property="passwordErrorImage" destination="hvG-UE-Nnr" id="dfJ-du-1Sp"/>
+                        <outlet property="passwordErrorLabel" destination="Evm-qG-DEo" id="ZZZ-33-aML"/>
                         <outlet property="passwordLabel" destination="Jo5-rK-rNc" id="jGZ-O6-7d4"/>
                         <outlet property="passwordTextField" destination="8by-HI-hfb" id="9PT-cT-ni6"/>
                         <outlet property="signupButton" destination="yj7-9P-mKp" id="PuC-5x-h65"/>
@@ -271,9 +286,16 @@
         <image name="home_gray" width="25" height="24"/>
         <image name="home_primary" width="25" height="24"/>
         <image name="kakao" width="44" height="44"/>
+        <image name="login_error" width="12" height="12"/>
         <image name="logo_login" width="160" height="235"/>
         <image name="mypage_gray" width="25" height="24"/>
         <image name="mypage_primary" width="25" height="24"/>
-        <image name="setting" width="24" height="24"/>
+        <image name="naver" width="44" height="44"/>
+        <namedColor name="EmphasizeError">
+            <color red="0.93725490196078431" green="0.29803921568627451" blue="0.29803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
