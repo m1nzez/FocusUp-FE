@@ -37,6 +37,12 @@ class LoginViewController: UIViewController {
     }
     
     // MARK: - Action
+    @IBAction func joinButtonTapped(_ sender: Any) {
+        guard let joinVC = self.storyboard?.instantiateViewController(identifier: "JoinViewController") as? JoinViewController else { return }
+        joinVC.modalTransitionStyle = .coverVertical
+        joinVC.modalPresentationStyle = .fullScreen
+        self.present(joinVC, animated: true, completion: nil)
+    }
     
     
     // MARK: - Function

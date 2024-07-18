@@ -26,7 +26,16 @@ class JoinViewController: UIViewController {
         setAttribute()
         setFont()
 
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        passwordConfirmTextField.delegate = self
     }
+    
+    // MARK: - Action
+    @IBAction func backButtonTapped(_ sender: Any) {
+        dismiss(animated: true)
+    }
+    
     
     // MARK: - Function
     func setAttribute() {
@@ -59,4 +68,35 @@ class JoinViewController: UIViewController {
         snsLoginLabel.font = UIFont(name: "Pretendard-Medium", size: 13)
     }
 
+}
+
+// MARK: - UITextFieldDelegate
+extension JoinViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == emailTextField {
+            textField.layer.borderColor = UIColor.primary4.cgColor
+            textField.textColor = UIColor.primary4
+        } else if textField == passwordTextField {
+            textField.layer.borderColor = UIColor.primary4.cgColor
+            textField.textColor = UIColor.primary4
+        } else if textField == passwordConfirmTextField {
+            textField.layer.borderColor = UIColor.primary4.cgColor
+            textField.textColor = UIColor.primary4
+        }
+        textField.tintColor = UIColor.primary4
+    }
+    
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == emailTextField {
+            textField.layer.borderColor = UIColor.primary2.cgColor
+            textField.textColor = UIColor.primary4
+        } else if textField == passwordTextField {
+            textField.layer.borderColor = UIColor.primary2.cgColor
+            textField.textColor = UIColor.primary4
+        } else if textField == passwordConfirmTextField {
+            textField.layer.borderColor = UIColor.primary2.cgColor
+            textField.textColor = UIColor.primary4
+        }
+    }
 }
