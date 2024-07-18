@@ -23,10 +23,8 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         setAttribute()
         setFont()
-        
-        emailTextField.delegate = self
-        passwordTextField.delegate = self
     }
+    
     
     // MARK: - Action
     
