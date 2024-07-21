@@ -456,10 +456,7 @@
         <image name="logo_login" width="160" height="235"/>
         <image name="mypage_gray" width="25" height="24"/>
         <image name="mypage_primary" width="25" height="24"/>
-        <image name="naver" width="44" height="44"/>
-        <namedColor name="EmphasizeError">
-            <color red="0.93725490196078431" green="0.29803921568627451" blue="0.29803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
+        <image name="setting" width="24" height="24"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

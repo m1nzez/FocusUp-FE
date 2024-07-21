@@ -35,32 +35,26 @@ class LoginViewController: UIViewController {
         emailTextField.addTarget(self, action: #selector(textFieldDidChangeSelection(_:)), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(textFieldDidChangeSelection(_:)), for: .editingChanged)
     }
-    
+
     // MARK: - Action
-    @IBAction func joinButtonTapped(_ sender: Any) {
-        guard let joinVC = self.storyboard?.instantiateViewController(identifier: "JoinViewController") as? JoinViewController else { return }
-        joinVC.modalTransitionStyle = .coverVertical
-        joinVC.modalPresentationStyle = .fullScreen
-        self.present(joinVC, animated: true, completion: nil)
-    }
-    
     
     // MARK: - Function
     func setAttribute() {
-        setTextFieldAttribute(for: emailTextField)
-        setTextFieldAttribute(for: passwordTextField)
+        emailTextField.layer.borderColor = UIColor.blueGray2.cgColor
+        emailTextField.layer.borderWidth = 1
+        emailTextField.layer.cornerRadius = 8
+        emailTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 14, height: 0))
+        emailTextField.leftViewMode = .always
+        
+        passwordTextField.layer.borderColor = UIColor.blueGray2.cgColor
+        passwordTextField.layer.borderWidth = 1
+        passwordTextField.layer.cornerRadius = 8
+        passwordTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 14, height: 0))
+        passwordTextField.leftViewMode = .always
         
         loginButton.layer.borderColor = UIColor.primary4.cgColor
         loginButton.layer.borderWidth = 1
         loginButton.layer.cornerRadius = 28
-    }
-    
-    func setTextFieldAttribute(for textField: UITextField) {
-        textField.layer.borderColor = UIColor.blueGray2.cgColor
-        textField.layer.borderWidth = 1
-        textField.layer.cornerRadius = 8
-        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 14, height: 0))
-        textField.leftViewMode = .always
     }
     
     func setFont() {
@@ -135,57 +129,4 @@ class LoginViewController: UIViewController {
         }
     }
 
-}
-
-// MARK: - UITextFieldDelegate
-extension LoginViewController: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField == emailTextField {
-            if !isValidEmail(emailTextField.text) {
-                textField.layer.borderColor = UIColor.emphasizeError.cgColor
-                textField.textColor = UIColor.emphasizeError
-            } else {
-                textField.layer.borderColor = UIColor.primary4.cgColor
-                textField.textColor = UIColor.primary4
-            }
-        } else if textField == passwordTextField {
-            if !isValidPassword(passwordTextField.text) {
-                textField.layer.borderColor = UIColor.emphasizeError.cgColor
-                textField.textColor = UIColor.emphasizeError
-            } else {
-                textField.layer.borderColor = UIColor.primary4.cgColor
-                textField.textColor = UIColor.primary4
-            }
-        }
-        textField.tintColor = UIColor.primary4
-    }
-    
-
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField == emailTextField {
-            if !isValidEmail(emailTextField.text) {
-                emailTextField.layer.borderColor = UIColor.emphasizeError.cgColor
-                emailTextField.textColor = UIColor.emphasizeError
-                emailErrorImage.isHidden = false
-                emailErrorLabel.isHidden = false
-            } else {
-                emailTextField.layer.borderColor = UIColor.primary2.cgColor
-                emailTextField.textColor = UIColor.primary4
-                emailErrorImage.isHidden = true
-                emailErrorLabel.isHidden = true
-            }
-        } else if textField == passwordTextField {
-            if !isValidPassword(passwordTextField.text) {
-                passwordTextField.layer.borderColor = UIColor.emphasizeError.cgColor
-                passwordTextField.textColor = UIColor.emphasizeError
-                passwordErrorImage.isHidden = false
-                passwordErrorLabel.isHidden = false
-            } else {
-                passwordTextField.layer.borderColor = UIColor.primary2.cgColor
-                passwordTextField.textColor = UIColor.primary4
-                passwordErrorImage.isHidden = true
-                passwordErrorLabel.isHidden = true
-            }
-        }
-    }
 }
