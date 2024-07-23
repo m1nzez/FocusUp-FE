@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mgW-Lj-VXY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="p2M-o7-9Yb">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -44,45 +44,21 @@
             </objects>
             <point key="canvasLocation" x="256" y="1267"/>
         </scene>
-        <!--MyPage-->
+        <!--View Controller-->
         <scene sceneID="xpH-mD-q4B">
             <objects>
                 <viewController id="ivx-ep-J1P" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3DS-Xb-IgI">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="마이페이지" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sl3-lT-uM2">
-                                <rect key="frame" x="157" y="71" width="79" height="22"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nwR-zZ-LaN">
-                                <rect key="frame" x="345" y="71" width="24" height="24"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="24" id="7s0-U5-Lik"/>
-                                    <constraint firstAttribute="height" constant="24" id="bCm-E7-9DD"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="setting"/>
-                            </button>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="sdJ-1w-hDY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="sdJ-1w-hDY" firstAttribute="trailing" secondItem="nwR-zZ-LaN" secondAttribute="trailing" constant="24" id="8vS-AA-n0z"/>
-                            <constraint firstItem="sl3-lT-uM2" firstAttribute="leading" secondItem="sdJ-1w-hDY" secondAttribute="leading" constant="157" id="PWG-C2-rsI"/>
-                            <constraint firstItem="nwR-zZ-LaN" firstAttribute="top" secondItem="sdJ-1w-hDY" secondAttribute="top" constant="12" id="QIZ-26-v00"/>
-                            <constraint firstItem="nwR-zZ-LaN" firstAttribute="leading" secondItem="sl3-lT-uM2" secondAttribute="trailing" constant="109" id="k7N-QX-q7n"/>
-                            <constraint firstItem="sl3-lT-uM2" firstAttribute="top" secondItem="sdJ-1w-hDY" secondAttribute="top" constant="12" id="pyd-Ia-am6"/>
-                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="MyPage" image="mypage_gray" selectedImage="mypage_primary" id="e38-lt-Smp"/>
+                    <navigationItem key="navigationItem" id="Jrl-aj-xph"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7aQ-Ca-Kr2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1085" y="1267"/>
+            <point key="canvasLocation" x="2011.4503816793892" y="1266.9014084507044"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="Tax-2N-Bge">
@@ -156,12 +132,31 @@
                     <connections>
                         <segue destination="wK8-le-rud" kind="relationship" relationship="viewControllers" id="U3q-FP-Rem"/>
                         <segue destination="qYc-NW-qEm" kind="relationship" relationship="viewControllers" id="0Iw-dr-XtQ"/>
-                        <segue destination="ivx-ep-J1P" kind="relationship" relationship="viewControllers" id="nHj-pm-tFj"/>
+                        <segue destination="p2M-o7-9Yb" kind="relationship" relationship="viewControllers" id="nHj-pm-tFj"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hf6-a7-SBq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="255.72519083969465" y="515.49295774647885"/>
+        </scene>
+        <!--MyPage-->
+        <scene sceneID="B8O-Ue-7Dt">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="p2M-o7-9Yb" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="MyPage" image="mypage_gray" selectedImage="mypage_primary" id="e38-lt-Smp"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="OXa-33-h95">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ivx-ep-J1P" kind="relationship" relationship="rootViewController" id="Bry-V6-566"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="45B-B2-qgM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1084.7328244274809" y="1266.9014084507044"/>
         </scene>
     </scenes>
     <resources>
@@ -174,7 +169,6 @@
         <image name="mypage_gray" width="25" height="24"/>
         <image name="mypage_primary" width="25" height="24"/>
         <image name="naver" width="20" height="20"/>
-        <image name="setting" width="24" height="24"/>
         <namedColor name="EmphasizeKakao2">
             <color red="0.99607843137254903" green="0.89803921568627454" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
