@@ -87,15 +87,12 @@ class GoalRoutineSettingViewController: UIViewController {
         
         rightBarButton.tintColor = UIColor(named: "Primary4")
         self.navigationItem.rightBarButtonItem = rightBarButton
-        
-        customTitleView()
     }
     
     func customTitleView() {
         self.navigationController?.navigationBar.tintColor = UIColor.black
         self.navigationController?.navigationBar.topItem?.title = ""
         
-        let containerView = UIView()
         let titleView = UIView()
         let titleLabel = UILabel()
         titleLabel.text = "목표 루틴 설정"
@@ -120,22 +117,19 @@ class GoalRoutineSettingViewController: UIViewController {
             
             customButton.centerYAnchor.constraint(equalTo: titleView.centerYAnchor),
             customButton.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor, constant: 8),
-            customButton.trailingAnchor.constraint(equalTo: titleView.trailingAnchor)
+            customButton.trailingAnchor.constraint(equalTo: titleView.trailingAnchor),
+            customButton.widthAnchor.constraint(equalToConstant: 24),
+            customButton.heightAnchor.constraint(equalToConstant: 24)
         ])
         
-        containerView.addSubview(titleView)
         titleView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.translatesAutoresizingMaskIntoConstraints = false
-        
         NSLayoutConstraint.activate([
-            titleView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
-            titleView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 30),
-            titleView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor)
+            titleView.widthAnchor.constraint(equalTo: titleLabel.widthAnchor, constant: 32),
+            titleView.heightAnchor.constraint(equalToConstant: 44)
         ])
         
-        self.navigationItem.titleView = containerView
+        self.navigationItem.titleView = titleView
     }
-
     
     // MARK: - Action
     private func setWeekStackViewButton() {
