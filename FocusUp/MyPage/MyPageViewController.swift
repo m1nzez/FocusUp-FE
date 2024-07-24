@@ -44,7 +44,7 @@ class MyPageViewController: UIViewController {
         } else {
             print("커스텀 폰트를 로드할 수 없습니다.")
         }
-        
+    
     }
 
     // MARK: - action
