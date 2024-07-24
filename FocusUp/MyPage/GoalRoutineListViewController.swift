@@ -19,7 +19,7 @@ class GoalRoutineListViewController: UIViewController {
         self.navigationController?.navigationBar.topItem?.title = ""
         self.title = "목표 루틴 리스트"
         
-        self.goalRoutineLabel2.font = UIFont(name: "Pretendard-Medium.otf", size: 15)
+        self.goalRoutineLabel2.font = UIFont(name: "Pretendard-Medium", size: 15)
         
         self.addNewRoutineButton2.layer.cornerRadius = 8
         self.addNewRoutineButton2.layer.borderWidth = 1

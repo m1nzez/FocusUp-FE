@@ -22,12 +22,12 @@ class GoalRoutineSettingViewController: UIViewController {
         self.navigationController?.navigationBar.topItem?.title = ""
         self.title = "목표 루틴 설정"
         
-        self.goalRoutineLabel3.font = UIFont(name: "Pretendard-Medium.otf", size: 15)
-        self.repeatPeriodLabel.font = UIFont(name: "Pretendard-Medium.otf", size: 15)
+        self.goalRoutineLabel3.font = UIFont(name: "Pretendard-Medium", size: 15)
+        self.repeatPeriodLabel.font = UIFont(name: "Pretendard-Medium", size: 15)
         
         self.goalRoutineInput.attributedPlaceholder = NSAttributedString(string: "목표 루틴 입력", 
              attributes: [NSAttributedString.Key.foregroundColor: UIColor.primary4,
-                          NSAttributedString.Key.font: UIFont(name: "Pretendard-Medium.otf", size: 16) ?? .boldSystemFont(ofSize: 16)])
+                          NSAttributedString.Key.font: UIFont(name: "Pretendard-Medium", size: 16) ?? .boldSystemFont(ofSize: 16)])
         self.goalRoutineInput.layer.cornerRadius = 8
         self.goalRoutineInput.layer.borderWidth = 1
         self.goalRoutineInput.layer.borderColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2).cgColor
