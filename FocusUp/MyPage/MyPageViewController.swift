@@ -18,9 +18,9 @@ class MyPageViewController: UIViewController {
         super.viewDidLoad()
 
         // 폰트 적용
-        self.goalRoutineLabel.font = UIFont(name: "Pretendard-Medium.otf", size: 15)
+        self.goalRoutineLabel.font = UIFont(name: "Pretendard-Medium", size: 15)
         self.addUnderlineToMoreButton()
-        self.addNewRoutineButton.titleLabel?.font = UIFont(name: "Pretendard-Medium.otf", size: 15)
+        self.addNewRoutineButton.titleLabel?.font = UIFont(name: "Pretendard-Medium", size: 15)
         
         // addNewRoutineButton 테두리 설정
         self.addNewRoutineButton.layer.cornerRadius = 8
