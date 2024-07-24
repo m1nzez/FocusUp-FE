@@ -44,17 +44,53 @@
             </objects>
             <point key="canvasLocation" x="256" y="1267"/>
         </scene>
-        <!--View Controller-->
+        <!--My Page View Controller-->
         <scene sceneID="xpH-mD-q4B">
             <objects>
-                <viewController id="ivx-ep-J1P" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyPageViewController" id="ivx-ep-J1P" customClass="MyPageViewController" customModule="FocusUp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3DS-Xb-IgI">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="목표 루틴" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EVa-cA-E8x">
+                                <rect key="frame" x="27" y="135" width="56" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fnr-1y-sng">
+                                <rect key="frame" x="342" y="138" width="24" height="14"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="14" id="eAs-1c-Jbf"/>
+                                    <constraint firstAttribute="width" constant="24" id="vUD-zl-HhK"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="더보기">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="10"/>
+                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                </buttonConfiguration>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6NS-Hy-zNv">
+                                <rect key="frame" x="125" y="192" width="146" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="add_mypage" title="새 루틴 추가하기" imagePadding="9">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
+                                </buttonConfiguration>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="sdJ-1w-hDY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="EVa-cA-E8x" firstAttribute="leading" secondItem="sdJ-1w-hDY" secondAttribute="leading" constant="27" id="4jh-Zc-opN"/>
+                            <constraint firstItem="EVa-cA-E8x" firstAttribute="top" secondItem="sdJ-1w-hDY" secondAttribute="top" constant="32" id="Cy7-za-Bnp"/>
+                            <constraint firstItem="Fnr-1y-sng" firstAttribute="top" secondItem="sdJ-1w-hDY" secondAttribute="top" constant="35" id="Huv-mg-OlF"/>
+                            <constraint firstItem="sdJ-1w-hDY" firstAttribute="trailing" secondItem="Fnr-1y-sng" secondAttribute="trailing" constant="27" id="nM6-mT-T3c"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Jrl-aj-xph"/>
+                    <navigationItem key="navigationItem" id="Jrl-aj-xph">
+                        <barButtonItem key="rightBarButtonItem" image="setting" id="ooe-KR-T4x"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7aQ-Ca-Kr2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -160,6 +196,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="add_mypage" width="14" height="14"/>
         <image name="character_btn_after" width="70" height="83"/>
         <image name="character_btn_before" width="70" height="83"/>
         <image name="home_gray" width="25" height="24"/>
@@ -169,12 +206,16 @@
         <image name="mypage_gray" width="25" height="24"/>
         <image name="mypage_primary" width="25" height="24"/>
         <image name="naver" width="20" height="20"/>
+        <image name="setting" width="24" height="24"/>
         <namedColor name="EmphasizeKakao2">
             <color red="0.99607843137254903" green="0.89803921568627454" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="EmphasizeNaver2">
             <color red="0.011764705882352941" green="0.7803921568627451" blue="0.35294117647058826" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
