@@ -178,8 +178,35 @@
                     <view key="view" contentMode="scaleToFill" id="fpz-jL-sU5">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="목표 루틴" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r34-gz-qty">
+                                <rect key="frame" x="27" y="91" width="57" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VBq-6h-YsF">
+                                <rect key="frame" x="25" y="119" width="343" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="HU7-YT-tqo"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="add_mypage" title="새 루틴 추가하기" imagePadding="9">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
+                                    <color key="baseForegroundColor" name="BlueGray3"/>
+                                </buttonConfiguration>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="iGk-US-TVZ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="r34-gz-qty" firstAttribute="top" secondItem="iGk-US-TVZ" secondAttribute="top" constant="32" id="1ke-K6-5h3"/>
+                            <constraint firstItem="iGk-US-TVZ" firstAttribute="trailing" secondItem="r34-gz-qty" secondAttribute="trailing" constant="309" id="B3j-9u-urb"/>
+                            <constraint firstItem="r34-gz-qty" firstAttribute="leading" secondItem="iGk-US-TVZ" secondAttribute="leading" constant="27" id="Rhy-5W-AqO"/>
+                            <constraint firstItem="iGk-US-TVZ" firstAttribute="trailing" secondItem="VBq-6h-YsF" secondAttribute="trailing" constant="25" id="b7f-Rg-qc9"/>
+                            <constraint firstItem="VBq-6h-YsF" firstAttribute="leading" secondItem="iGk-US-TVZ" secondAttribute="leading" constant="25" id="gGk-3U-LFb"/>
+                            <constraint firstItem="VBq-6h-YsF" firstAttribute="top" secondItem="r34-gz-qty" secondAttribute="bottom" constant="10" id="wtO-Pv-Nyj"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iDi-0T-9uf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
