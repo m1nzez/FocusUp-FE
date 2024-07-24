@@ -46,6 +46,9 @@
                                 <color key="tintColor" red="0.92156863209999995" green="0.92549020049999997" blue="0.94117647410000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="bottomsheet_grabber"/>
+                                <connections>
+                                    <action selector="configureButton:" destination="qYc-NW-qEm" eventType="touchUpInside" id="pwG-uL-hQ3"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ixM-hr-0q0">
                                 <rect key="frame" x="0.0" y="59" width="393" height="68"/>
@@ -150,6 +153,53 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DVQ-NP-lQK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="256" y="1267"/>
+        </scene>
+        <!--Content View Controller-->
+        <scene sceneID="Mos-PV-cJZ">
+            <objects>
+                <viewController storyboardIdentifier="ContentViewController" id="il1-WE-nHS" customClass="ContentViewController" customModule="FocusUp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="EjP-i7-pCZ">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="마이룸" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Px6-a1-zNR">
+                                <rect key="frame" x="0.0" y="99" width="393" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="jA8-Qu-acA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zcb-hj-T17">
+                                <rect key="frame" x="0.0" y="59" width="393" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="ZRG-hR-ghQ"/>
+                                </constraints>
+                                <color key="tintColor" red="0.92156863209999995" green="0.92549020049999997" blue="0.94117647410000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="bottomsheet_grabber"/>
+                                <connections>
+                                    <action selector="configureButton:" destination="qYc-NW-qEm" eventType="touchUpInside" id="gvh-2I-iHk"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="BWU-de-5zK"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="BWU-de-5zK" firstAttribute="trailing" secondItem="Px6-a1-zNR" secondAttribute="trailing" id="7mH-HP-aDn"/>
+                            <constraint firstItem="zcb-hj-T17" firstAttribute="leading" secondItem="BWU-de-5zK" secondAttribute="leading" id="DwE-2N-YgK"/>
+                            <constraint firstItem="zcb-hj-T17" firstAttribute="top" secondItem="BWU-de-5zK" secondAttribute="top" id="Laz-z2-oTv"/>
+                            <constraint firstItem="Px6-a1-zNR" firstAttribute="top" secondItem="zcb-hj-T17" secondAttribute="bottom" id="Pgy-Mw-TMf"/>
+                            <constraint firstItem="Px6-a1-zNR" firstAttribute="leading" secondItem="BWU-de-5zK" secondAttribute="leading" id="WFz-L8-Ghx"/>
+                            <constraint firstItem="zcb-hj-T17" firstAttribute="trailing" secondItem="BWU-de-5zK" secondAttribute="trailing" id="aCr-1M-4h1"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dst-Ri-NdP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="256" y="2020"/>
         </scene>
         <!--MyPage-->
         <scene sceneID="xpH-mD-q4B">

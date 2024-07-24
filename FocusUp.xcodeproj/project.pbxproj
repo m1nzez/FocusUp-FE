@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1961F9472C5113FB000D9652 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1961F9462C5113FB000D9652 /* ContentViewController.swift */; };
+		1961F9492C511474000D9652 /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1961F9482C511474000D9652 /* BottomSheetViewController.swift */; };
 		19AC29F12C51002600CB8554 /* CharacterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19AC29F02C51002600CB8554 /* CharacterViewController.swift */; };
 		232B79122C47E278001D2934 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232B79112C47E278001D2934 /* LoginViewController.swift */; };
 		23E51D6F2C466B6B0099C44B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E51D6E2C466B6B0099C44B /* AppDelegate.swift */; };
@@ -27,6 +29,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1961F9462C5113FB000D9652 /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
+		1961F9482C511474000D9652 /* BottomSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
 		19AC29F02C51002600CB8554 /* CharacterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewController.swift; sourceTree = "<group>"; };
 		232B79112C47E278001D2934 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		23E51D6B2C466B6B0099C44B /* FocusUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FocusUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,7 +66,9 @@
 		19AC29EF2C50FB2E00CB8554 /* Character */ = {
 			isa = PBXGroup;
 			children = (
+				1961F9482C511474000D9652 /* BottomSheetViewController.swift */,
 				19AC29F02C51002600CB8554 /* CharacterViewController.swift */,
+				1961F9462C5113FB000D9652 /* ContentViewController.swift */,
 			);
 			path = Character;
 			sourceTree = "<group>";
@@ -205,9 +211,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				232B79122C47E278001D2934 /* LoginViewController.swift in Sources */,
+				1961F9492C511474000D9652 /* BottomSheetViewController.swift in Sources */,
 				19AC29F12C51002600CB8554 /* CharacterViewController.swift in Sources */,
 				23E51D6F2C466B6B0099C44B /* AppDelegate.swift in Sources */,
 				23E51D712C466B6B0099C44B /* SceneDelegate.swift in Sources */,
+				1961F9472C5113FB000D9652 /* ContentViewController.swift in Sources */,
 				23E51D982C46DD210099C44B /* CustomTabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

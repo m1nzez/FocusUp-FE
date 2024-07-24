@@ -57,20 +57,22 @@ class CharacterViewController: UIViewController {
     }
     
     private func setupVerticalTextForButton() {
-        if #available(iOS 15.0, *) {
-            var configuration = UIButton.Configuration.plain()
-            configuration.titleAlignment = .center
-            configuration.titlePadding = 10
-            shopButton.configuration = configuration
-            
-            shopButton.setTitle("Vertical Text", for: .normal)
-            shopButton.transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 2)
-            
-            shopButton.frame.size = CGSize(width: 44, height: 200)
-        } else {
-            shopButton.titleLabel?.transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 2)
-            shopButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-        }
+        // 수정 예정
+    }
+    
+    @IBAction func configureButton(_ sender: Any) {
+        self.showBottomSheet()
+    }
+    
+    private func showBottomSheet() {
+        // MARK: Show BottomSheetViewController
+        let storyboard = UIStoryboard(name: "Main", bundle: nil) // 스토리보드 이름이 "Main"이라 가정
+        let contentViewController = storyboard.instantiateViewController(withIdentifier: "ContentViewController")
+        
+//        let contentViewController = ContentViewController()
+        let bottomSheetViewController = BottomSheetViewController(contentViewController: contentViewController, defaultHeight: 500, cornerRadius: 26, dimmedAlpha: 0.4, isPannedable: true)
+        
+        self.present(bottomSheetViewController, animated: true)
     }
     
     override func viewDidLayoutSubviews() {
