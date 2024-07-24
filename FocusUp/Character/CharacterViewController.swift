@@ -16,6 +16,7 @@ class CharacterViewController: UIViewController {
         setupShellfishViewBorder()
         setupBottomButtonBorder()
         setupShopButtonAppearance()
+        shopButton.configureButtonWithTitleBelowImage(spacing: 6.0)
 //        setupVerticalTextForButton()
     }
     
@@ -83,3 +84,23 @@ class CharacterViewController: UIViewController {
 //        setupVerticalTextForButton()
     }
 }
+
+import UIKit
+
+extension UIButton {
+    func configureButtonWithTitleBelowImage(spacing: CGFloat = 4.0) {
+        guard let currentImage = self.imageView?.image,
+              let currentTitle = self.titleLabel?.text else {
+            return
+        }
+        
+        var configuration = UIButton.Configuration.plain()
+        configuration.image = currentImage
+        configuration.title = currentTitle
+        configuration.imagePlacement = .top
+        configuration.imagePadding = spacing
+        
+        self.configuration = configuration
+    }
+}
+
