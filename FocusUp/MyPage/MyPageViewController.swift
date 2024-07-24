@@ -20,7 +20,7 @@ class MyPageViewController: UIViewController {
         // 폰트 적용
         self.goalRoutineLabel.font = UIFont(name: "Pretendard-Medium.otf", size: 15)
         self.addUnderlineToMoreButton()
-        self.addNewRoutineButton.titleLabel?.font = UIFont(name: "Pretandard-Medium.otf", size: 15)
+        self.addNewRoutineButton.titleLabel?.font = UIFont(name: "Pretendard-Medium.otf", size: 15)
         
         // addNewRoutineButton 테두리 설정
         self.addNewRoutineButton.layer.cornerRadius = 8
@@ -34,6 +34,16 @@ class MyPageViewController: UIViewController {
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.black]
         self.navigationController?.navigationBar.titleTextAttributes = textAttributes
         self.title = "마이페이지"
+        
+        if let customFont = UIFont(name: "Pretendard-Regular", size: 18) {
+            let textAttributes = [
+                NSAttributedString.Key.foregroundColor: UIColor.black,
+                NSAttributedString.Key.font: customFont
+            ]
+            self.navigationController?.navigationBar.titleTextAttributes = textAttributes
+        } else {
+            print("커스텀 폰트를 로드할 수 없습니다.")
+        }
         
     }
 
@@ -53,11 +63,9 @@ class MyPageViewController: UIViewController {
         self.navigationController?.pushViewController(toGoalRoutineSettingVC, animated: true)
     }
     
-    
-    
     private func addUnderlineToMoreButton() {
         let title = "더보기"
-        let font = UIFont(name: "Pretandard-Regular", size: 10)
+        let font = UIFont(name: "Pretendard-Regular", size: 10)
         let attributedTitle = NSAttributedString(string: title, attributes: [
             .font: font ?? .systemFont(ofSize: 10),
             .underlineStyle: NSUnderlineStyle.single.rawValue,

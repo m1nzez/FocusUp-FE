@@ -8,22 +8,36 @@
 import UIKit
 
 class SettingViewController: UIViewController {
+    // MARK: - property
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        self.navigationController?.navigationBar.tintColor = UIColor.black
+        self.navigationController?.navigationBar.topItem?.title = ""
+        self.title = "설정"
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let customFont = UIFont(name: "Pretendard-Regular", size: 18) {
+            let textAttributes = [
+                NSAttributedString.Key.foregroundColor: UIColor.black,
+                NSAttributedString.Key.font: customFont
+            ]
+            self.navigationController?.navigationBar.titleTextAttributes = textAttributes
+        } else {
+            print("커스텀 폰트를 로드할 수 없습니다.")
+        }
+        
+        let backButton = UIImage(named: "arrow_left.svg")
+        let leftBarButton: UIBarButtonItem = UIBarButtonItem(image: backButton, style: .plain, target: self, action: #selector(completeButtonDidTap))
+        self.navigationItem.leftBarButtonItem = leftBarButton
     }
-    */
-
+    
+    // MARK: - action
+    @objc func completeButtonDidTap(_ sender: UIBarButtonItem) {
+        self.navigationController?.popViewController(animated: true)
+    }
 }
