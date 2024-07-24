@@ -69,6 +69,9 @@
                                     <fontDescription key="titleFontDescription" type="system" pointSize="10"/>
                                     <color key="baseForegroundColor" systemColor="labelColor"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="didTapMoreBtn:" destination="ivx-ep-J1P" eventType="touchUpInside" id="axR-ty-cV3"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6NS-Hy-zNv">
                                 <rect key="frame" x="25" y="163" width="343" height="50"/>
