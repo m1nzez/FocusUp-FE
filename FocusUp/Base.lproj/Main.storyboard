@@ -125,8 +125,39 @@
                     <view key="view" contentMode="scaleToFill" id="9Ta-3q-1w3">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="31" translatesAutoresizingMaskIntoConstraints="NO" id="irL-Sw-OG8">
+                                <rect key="frame" x="16" y="91" width="361" height="110"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wWG-OW-d5A">
+                                        <rect key="frame" x="0.0" y="0.0" width="361" height="41"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="arrow_right_black" imagePlacement="trailing" title="레벨 조정" imagePadding="248">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
+                                            <color key="baseForegroundColor" systemColor="labelColor"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p1k-5h-5PS">
+                                        <rect key="frame" x="0.0" y="72" width="361" height="38"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="arrow_right_black" imagePlacement="trailing" title="로그아웃" imagePadding="252">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
+                                            <color key="baseForegroundColor" systemColor="labelColor"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="110" id="YBa-vG-Sco"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="FF3-kv-Jxl"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="irL-Sw-OG8" firstAttribute="top" secondItem="FF3-kv-Jxl" secondAttribute="top" constant="32" id="lOS-eu-416"/>
+                            <constraint firstItem="FF3-kv-Jxl" firstAttribute="trailing" secondItem="irL-Sw-OG8" secondAttribute="trailing" constant="16" id="rc2-8V-i6h"/>
+                            <constraint firstItem="irL-Sw-OG8" firstAttribute="leading" secondItem="FF3-kv-Jxl" secondAttribute="leading" constant="16" id="zj1-yt-sFw"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DSb-EO-Lap" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -264,6 +295,7 @@
     </scenes>
     <resources>
         <image name="add_mypage" width="14" height="14"/>
+        <image name="arrow_right_black" width="24" height="24"/>
         <image name="character_btn_after" width="70" height="83"/>
         <image name="character_btn_before" width="70" height="83"/>
         <image name="home_gray" width="25" height="24"/>
