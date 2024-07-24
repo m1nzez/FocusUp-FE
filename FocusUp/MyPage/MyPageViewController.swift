@@ -48,6 +48,10 @@ class MyPageViewController: UIViewController {
         self.navigationController?.pushViewController(toGoalRoutineListVC, animated: true)
     }
     
+    @IBAction func didTapAddNewRoutineBtn(_ sender: Any) {
+        guard let toGoalRoutineSettingVC = self.storyboard?.instantiateViewController(identifier: "GoalRoutineSettingViewController") else { return }
+        self.navigationController?.pushViewController(toGoalRoutineSettingVC, animated: true)
+    }
     
     
     
