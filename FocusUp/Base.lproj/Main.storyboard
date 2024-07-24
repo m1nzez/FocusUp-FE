@@ -70,31 +70,62 @@
                                     <color key="baseForegroundColor" systemColor="labelColor"/>
                                 </buttonConfiguration>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6NS-Hy-zNv">
-                                <rect key="frame" x="125" y="192" width="146" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6NS-Hy-zNv">
+                                <rect key="frame" x="25" y="163" width="343" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Yor-Vq-DiE"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="add_mypage" title="새 루틴 추가하기" imagePadding="9">
                                     <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
+                                    <color key="baseForegroundColor" name="BlueGray3"/>
                                 </buttonConfiguration>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="sdJ-1w-hDY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="6NS-Hy-zNv" firstAttribute="leading" secondItem="sdJ-1w-hDY" secondAttribute="leading" constant="25" id="0CT-oe-ZPg"/>
                             <constraint firstItem="EVa-cA-E8x" firstAttribute="leading" secondItem="sdJ-1w-hDY" secondAttribute="leading" constant="27" id="4jh-Zc-opN"/>
                             <constraint firstItem="EVa-cA-E8x" firstAttribute="top" secondItem="sdJ-1w-hDY" secondAttribute="top" constant="32" id="Cy7-za-Bnp"/>
                             <constraint firstItem="Fnr-1y-sng" firstAttribute="top" secondItem="sdJ-1w-hDY" secondAttribute="top" constant="35" id="Huv-mg-OlF"/>
+                            <constraint firstItem="6NS-Hy-zNv" firstAttribute="top" secondItem="EVa-cA-E8x" secondAttribute="bottom" constant="10" id="Lhx-sl-pM6"/>
+                            <constraint firstItem="sdJ-1w-hDY" firstAttribute="trailing" secondItem="6NS-Hy-zNv" secondAttribute="trailing" constant="25" id="Rfl-vo-AuX"/>
                             <constraint firstItem="sdJ-1w-hDY" firstAttribute="trailing" secondItem="Fnr-1y-sng" secondAttribute="trailing" constant="27" id="nM6-mT-T3c"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Jrl-aj-xph">
-                        <barButtonItem key="rightBarButtonItem" image="setting" id="ooe-KR-T4x"/>
+                        <barButtonItem key="rightBarButtonItem" image="setting" id="ooe-KR-T4x">
+                            <connections>
+                                <action selector="didTapSettingBtn:" destination="ivx-ep-J1P" id="dYo-2Z-dpb"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="addNewRoutineButton" destination="6NS-Hy-zNv" id="lx6-O4-rKe"/>
+                        <outlet property="goalRoutineLabel" destination="EVa-cA-E8x" id="AXi-pv-egL"/>
+                        <outlet property="moreButton" destination="Fnr-1y-sng" id="vVT-hb-Pbe"/>
+                        <outlet property="settingButton" destination="ooe-KR-T4x" id="xEe-6u-OJd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7aQ-Ca-Kr2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2011.4503816793892" y="1266.9014084507044"/>
+        </scene>
+        <!--Setting View Controller-->
+        <scene sceneID="tac-P8-btg">
+            <objects>
+                <viewController storyboardIdentifier="SettingViewController" id="4hW-hq-CbL" customClass="SettingViewController" customModule="FocusUp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9Ta-3q-1w3">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="FF3-kv-Jxl"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DSb-EO-Lap" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2772" y="1267"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="Tax-2N-Bge">
@@ -207,6 +238,9 @@
         <image name="mypage_primary" width="25" height="24"/>
         <image name="naver" width="20" height="20"/>
         <image name="setting" width="24" height="24"/>
+        <namedColor name="BlueGray3">
+            <color red="0.89803921568627454" green="0.90588235294117647" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="EmphasizeKakao2">
             <color red="0.99607843137254903" green="0.89803921568627454" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
