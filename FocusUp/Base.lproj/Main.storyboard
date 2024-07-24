@@ -126,24 +126,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="31" translatesAutoresizingMaskIntoConstraints="NO" id="irL-Sw-OG8">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="31" translatesAutoresizingMaskIntoConstraints="NO" id="irL-Sw-OG8">
                                 <rect key="frame" x="16" y="91" width="361" height="110"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wWG-OW-d5A">
-                                        <rect key="frame" x="0.0" y="0.0" width="361" height="41"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wWG-OW-d5A">
+                                        <rect key="frame" x="0.0" y="0.0" width="361" height="39.666666666666664"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="arrow_right_black" imagePlacement="trailing" title="레벨 조정" imagePadding="248">
                                             <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
                                             <color key="baseForegroundColor" systemColor="labelColor"/>
                                         </buttonConfiguration>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p1k-5h-5PS">
-                                        <rect key="frame" x="0.0" y="72" width="361" height="38"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p1k-5h-5PS">
+                                        <rect key="frame" x="0.0" y="70.666666666666657" width="361" height="39.333333333333343"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="arrow_right_black" imagePlacement="trailing" title="로그아웃" imagePadding="252">
                                             <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
                                             <color key="baseForegroundColor" systemColor="labelColor"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="didTapLogOutBtn:" destination="4hW-hq-CbL" eventType="touchUpInside" id="V02-mO-siS"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -159,6 +162,10 @@
                             <constraint firstItem="irL-Sw-OG8" firstAttribute="leading" secondItem="FF3-kv-Jxl" secondAttribute="leading" constant="16" id="zj1-yt-sFw"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="levelManageButton" destination="wWG-OW-d5A" id="n7a-DB-H15"/>
+                        <outlet property="logoutButton" destination="p1k-5h-5PS" id="aPP-tI-FH8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DSb-EO-Lap" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

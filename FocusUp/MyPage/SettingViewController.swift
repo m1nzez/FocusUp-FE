@@ -9,7 +9,11 @@ import UIKit
 
 class SettingViewController: UIViewController {
     // MARK: - property
-
+    @IBOutlet weak var levelManageButton: UIButton!
+    @IBOutlet weak var logoutButton: UIButton!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -37,6 +41,23 @@ class SettingViewController: UIViewController {
     }
     
     // MARK: - action
+    @IBAction func didTapLogOutBtn(_ sender: Any) {
+        let alert = UIAlertController(title: "로그아웃 하시겠습니까?", message: "", preferredStyle: .alert)
+        
+        let Cancel = UIAlertAction(title: "취소", style: .default, handler: { (action) -> Void in})
+        alert.addAction(Cancel)
+        Cancel.setValue(UIColor(named: "BlueGray7"), forKey: "titleTextColor")
+        
+        let logout = UIAlertAction(title: "로그아웃", style: .default, handler: { (action) -> Void in})
+        alert.addAction(logout)
+        logout.setValue(UIColor(named: "Primary4"), forKey: "titleTextColor")
+        
+        alert.preferredAction = logout
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
+    
     @objc func completeButtonDidTap(_ sender: UIBarButtonItem) {
         self.navigationController?.popViewController(animated: true)
     }
