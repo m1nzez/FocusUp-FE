@@ -9,13 +9,21 @@ import UIKit
 
 class GoalRoutineListViewController: UIViewController {
     // MARK: - property
-
+    @IBOutlet weak var goalRoutineLabel2: UILabel!
+    @IBOutlet weak var addNewRoutineButton2: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.navigationController?.navigationBar.tintColor = UIColor.black
         self.navigationController?.navigationBar.topItem?.title = ""
         self.title = "목표 루틴 리스트"
+        
+        self.goalRoutineLabel2.font = UIFont(name: "Pretendard-Medium.otf", size: 15)
+        
+        self.addNewRoutineButton2.layer.cornerRadius = 8
+        self.addNewRoutineButton2.layer.borderWidth = 1
+        self.addNewRoutineButton2.layer.borderColor = UIColor(named: "BlueGray3")?.cgColor
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,6 +45,12 @@ class GoalRoutineListViewController: UIViewController {
     }
     
     // MARK: - action
+    @IBAction func didTapAddNewRoutineBtn2(_ sender: Any) {
+        guard let toGoalRoutineSettingVC = self.storyboard?.instantiateViewController(identifier: "GoalRoutineSettingViewController") else { return }
+        self.navigationController?.pushViewController(toGoalRoutineSettingVC, animated: true)
+    }
+    
+    
     @objc func completeButtonDidTap(_ sender: UIBarButtonItem) {
         self.navigationController?.popViewController(animated: true)
     }

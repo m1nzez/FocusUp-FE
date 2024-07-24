@@ -180,7 +180,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="목표 루틴" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r34-gz-qty">
-                                <rect key="frame" x="27" y="91" width="57" height="18"/>
+                                <rect key="frame" x="27" y="91" width="56" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -195,19 +195,25 @@
                                     <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
                                     <color key="baseForegroundColor" name="BlueGray3"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="didTapAddNewRoutineBtn2:" destination="aGI-gY-8vH" eventType="touchUpInside" id="h8p-II-PgU"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="iGk-US-TVZ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="r34-gz-qty" firstAttribute="top" secondItem="iGk-US-TVZ" secondAttribute="top" constant="32" id="1ke-K6-5h3"/>
-                            <constraint firstItem="iGk-US-TVZ" firstAttribute="trailing" secondItem="r34-gz-qty" secondAttribute="trailing" constant="309" id="B3j-9u-urb"/>
                             <constraint firstItem="r34-gz-qty" firstAttribute="leading" secondItem="iGk-US-TVZ" secondAttribute="leading" constant="27" id="Rhy-5W-AqO"/>
                             <constraint firstItem="iGk-US-TVZ" firstAttribute="trailing" secondItem="VBq-6h-YsF" secondAttribute="trailing" constant="25" id="b7f-Rg-qc9"/>
                             <constraint firstItem="VBq-6h-YsF" firstAttribute="leading" secondItem="iGk-US-TVZ" secondAttribute="leading" constant="25" id="gGk-3U-LFb"/>
                             <constraint firstItem="VBq-6h-YsF" firstAttribute="top" secondItem="r34-gz-qty" secondAttribute="bottom" constant="10" id="wtO-Pv-Nyj"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="addNewRoutineButton2" destination="VBq-6h-YsF" id="gQC-QH-5Yz"/>
+                        <outlet property="goalRoutineLabel2" destination="r34-gz-qty" id="Nu1-cs-Puy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iDi-0T-9uf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
