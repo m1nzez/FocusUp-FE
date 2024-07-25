@@ -89,5 +89,4 @@ class CustomTabBarController: UITabBarController {
     func setBackground() {
         tabBar.backgroundColor = UIColor.white
     }
-    
 }
