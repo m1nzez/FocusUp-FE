@@ -16,7 +16,7 @@ class MyPageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // 폰트 적용
         self.goalRoutineLabel.font = UIFont(name: "Pretendard-Medium", size: 15)
         self.addUnderlineToMoreButton()
@@ -31,9 +31,15 @@ class MyPageViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.black]
+        let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         self.navigationController?.navigationBar.titleTextAttributes = textAttributes
-        self.title = "마이페이지"
+        
+        // 네이게이션 바 타이틀 설정
+        self.navigationItem.title = "마이페이지"
+        
+        // 탭바 아이템 타이틀 설정
+        self.tabBarItem.title = "MyPage"
+        
         
         if let customFont = UIFont(name: "Pretendard-Regular", size: 18) {
             let textAttributes = [
