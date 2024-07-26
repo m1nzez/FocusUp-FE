@@ -17,6 +17,8 @@ class MyPageViewController: UIViewController {
     @IBOutlet weak var levelNoticeLabel: UILabel!
     @IBOutlet weak var presentLevelLabel: UILabel!
     @IBOutlet weak var levelProgress: UIProgressView!
+    @IBOutlet weak var levelLabel: UIStackView!
+    @IBOutlet weak var calendarLabel: UILabel!
     
     
     
@@ -32,7 +34,8 @@ class MyPageViewController: UIViewController {
         self.levelNoticeLabel.font = UIFont(name: "Pretendard-Regular", size: 12)
         self.presentLevelLabel.font = UIFont(name: "Pretendard-Regular", size: 12)
         self.addUnderlineToPresentLevelLabel()
-        
+        self.setLevelLabel()
+        self.calendarLabel.font = UIFont(name: "Pretendard-Medium", size: 15)
         
         // addNewRoutineButton 테두리 설정
         self.addNewRoutineButton.layer.cornerRadius = 8
@@ -53,19 +56,19 @@ class MyPageViewController: UIViewController {
             levelProgress.widthAnchor.constraint(equalToConstant: 200)
         ])
         
-        // 예시: 5개의 구간으로 나누어 진행 상황을 업데이트
-        updateProgressView(to: 0.2) // 첫 번째 구간 (25%)
+        // 5개의 구간으로 나누어 진행 상황을 업데이트
+        updateProgressView(to: 0.2) // 첫 번째 구간 (20%)
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.updateProgressView(to: 0.4) // 두 번째 구간 (50%)
+            self.updateProgressView(to: 0.4) // 두 번째 구간 (40%)
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.updateProgressView(to: 0.6) // 세 번째 구간 (75%)
+            self.updateProgressView(to: 0.6) // 세 번째 구간 (60%)
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            self.updateProgressView(to: 0.8) // 네 번째 구간 (100%)
+            self.updateProgressView(to: 0.8) // 네 번째 구간 (80%)
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-            self.updateProgressView(to: 1.0) // 네 번째 구간 (100%)
+            self.updateProgressView(to: 1.0) // 다섯 번째 구간 (100%)
         }
     }
     
@@ -136,4 +139,13 @@ class MyPageViewController: UIViewController {
         levelProgress.setProgress(progress, animated: true)
     }
 
+    private func setLevelLabel() {
+        for case let label as UILabel in levelLabel.arrangedSubviews {
+            setLabel(label)
+        }
+    }
+    
+    private func setLabel(_ label: UILabel) {
+        label.font = UIFont(name: "Pretendard-Regular", size: 12)
+    }
 }
