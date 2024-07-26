@@ -19,7 +19,7 @@ class MyPageViewController: UIViewController {
     @IBOutlet weak var levelProgress: UIProgressView!
     @IBOutlet weak var levelLabel: UIStackView!
     @IBOutlet weak var calendarLabel: UILabel!
-    
+    @IBOutlet weak var contentView: UIView!
     
     
     
@@ -49,12 +49,20 @@ class MyPageViewController: UIViewController {
         levelProgress.progress = 0.0
         self.view.addSubview(levelProgress)
         
+        // UIProgressView의 서브뷰인 progress 부분의 모서리 둥글게 만들기
+        if let progressLayer = levelProgress.subviews.last {
+            progressLayer.layer.cornerRadius = 5
+            progressLayer.clipsToBounds = true
+        }
+        
         // 제약 조건 추가
         NSLayoutConstraint.activate([
-            levelProgress.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            levelProgress.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
-            levelProgress.widthAnchor.constraint(equalToConstant: 200)
+            levelProgress.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            levelProgress.topAnchor.constraint(equalTo: levelNoticeLabel.bottomAnchor, constant: 19),
+            levelProgress.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            levelProgress.widthAnchor.constraint(equalToConstant: 342)
         ])
+        
         
         // 5개의 구간으로 나누어 진행 상황을 업데이트
         updateProgressView(to: 0.2) // 첫 번째 구간 (20%)
