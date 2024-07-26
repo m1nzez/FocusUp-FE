@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Gtd-Tb-Nhc">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -244,17 +244,41 @@
                                     <action selector="didTapAddNewRoutineBtn:" destination="ivx-ep-J1P" eventType="touchUpInside" id="Yxn-1R-y7c"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="레벨 현황" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hgz-Cd-bcr">
+                                <rect key="frame" x="27" y="375" width="56" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="다음 레벨업 도달 횟수까지 3번 남았어요!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mHv-10-XY4">
+                                <rect key="frame" x="27" y="401" width="195" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="현재 Level 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BGM-OJ-ikg">
+                                <rect key="frame" x="301" y="401" width="65" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" name="Primary4"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="sdJ-1w-hDY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Hgz-Cd-bcr" firstAttribute="top" secondItem="EVa-cA-E8x" secondAttribute="bottom" constant="222" id="0Ag-l1-N5n"/>
                             <constraint firstItem="6NS-Hy-zNv" firstAttribute="leading" secondItem="sdJ-1w-hDY" secondAttribute="leading" constant="25" id="0CT-oe-ZPg"/>
+                            <constraint firstItem="mHv-10-XY4" firstAttribute="top" secondItem="Hgz-Cd-bcr" secondAttribute="bottom" constant="8" id="2Tg-U2-AJw"/>
                             <constraint firstItem="EVa-cA-E8x" firstAttribute="leading" secondItem="sdJ-1w-hDY" secondAttribute="leading" constant="27" id="4jh-Zc-opN"/>
                             <constraint firstItem="EVa-cA-E8x" firstAttribute="top" secondItem="sdJ-1w-hDY" secondAttribute="top" constant="32" id="Cy7-za-Bnp"/>
+                            <constraint firstItem="BGM-OJ-ikg" firstAttribute="centerY" secondItem="mHv-10-XY4" secondAttribute="centerY" id="GNh-Ww-mpE"/>
                             <constraint firstItem="Fnr-1y-sng" firstAttribute="top" secondItem="sdJ-1w-hDY" secondAttribute="top" constant="35" id="Huv-mg-OlF"/>
+                            <constraint firstItem="mHv-10-XY4" firstAttribute="leading" secondItem="EVa-cA-E8x" secondAttribute="leading" id="LWX-ac-Wrh"/>
                             <constraint firstItem="6NS-Hy-zNv" firstAttribute="top" secondItem="EVa-cA-E8x" secondAttribute="bottom" constant="10" id="Lhx-sl-pM6"/>
                             <constraint firstItem="sdJ-1w-hDY" firstAttribute="trailing" secondItem="6NS-Hy-zNv" secondAttribute="trailing" constant="25" id="Rfl-vo-AuX"/>
                             <constraint firstItem="sdJ-1w-hDY" firstAttribute="trailing" secondItem="Fnr-1y-sng" secondAttribute="trailing" constant="27" id="nM6-mT-T3c"/>
+                            <constraint firstItem="sdJ-1w-hDY" firstAttribute="trailing" secondItem="BGM-OJ-ikg" secondAttribute="trailing" constant="27" id="srK-MR-gzn"/>
+                            <constraint firstItem="Hgz-Cd-bcr" firstAttribute="leading" secondItem="EVa-cA-E8x" secondAttribute="leading" id="wC6-4k-gE6"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Jrl-aj-xph">
@@ -267,7 +291,10 @@
                     <connections>
                         <outlet property="addNewRoutineButton" destination="6NS-Hy-zNv" id="lx6-O4-rKe"/>
                         <outlet property="goalRoutineLabel" destination="EVa-cA-E8x" id="AXi-pv-egL"/>
+                        <outlet property="levelNoticeLabel" destination="mHv-10-XY4" id="VMK-xH-dBc"/>
+                        <outlet property="levelStateLabel" destination="Hgz-Cd-bcr" id="zBe-OY-peB"/>
                         <outlet property="moreButton" destination="Fnr-1y-sng" id="vVT-hb-Pbe"/>
+                        <outlet property="presentLevelLabel" destination="BGM-OJ-ikg" id="bxl-oa-za7"/>
                         <outlet property="settingButton" destination="ooe-KR-T4x" id="xEe-6u-OJd"/>
                     </connections>
                 </viewController>
@@ -391,7 +418,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="목표 루틴 입력" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VdB-S6-PF2">
-                                <rect key="frame" x="25" y="119" width="330" height="51"/>
+                                <rect key="frame" x="25" y="119" width="343" height="51"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="51" id="VqY-Dw-kFZ"/>
                                 </constraints>
@@ -405,7 +432,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="MJd-pC-Stz">
-                                <rect key="frame" x="25" y="255" width="330" height="42"/>
+                                <rect key="frame" x="25" y="255" width="343" height="42"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ltx-UB-Ty2">
                                         <rect key="frame" x="0.0" y="0.0" width="42" height="42"/>
@@ -483,7 +510,7 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2x2-zM-5Y1">
-                                        <rect key="frame" x="250" y="0.0" width="30" height="42"/>
+                                        <rect key="frame" x="250" y="0.0" width="42" height="42"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="42" id="Xvo-ud-rfG"/>
                                             <constraint firstAttribute="width" constant="42" id="tsY-2z-AWK"/>
@@ -498,7 +525,7 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZB8-wv-Zl6">
-                                        <rect key="frame" x="288" y="0.0" width="42" height="42"/>
+                                        <rect key="frame" x="300" y="0.0" width="43" height="42"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="42" id="828-8h-hPh"/>
                                             <constraint firstAttribute="width" constant="42" id="Cyv-g5-KrQ"/>
@@ -667,6 +694,9 @@
         </namedColor>
         <namedColor name="EmphasizeNaver2">
             <color red="0.011764705882352941" green="0.7803921568627451" blue="0.35294117647058826" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Primary4">
+            <color red="0.23137254901960785" green="0.5725490196078431" blue="0.72549019607843135" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

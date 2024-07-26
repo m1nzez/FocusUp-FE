@@ -13,6 +13,12 @@ class MyPageViewController: UIViewController {
     @IBOutlet weak var goalRoutineLabel: UILabel!
     @IBOutlet weak var moreButton: UIButton!
     @IBOutlet weak var addNewRoutineButton: UIButton!
+    @IBOutlet weak var levelStateLabel: UILabel!
+    @IBOutlet weak var levelNoticeLabel: UILabel!
+    @IBOutlet weak var presentLevelLabel: UILabel!
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +27,11 @@ class MyPageViewController: UIViewController {
         self.goalRoutineLabel.font = UIFont(name: "Pretendard-Medium", size: 15)
         self.addUnderlineToMoreButton()
         self.addNewRoutineButton.titleLabel?.font = UIFont(name: "Pretendard-Medium", size: 15)
+        self.levelStateLabel.font = UIFont(name: "Pretendard-Medium", size: 15)
+        self.levelNoticeLabel.font = UIFont(name: "Pretendard-Regular", size: 12)
+        self.presentLevelLabel.font = UIFont(name: "Pretendard-Regular", size: 12)
+        self.addUnderlineToPresentLevelLabel()
+        
         
         // addNewRoutineButton 테두리 설정
         self.addNewRoutineButton.layer.cornerRadius = 8
@@ -78,6 +89,17 @@ class MyPageViewController: UIViewController {
             .foregroundColor: UIColor.black
         ])
         moreButton.setAttributedTitle(attributedTitle, for: .normal)
+    }
+    
+    func addUnderlineToPresentLevelLabel() {
+        guard let title = presentLevelLabel.text else {
+            return
+        }
+        let attributedTitle = NSAttributedString(string: title, attributes: [
+            .font: presentLevelLabel.font ?? UIFont.systemFont(ofSize: 12),
+            .underlineStyle: NSUnderlineStyle.single.rawValue
+        ])
+        presentLevelLabel.attributedText = attributedTitle
     }
 
 }
