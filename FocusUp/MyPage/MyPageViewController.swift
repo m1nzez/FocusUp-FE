@@ -16,6 +16,7 @@ class MyPageViewController: UIViewController {
     @IBOutlet weak var levelStateLabel: UILabel!
     @IBOutlet weak var levelNoticeLabel: UILabel!
     @IBOutlet weak var presentLevelLabel: UILabel!
+    @IBOutlet weak var levelProgress: UIProgressView!
     
     
     
@@ -37,6 +38,35 @@ class MyPageViewController: UIViewController {
         self.addNewRoutineButton.layer.cornerRadius = 8
         self.addNewRoutineButton.layer.borderWidth = 1
         self.addNewRoutineButton.layer.borderColor = UIColor(named: "BlueGray3")?.cgColor
+        
+        // progressView 설정
+        levelProgress.layer.cornerRadius = 5
+        levelProgress.clipsToBounds = true
+        levelProgress.translatesAutoresizingMaskIntoConstraints = false
+        levelProgress.progress = 0.0
+        self.view.addSubview(levelProgress)
+        
+        // 제약 조건 추가
+        NSLayoutConstraint.activate([
+            levelProgress.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            levelProgress.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            levelProgress.widthAnchor.constraint(equalToConstant: 200)
+        ])
+        
+        // 예시: 5개의 구간으로 나누어 진행 상황을 업데이트
+        updateProgressView(to: 0.2) // 첫 번째 구간 (25%)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.updateProgressView(to: 0.4) // 두 번째 구간 (50%)
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.updateProgressView(to: 0.6) // 세 번째 구간 (75%)
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            self.updateProgressView(to: 0.8) // 네 번째 구간 (100%)
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+            self.updateProgressView(to: 1.0) // 네 번째 구간 (100%)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -91,7 +121,7 @@ class MyPageViewController: UIViewController {
         moreButton.setAttributedTitle(attributedTitle, for: .normal)
     }
     
-    func addUnderlineToPresentLevelLabel() {
+    private func addUnderlineToPresentLevelLabel() {
         guard let title = presentLevelLabel.text else {
             return
         }
@@ -100,6 +130,10 @@ class MyPageViewController: UIViewController {
             .underlineStyle: NSUnderlineStyle.single.rawValue
         ])
         presentLevelLabel.attributedText = attributedTitle
+    }
+    
+    private func updateProgressView(to progress: Float) {
+        levelProgress.setProgress(progress, animated: true)
     }
 
 }

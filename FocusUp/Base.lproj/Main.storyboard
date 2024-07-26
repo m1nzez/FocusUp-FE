@@ -251,17 +251,27 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="다음 레벨업 도달 횟수까지 3번 남았어요!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mHv-10-XY4">
-                                <rect key="frame" x="27" y="401" width="195" height="15"/>
+                                <rect key="frame" x="27" y="401" width="195" height="12"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="12" id="E3o-0R-oS5"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="현재 Level 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BGM-OJ-ikg">
-                                <rect key="frame" x="301" y="401" width="65" height="15"/>
+                                <rect key="frame" x="301" y="399.66666666666669" width="65" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" name="Primary4"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="d1g-0c-WzS">
+                                <rect key="frame" x="25.666666666666657" y="448" width="343" height="10"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="10" id="4zb-Dm-UYo"/>
+                                </constraints>
+                                <color key="progressTintColor" name="Primary4"/>
+                            </progressView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="sdJ-1w-hDY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -275,9 +285,12 @@
                             <constraint firstItem="Fnr-1y-sng" firstAttribute="top" secondItem="sdJ-1w-hDY" secondAttribute="top" constant="35" id="Huv-mg-OlF"/>
                             <constraint firstItem="mHv-10-XY4" firstAttribute="leading" secondItem="EVa-cA-E8x" secondAttribute="leading" id="LWX-ac-Wrh"/>
                             <constraint firstItem="6NS-Hy-zNv" firstAttribute="top" secondItem="EVa-cA-E8x" secondAttribute="bottom" constant="10" id="Lhx-sl-pM6"/>
+                            <constraint firstItem="sdJ-1w-hDY" firstAttribute="trailing" secondItem="d1g-0c-WzS" secondAttribute="trailing" constant="24.5" id="Pge-1D-sqR"/>
                             <constraint firstItem="sdJ-1w-hDY" firstAttribute="trailing" secondItem="6NS-Hy-zNv" secondAttribute="trailing" constant="25" id="Rfl-vo-AuX"/>
                             <constraint firstItem="sdJ-1w-hDY" firstAttribute="trailing" secondItem="Fnr-1y-sng" secondAttribute="trailing" constant="27" id="nM6-mT-T3c"/>
                             <constraint firstItem="sdJ-1w-hDY" firstAttribute="trailing" secondItem="BGM-OJ-ikg" secondAttribute="trailing" constant="27" id="srK-MR-gzn"/>
+                            <constraint firstItem="d1g-0c-WzS" firstAttribute="top" secondItem="mHv-10-XY4" secondAttribute="bottom" constant="35" id="swm-zl-DEV"/>
+                            <constraint firstItem="d1g-0c-WzS" firstAttribute="leading" secondItem="sdJ-1w-hDY" secondAttribute="leading" constant="25.5" id="ukU-aR-O1N"/>
                             <constraint firstItem="Hgz-Cd-bcr" firstAttribute="leading" secondItem="EVa-cA-E8x" secondAttribute="leading" id="wC6-4k-gE6"/>
                         </constraints>
                     </view>
@@ -292,6 +305,7 @@
                         <outlet property="addNewRoutineButton" destination="6NS-Hy-zNv" id="lx6-O4-rKe"/>
                         <outlet property="goalRoutineLabel" destination="EVa-cA-E8x" id="AXi-pv-egL"/>
                         <outlet property="levelNoticeLabel" destination="mHv-10-XY4" id="VMK-xH-dBc"/>
+                        <outlet property="levelProgress" destination="d1g-0c-WzS" id="Yw4-hM-vBR"/>
                         <outlet property="levelStateLabel" destination="Hgz-Cd-bcr" id="zBe-OY-peB"/>
                         <outlet property="moreButton" destination="Fnr-1y-sng" id="vVT-hb-Pbe"/>
                         <outlet property="presentLevelLabel" destination="BGM-OJ-ikg" id="bxl-oa-za7"/>
