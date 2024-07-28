@@ -27,6 +27,8 @@ class GoalRoutineSettingViewController: UIViewController {
         setAttribute()
         setFont()
         setWeekStackViewButton()
+        
+        goalRoutineTextField.delegate = self
     }
     
     
@@ -151,8 +153,7 @@ class GoalRoutineSettingViewController: UIViewController {
     }
     
     @objc func customButtonDidTap(_ sender: UIButton) {
-        // 커스텀 버튼 동작 추가
-        print("Success.")
+        print("Information.")
     }
     
     @objc private func buttonTapped(_ sender: UIButton) {
@@ -169,6 +170,23 @@ class GoalRoutineSettingViewController: UIViewController {
                 sender.setTitleColor(UIColor.white, for: .normal)
             }
             sender.layoutIfNeeded()
+        }
+    }
+}
+
+// MARK: - extension
+extension GoalRoutineSettingViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == goalRoutineTextField {
+            textField.layer.borderColor = UIColor.primary4.cgColor
+            textField.textColor = UIColor.primary4
+            textField.tintColor = UIColor.primary4
+        }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == goalRoutineTextField {
+            textField.layer.borderColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2).cgColor
         }
     }
 }
