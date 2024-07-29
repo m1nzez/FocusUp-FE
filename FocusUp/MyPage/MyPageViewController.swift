@@ -17,6 +17,7 @@ class MyPageViewController: UIViewController {
     @IBOutlet weak var levelNoticeLabel: UILabel!
     @IBOutlet weak var presentLevelLabel: UILabel!
     @IBOutlet weak var levelProgress: UIProgressView!
+    
     @IBOutlet weak var levelLabel: UIStackView!
     @IBOutlet weak var calendarLabel: UILabel!
     @IBOutlet weak var contentView: UIView!
@@ -55,13 +56,14 @@ class MyPageViewController: UIViewController {
             progressLayer.clipsToBounds = true
         }
         
-        // 제약 조건 추가
         NSLayoutConstraint.activate([
-            levelProgress.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             levelProgress.topAnchor.constraint(equalTo: levelNoticeLabel.bottomAnchor, constant: 19),
-            levelProgress.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            levelProgress.widthAnchor.constraint(equalToConstant: 342)
+            levelProgress.bottomAnchor.constraint(equalTo: levelLabel.topAnchor, constant: -11),
+            levelProgress.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 25),
+            levelProgress.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -25),
+            levelProgress.heightAnchor.constraint(equalToConstant: 10)
         ])
+
         
         
         // 5개의 구간으로 나누어 진행 상황을 업데이트

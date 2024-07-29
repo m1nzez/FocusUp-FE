@@ -236,38 +236,42 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="레벨 현황" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ybe-o9-43w">
-                                                <rect key="frame" x="27" y="272" width="56" height="18"/>
+                                                <rect key="frame" x="27" y="272" width="57" height="18"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="다음 레벨업 도달 횟수까지 3번 남았어요!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fap-xi-kFv">
-                                                <rect key="frame" x="27" y="298" width="195" height="14.333333333333314"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="195" id="Vdz-PM-1Ja"/>
-                                                </constraints>
+                                                <rect key="frame" x="27" y="298" width="194.33333333333334" height="14.333333333333314"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="현재 Level 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tQC-7x-w0L">
-                                                <rect key="frame" x="301" y="298" width="65" height="14.333333333333314"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RRF-DN-Lst">
+                                                <rect key="frame" x="25" y="60" width="343" height="50"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="65" id="eav-mZ-ZLV"/>
+                                                    <constraint firstAttribute="height" constant="50" id="YCb-XP-qat"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                <color key="textColor" name="Primary4"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="add_mypage" title="새 루틴 추가하기" imagePadding="9">
+                                                    <color key="baseForegroundColor" name="BlueGray3"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="didTapAddNewRoutineBtn:" destination="ivx-ep-J1P" eventType="touchUpInside" id="bf6-tX-qqP"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="캘린더" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VDq-jL-pcK">
+                                                <rect key="frame" x="27" y="416" width="40" height="18"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="5r0-gV-bkv">
-                                                <rect key="frame" x="25" y="331.33333333333331" width="343" height="10"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="10" id="zbL-kU-O9d"/>
-                                                </constraints>
+                                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="N8u-q9-Xfv">
+                                                <rect key="frame" x="25" y="331.33333333333331" width="343" height="4"/>
                                                 <color key="progressTintColor" name="Primary4"/>
                                             </progressView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="jwG-BS-dp2">
-                                                <rect key="frame" x="23" y="350" width="347" height="14.333333333333314"/>
+                                                <rect key="frame" x="23" y="346.33333333333331" width="347" height="14.333333333333314"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2B0-jr-Cb8">
                                                         <rect key="frame" x="0.0" y="0.0" width="8" height="14.333333333333334"/>
@@ -307,51 +311,39 @@
                                                     </label>
                                                 </subviews>
                                             </stackView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RRF-DN-Lst">
-                                                <rect key="frame" x="25" y="60" width="343" height="50"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="omQ-dq-ZeD"/>
-                                                </constraints>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="add_mypage" title="새 루틴 추가하기" imagePadding="9">
-                                                    <color key="baseForegroundColor" name="BlueGray3"/>
-                                                </buttonConfiguration>
-                                                <connections>
-                                                    <action selector="didTapAddNewRoutineBtn:" destination="ivx-ep-J1P" eventType="touchUpInside" id="bf6-tX-qqP"/>
-                                                </connections>
-                                            </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="캘린더" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VDq-jL-pcK">
-                                                <rect key="frame" x="27" y="414.33333333333337" width="39" height="18"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <nil key="textColor"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="현재 Level 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tQC-7x-w0L">
+                                                <rect key="frame" x="301.66666666666669" y="298" width="64.333333333333314" height="14.333333333333314"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <color key="textColor" name="Primary4"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstItem="gQV-zO-DtM" firstAttribute="top" secondItem="KGk-KH-Tqr" secondAttribute="top" constant="32" id="0Ox-Zu-r6H"/>
-                                            <constraint firstItem="ybe-o9-43w" firstAttribute="leading" secondItem="gQV-zO-DtM" secondAttribute="leading" id="5i2-gO-Jga"/>
-                                            <constraint firstItem="tQC-7x-w0L" firstAttribute="top" secondItem="ybe-o9-43w" secondAttribute="bottom" constant="8" id="FFk-f0-Zgx"/>
-                                            <constraint firstItem="fap-xi-kFv" firstAttribute="top" secondItem="gQV-zO-DtM" secondAttribute="bottom" constant="248" id="Gri-DJ-K9w"/>
-                                            <constraint firstItem="tQC-7x-w0L" firstAttribute="trailing" secondItem="V35-83-o1X" secondAttribute="trailing" id="IJd-w8-ATR"/>
-                                            <constraint firstItem="VDq-jL-pcK" firstAttribute="top" secondItem="jwG-BS-dp2" secondAttribute="bottom" constant="50" id="KNu-06-Kui"/>
-                                            <constraint firstAttribute="trailing" secondItem="RRF-DN-Lst" secondAttribute="trailing" constant="25" id="OB9-Y0-RIL"/>
-                                            <constraint firstItem="RRF-DN-Lst" firstAttribute="top" secondItem="gQV-zO-DtM" secondAttribute="bottom" constant="10" id="P7V-Rn-hnV"/>
-                                            <constraint firstAttribute="trailing" secondItem="jwG-BS-dp2" secondAttribute="trailing" constant="23" id="QFP-Od-WxG"/>
-                                            <constraint firstItem="jwG-BS-dp2" firstAttribute="top" secondItem="ybe-o9-43w" secondAttribute="bottom" constant="60" id="TZr-wU-wOd"/>
-                                            <constraint firstItem="gQV-zO-DtM" firstAttribute="leading" secondItem="KGk-KH-Tqr" secondAttribute="leading" constant="27" id="UsA-C1-M3y"/>
-                                            <constraint firstItem="tQC-7x-w0L" firstAttribute="leading" secondItem="fap-xi-kFv" secondAttribute="trailing" constant="79" id="UzE-8L-ddi"/>
-                                            <constraint firstAttribute="trailing" secondItem="V35-83-o1X" secondAttribute="trailing" constant="27" id="YBi-Ps-ItD"/>
-                                            <constraint firstItem="5r0-gV-bkv" firstAttribute="top" secondItem="fap-xi-kFv" secondAttribute="bottom" constant="19" id="ZwJ-En-GMi"/>
-                                            <constraint firstItem="5r0-gV-bkv" firstAttribute="leading" secondItem="RRF-DN-Lst" secondAttribute="leading" id="aIe-jh-XGT"/>
-                                            <constraint firstItem="ybe-o9-43w" firstAttribute="top" secondItem="gQV-zO-DtM" secondAttribute="bottom" constant="222" id="bMX-uj-zjo"/>
-                                            <constraint firstItem="RRF-DN-Lst" firstAttribute="leading" secondItem="KGk-KH-Tqr" secondAttribute="leading" constant="25" id="eyG-Q6-xnQ"/>
-                                            <constraint firstItem="V35-83-o1X" firstAttribute="top" secondItem="KGk-KH-Tqr" secondAttribute="top" constant="35" id="f5f-Ii-MWB"/>
-                                            <constraint firstItem="VDq-jL-pcK" firstAttribute="leading" secondItem="ybe-o9-43w" secondAttribute="leading" id="jd2-YA-8kG"/>
-                                            <constraint firstItem="jwG-BS-dp2" firstAttribute="leading" secondItem="KGk-KH-Tqr" secondAttribute="leading" constant="23" id="tOr-TH-QpG"/>
-                                            <constraint firstItem="fap-xi-kFv" firstAttribute="leading" secondItem="gQV-zO-DtM" secondAttribute="leading" id="woe-Ad-pmM"/>
+                                            <constraint firstItem="ybe-o9-43w" firstAttribute="top" secondItem="gQV-zO-DtM" secondAttribute="bottom" constant="222" id="1vG-Yi-Zgb"/>
+                                            <constraint firstItem="jwG-BS-dp2" firstAttribute="leading" secondItem="KGk-KH-Tqr" secondAttribute="leading" constant="23" id="3CB-AF-gGf"/>
+                                            <constraint firstItem="gQV-zO-DtM" firstAttribute="top" secondItem="KGk-KH-Tqr" secondAttribute="top" constant="32" id="8Jj-gi-KFf"/>
+                                            <constraint firstAttribute="trailing" secondItem="RRF-DN-Lst" secondAttribute="trailing" constant="25" id="A7k-UD-XyT"/>
+                                            <constraint firstItem="N8u-q9-Xfv" firstAttribute="top" secondItem="fap-xi-kFv" secondAttribute="bottom" constant="19" id="FSa-cl-fSc"/>
+                                            <constraint firstItem="fap-xi-kFv" firstAttribute="leading" secondItem="ybe-o9-43w" secondAttribute="leading" id="I38-5w-vsw"/>
+                                            <constraint firstItem="VDq-jL-pcK" firstAttribute="leading" secondItem="gQV-zO-DtM" secondAttribute="leading" id="LXg-77-kjj"/>
+                                            <constraint firstItem="fap-xi-kFv" firstAttribute="top" secondItem="ybe-o9-43w" secondAttribute="bottom" constant="8" id="M0r-NC-BII"/>
+                                            <constraint firstItem="RRF-DN-Lst" firstAttribute="top" secondItem="gQV-zO-DtM" secondAttribute="bottom" constant="10" id="Mnh-D0-yxu"/>
+                                            <constraint firstItem="RRF-DN-Lst" firstAttribute="leading" secondItem="KGk-KH-Tqr" secondAttribute="leading" constant="25" id="Ohm-Iz-TB0"/>
+                                            <constraint firstItem="fap-xi-kFv" firstAttribute="centerY" secondItem="tQC-7x-w0L" secondAttribute="centerY" id="QWu-tw-e8p"/>
+                                            <constraint firstAttribute="trailing" secondItem="V35-83-o1X" secondAttribute="trailing" constant="27" id="ULJ-OQ-6jN"/>
+                                            <constraint firstAttribute="trailing" secondItem="ybe-o9-43w" secondAttribute="trailing" constant="309" id="VaR-hN-V2A"/>
+                                            <constraint firstItem="gQV-zO-DtM" firstAttribute="leading" secondItem="KGk-KH-Tqr" secondAttribute="leading" constant="27" id="XOh-zS-KC9"/>
+                                            <constraint firstItem="N8u-q9-Xfv" firstAttribute="leading" secondItem="KGk-KH-Tqr" secondAttribute="leading" constant="25" id="Y5Z-ni-1Ok"/>
+                                            <constraint firstAttribute="trailing" secondItem="VDq-jL-pcK" secondAttribute="trailing" constant="326" id="Ycf-XG-pq1"/>
+                                            <constraint firstAttribute="trailing" secondItem="N8u-q9-Xfv" secondAttribute="trailing" constant="25" id="bfD-ST-H7F"/>
+                                            <constraint firstItem="jwG-BS-dp2" firstAttribute="top" secondItem="N8u-q9-Xfv" secondAttribute="bottom" constant="11" id="g9b-ub-Wl8"/>
+                                            <constraint firstAttribute="trailing" secondItem="tQC-7x-w0L" secondAttribute="trailing" constant="27" id="mEQ-VT-ixR"/>
+                                            <constraint firstItem="gQV-zO-DtM" firstAttribute="centerY" secondItem="V35-83-o1X" secondAttribute="centerY" id="nhh-kI-XkZ"/>
+                                            <constraint firstItem="VDq-jL-pcK" firstAttribute="top" secondItem="ybe-o9-43w" secondAttribute="bottom" constant="126" id="nwb-C7-ZfJ"/>
+                                            <constraint firstItem="ybe-o9-43w" firstAttribute="leading" secondItem="gQV-zO-DtM" secondAttribute="leading" id="ruB-Yd-zT4"/>
+                                            <constraint firstAttribute="trailing" secondItem="jwG-BS-dp2" secondAttribute="trailing" constant="23" id="vh3-yl-cfF"/>
                                             <constraint firstAttribute="height" constant="815" id="wph-AZ-yTd"/>
-                                            <constraint firstItem="5r0-gV-bkv" firstAttribute="trailing" secondItem="RRF-DN-Lst" secondAttribute="trailing" id="z67-Js-5HG"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -390,7 +382,7 @@
                         <outlet property="goalRoutineLabel" destination="gQV-zO-DtM" id="L9q-Y8-jxX"/>
                         <outlet property="levelLabel" destination="jwG-BS-dp2" id="9ce-9y-YSQ"/>
                         <outlet property="levelNoticeLabel" destination="fap-xi-kFv" id="ZGD-7G-eRb"/>
-                        <outlet property="levelProgress" destination="5r0-gV-bkv" id="p4n-Qc-oF4"/>
+                        <outlet property="levelProgress" destination="N8u-q9-Xfv" id="f8x-na-sMf"/>
                         <outlet property="levelStateLabel" destination="ybe-o9-43w" id="tyy-zN-Pfg"/>
                         <outlet property="moreButton" destination="V35-83-o1X" id="iLf-JK-zj9"/>
                         <outlet property="presentLevelLabel" destination="tQC-7x-w0L" id="ype-Mg-98c"/>
@@ -517,7 +509,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="목표 루틴 입력" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VdB-S6-PF2">
-                                <rect key="frame" x="25" y="119" width="330" height="51"/>
+                                <rect key="frame" x="25" y="119" width="343" height="51"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="51" id="VqY-Dw-kFZ"/>
                                 </constraints>
@@ -531,7 +523,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="MJd-pC-Stz">
-                                <rect key="frame" x="25" y="255" width="330" height="42"/>
+                                <rect key="frame" x="25" y="255" width="343" height="42"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ltx-UB-Ty2">
                                         <rect key="frame" x="0.0" y="0.0" width="42" height="42"/>
@@ -624,7 +616,7 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZB8-wv-Zl6">
-                                        <rect key="frame" x="300" y="0.0" width="30" height="42"/>
+                                        <rect key="frame" x="300" y="0.0" width="43" height="42"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="42" id="828-8h-hPh"/>
                                             <constraint firstAttribute="width" constant="42" id="Cyv-g5-KrQ"/>
