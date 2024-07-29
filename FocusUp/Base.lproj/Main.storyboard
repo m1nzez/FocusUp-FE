@@ -622,20 +622,49 @@
             </objects>
             <point key="canvasLocation" x="4348.8549618320612" y="1266.9014084507044"/>
         </scene>
-        <!--View Controller-->
+        <!--Information View Controller-->
         <scene sceneID="Jts-9B-SIl">
             <objects>
-                <viewController id="KpF-Td-wLo" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InformationViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="KpF-Td-wLo" customClass="InformationViewController" customModule="FocusUp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="q60-0Y-zVh">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bottomsheet_grabber" translatesAutoresizingMaskIntoConstraints="NO" id="Ic6-XI-URS">
+                                <rect key="frame" x="136.66666666666666" y="16" width="119.99999999999997" height="4"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="목표 루틴을 설정하면 정한 시간마다 알람이 옵니다!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="atK-nZ-uBu">
+                                <rect key="frame" x="46" y="72" width="301" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" name="Primary4"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="설정한 시간에 루틴을 시작하면 30물고기(코인)를 획득하지만,  미루거나 루틴을 수행하지 않으면 물고기(코인)가 차감되거나 조개(생명)를 잃습니다." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4IT-7Z-vhX">
+                                <rect key="frame" x="48" y="108" width="297.33333333333331" height="43"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="LHQ-ia-ikl"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="atK-nZ-uBu" firstAttribute="top" secondItem="Ic6-XI-URS" secondAttribute="top" constant="56" id="5dZ-wg-YU2"/>
+                            <constraint firstItem="4IT-7Z-vhX" firstAttribute="top" secondItem="atK-nZ-uBu" secondAttribute="bottom" constant="18" id="cEo-uD-F0c"/>
+                            <constraint firstItem="atK-nZ-uBu" firstAttribute="centerX" secondItem="q60-0Y-zVh" secondAttribute="centerX" id="ct0-yL-f3E"/>
+                            <constraint firstItem="Ic6-XI-URS" firstAttribute="centerX" secondItem="q60-0Y-zVh" secondAttribute="centerX" id="lUx-X5-yPS"/>
+                            <constraint firstItem="Ic6-XI-URS" firstAttribute="top" secondItem="q60-0Y-zVh" secondAttribute="top" constant="16" id="qeh-t6-dZ2"/>
+                            <constraint firstItem="4IT-7Z-vhX" firstAttribute="centerX" secondItem="q60-0Y-zVh" secondAttribute="centerX" id="ydi-7S-pLI"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="infoLabel" destination="atK-nZ-uBu" id="kys-fV-Ljv"/>
+                        <outlet property="subLabel" destination="4IT-7Z-vhX" id="j9h-0v-iLk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fyv-Al-vj4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4349" y="2020"/>
+            <point key="canvasLocation" x="4348.8549618320612" y="2019.7183098591549"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="Tax-2N-Bge">
@@ -767,6 +796,9 @@
         </namedColor>
         <namedColor name="Primary2">
             <color red="0.69411764705882351" green="0.82745098039215681" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Primary4">
+            <color red="0.23137254901960785" green="0.5725490196078431" blue="0.72549019607843135" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

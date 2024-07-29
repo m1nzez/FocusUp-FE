@@ -123,10 +123,9 @@ class GoalRoutineSettingViewController: UIViewController {
             customButton.widthAnchor.constraint(equalToConstant: 24),
             customButton.heightAnchor.constraint(equalToConstant: 24)
         ])
-        
+
         titleView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            titleView.widthAnchor.constraint(equalTo: titleLabel.widthAnchor, constant: 32),
             titleView.heightAnchor.constraint(equalToConstant: 44)
         ])
         
@@ -154,6 +153,14 @@ class GoalRoutineSettingViewController: UIViewController {
     
     @objc func customButtonDidTap(_ sender: UIButton) {
         print("Information.")
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let contentViewController = storyboard.instantiateViewController(withIdentifier: "InformationViewController") as? InformationViewController {
+            let bottomSheetViewController = BottomSheetViewController(contentViewController: contentViewController, defaultHeight: 230, cornerRadius: 26, dimmedAlpha: 1, isPannedable: true)
+            self.present(bottomSheetViewController, animated: true)
+        } else {
+            print("InformationViewController를 인스턴스화할 수 없습니다.")
+        }
     }
     
     @objc private func buttonTapped(_ sender: UIButton) {
