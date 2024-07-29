@@ -90,10 +90,22 @@ class MyPageViewController: UIViewController {
         
         // 네이게이션 바 타이틀 설정
         self.navigationItem.title = "마이페이지"
+        let navigationBarAppearance = UINavigationBarAppearance()
+        navigationBarAppearance.backgroundColor = .systemBackground
+        navigationBarAppearance.shadowColor = .clear
+        navigationController?.navigationBar.standardAppearance = navigationBarAppearance
+        navigationController!.navigationBar.scrollEdgeAppearance = navigationBarAppearance
         
         // 탭바 아이템 타이틀 설정
         self.tabBarItem.title = "MyPage"
-        
+        // 탭바 기본상태, 스크롤상태 background 및 shdow 색상 설정
+        if let tabBar = self.tabBarController?.tabBar {
+            tabBar.barTintColor = UIColor.systemBackground
+            tabBar.standardAppearance.shadowColor = .clear
+            tabBar.scrollEdgeAppearance?.shadowColor = .clear
+            tabBar.shadowImage = UIImage()
+            tabBar.backgroundImage = UIImage()
+        }
         
         if let customFont = UIFont(name: "Pretendard-Regular", size: 18) {
             let textAttributes = [
@@ -158,4 +170,5 @@ class MyPageViewController: UIViewController {
     private func setLabel(_ label: UILabel) {
         label.font = UIFont(name: "Pretendard-Regular", size: 12)
     }
+    
 }
