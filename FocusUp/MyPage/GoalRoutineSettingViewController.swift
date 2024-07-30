@@ -16,6 +16,7 @@ class GoalRoutineSettingViewController: UIViewController {
     @IBOutlet weak var startTimeTitleLabel: UILabel!
     @IBOutlet weak var startTimeView: UIView!
     @IBOutlet weak var startTimeLabel: UILabel!
+    @IBOutlet weak var startTimeButton: UIButton!
     @IBOutlet weak var goalTimeTitleLabel: UILabel!
     @IBOutlet weak var goalTimeView: UIView!
     @IBOutlet weak var goalTimeLabel: UILabel!
@@ -179,6 +180,23 @@ class GoalRoutineSettingViewController: UIViewController {
             sender.layoutIfNeeded()
         }
     }
+    
+    @IBAction func setRoutineStartTimeButton(_ sender: Any) {
+        showCustomDatePicker()
+    }
+    
+    private func showCustomDatePicker() {
+        let customPickerView = CustomDatePickerView(frame: self.view.bounds)
+        customPickerView.delegate = self
+        self.view.addSubview(customPickerView)
+    }
+    
+    private func updateStartTimeUI() {
+        startTimeView.layer.borderColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2).cgColor
+        startTimeLabel.textColor = UIColor.primary4
+        startTimeButton.setImage(UIImage(named: "clock_after"), for: .normal)
+    }
+    
 }
 
 // MARK: - extension
@@ -195,5 +213,15 @@ extension GoalRoutineSettingViewController: UITextFieldDelegate {
         if textField == goalRoutineTextField {
             textField.layer.borderColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2).cgColor
         }
+    }
+}
+
+extension GoalRoutineSettingViewController: CustomDatePickerViewDelegate {
+    func didSelectTime(_ time: String) {
+        startTimeLabel.text = time
+    }
+    
+    func didSelectTimeAndUpdateUI() {
+        updateStartTimeUI()
     }
 }
