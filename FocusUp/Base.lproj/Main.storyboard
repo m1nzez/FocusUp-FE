@@ -420,6 +420,9 @@
                                             <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
                                             <color key="baseForegroundColor" systemColor="labelColor"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="didTapLevelCotrolBtn:" destination="4hW-hq-CbL" eventType="touchUpInside" id="x9T-Mi-jxB"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p1k-5h-5PS">
                                         <rect key="frame" x="0.0" y="70.666666666666657" width="361" height="39.333333333333343"/>
@@ -447,6 +450,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="levelControlButton" destination="wWG-OW-d5A" id="KuV-PS-Et7"/>
                         <outlet property="levelManageButton" destination="wWG-OW-d5A" id="n7a-DB-H15"/>
                         <outlet property="logoutButton" destination="p1k-5h-5PS" id="aPP-tI-FH8"/>
                     </connections>
@@ -610,7 +614,7 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2x2-zM-5Y1">
-                                        <rect key="frame" x="250" y="0.0" width="30" height="42"/>
+                                        <rect key="frame" x="250" y="0.0" width="42" height="42"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="42" id="Xvo-ud-rfG"/>
                                             <constraint firstAttribute="width" constant="42" id="tsY-2z-AWK"/>
@@ -625,7 +629,7 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZB8-wv-Zl6">
-                                        <rect key="frame" x="288" y="0.0" width="42" height="42"/>
+                                        <rect key="frame" x="300" y="0.0" width="30" height="42"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="42" id="828-8h-hPh"/>
                                             <constraint firstAttribute="width" constant="42" id="Cyv-g5-KrQ"/>

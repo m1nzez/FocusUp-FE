@@ -84,6 +84,7 @@ class MyPageViewController: UIViewController, FSCalendarDelegate, FSCalendarData
     @IBOutlet weak var calendarLabel: UILabel!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var calendarView: FSCalendar!
+    
     var calendarHeaderView: CustomHeaderView!
     
     override func viewDidLoad() {
