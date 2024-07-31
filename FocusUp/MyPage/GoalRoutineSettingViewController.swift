@@ -31,6 +31,9 @@ class GoalRoutineSettingViewController: UIViewController {
         setWeekStackViewButton()
         
         goalRoutineTextField.delegate = self
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
     }
     
     
@@ -132,6 +135,10 @@ class GoalRoutineSettingViewController: UIViewController {
         ])
         
         self.navigationItem.titleView = titleView
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     // MARK: - Action
