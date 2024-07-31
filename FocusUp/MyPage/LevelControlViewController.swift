@@ -9,7 +9,7 @@ import UIKit
 
 class LevelControlViewController: UIViewController {
     
-    private var userLevel: Int = 1 // 유저의 레벨을 설정(추후 변경)
+    private var userLevel: Int = 3 // 유저의 레벨을 설정(추후 변경)
 
     private let headerView: UIView = {
         let view = UIView()
@@ -150,8 +150,8 @@ class LevelControlViewController: UIViewController {
         let imageView = UIImageView(image: UIImage(systemName: "square"))
         imageView.tintColor = UIColor(red: 0.89, green: 0.9, blue: 0.9, alpha: 1)
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.widthAnchor.constraint(equalToConstant: 20).isActive = true
-        imageView.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        imageView.widthAnchor.constraint(equalToConstant: 25).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: 25).isActive = true
         
         let titleLabel = UILabel()
         titleLabel.text = title
@@ -173,7 +173,30 @@ class LevelControlViewController: UIViewController {
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor(named: "BlueGray3")?.cgColor
         
+        // Check 이미지 추가
+        let checkImageView = UIImageView(image: UIImage(named: "check"))
+        checkImageView.translatesAutoresizingMaskIntoConstraints = false
+        checkImageView.isHidden = true // 기본적으로 숨겨진 상태
+        button.addSubview(checkImageView)
+        
+        // Check 이미지 Constraints
+        NSLayoutConstraint.activate([
+            checkImageView.centerXAnchor.constraint(equalTo: imageView.centerXAnchor),
+            checkImageView.centerYAnchor.constraint(equalTo: imageView.centerYAnchor),
+            checkImageView.widthAnchor.constraint(equalToConstant: 15),
+            checkImageView.heightAnchor.constraint(equalToConstant: 15)
+        ])
+        
+        button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
+        
         return button
+    }
+    
+    @objc private func buttonTapped(_ sender: UIButton) {
+        // 버튼 클릭 시 상태 변경
+        if let checkImageView = sender.subviews.compactMap({ $0 as? UIImageView }).last {
+            checkImageView.isHidden.toggle()
+        }
     }
 }
 
