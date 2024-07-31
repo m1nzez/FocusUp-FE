@@ -36,7 +36,7 @@ class SettingViewController: UIViewController {
             print("커스텀 폰트를 로드할 수 없습니다.")
         }
         
-        let backButton = UIImage(named: "arrow_left.svg")
+        let backButton = UIImage(named: "arrow_left")
         let leftBarButton: UIBarButtonItem = UIBarButtonItem(image: backButton, style: .plain, target: self, action: #selector(completeButtonDidTap))
         self.navigationItem.leftBarButtonItem = leftBarButton
     }
@@ -59,9 +59,20 @@ class SettingViewController: UIViewController {
     }
     
     @IBAction func didTapLevelCotrolBtn(_ sender: Any) {
+        let levelControlVC = LevelControlViewController()
+        levelControlVC.modalPresentationStyle = .pageSheet
+        
+        if let sheet = levelControlVC.sheetPresentationController {
+            let customDetent = UISheetPresentationController.Detent.custom { context in
+                return 547 // 높이 설정
+            }
+            sheet.detents = [customDetent] // 사용자 지정 높이만 사용
+            sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+            sheet.preferredCornerRadius = 8
+        }
+        
+        present(levelControlVC, animated: true, completion: nil)
     }
-    
-    
     
     @objc func completeButtonDidTap(_ sender: UIBarButtonItem) {
         self.navigationController?.popViewController(animated: true)
