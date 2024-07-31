@@ -20,6 +20,7 @@ class GoalRoutineSettingViewController: UIViewController {
     @IBOutlet weak var goalTimeTitleLabel: UILabel!
     @IBOutlet weak var goalTimeView: UIView!
     @IBOutlet weak var goalTimeLabel: UILabel!
+    @IBOutlet weak var goalTimeButton: UIButton!
     
     
     // MARK: - viewDidLoad
@@ -181,12 +182,22 @@ class GoalRoutineSettingViewController: UIViewController {
         }
     }
     
-    @IBAction func setRoutineStartTimeButton(_ sender: Any) {
-        showCustomDatePicker()
+    @IBAction func setRoutineStartTime(_ sender: Any) {
+        showCustomStartTimePicker()
     }
     
-    private func showCustomDatePicker() {
-        let customPickerView = CustomDatePickerView(frame: self.view.bounds)
+    @IBAction func setGoalTime(_ sender: Any) {
+        showCustomGoalTimePicker()
+    }
+    
+    private func showCustomStartTimePicker() {
+        let customPickerView = CustomStartTimePickerView(frame: self.view.bounds)
+        customPickerView.delegate = self
+        self.view.addSubview(customPickerView)
+    }
+    
+    private func showCustomGoalTimePicker() {
+        let customPickerView = CustomGoalTimePickerView(frame: self.view.bounds)
         customPickerView.delegate = self
         self.view.addSubview(customPickerView)
     }
@@ -195,6 +206,12 @@ class GoalRoutineSettingViewController: UIViewController {
         startTimeView.layer.borderColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2).cgColor
         startTimeLabel.textColor = UIColor.primary4
         startTimeButton.setImage(UIImage(named: "clock_after"), for: .normal)
+    }
+    
+    private func updateGoalTimeUI() {
+        goalTimeView.layer.borderColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2).cgColor
+        goalTimeLabel.textColor = UIColor.primary4
+        goalTimeButton.setImage(UIImage(named: "clock_after"), for: .normal)
     }
     
 }
@@ -216,12 +233,22 @@ extension GoalRoutineSettingViewController: UITextFieldDelegate {
     }
 }
 
-extension GoalRoutineSettingViewController: CustomDatePickerViewDelegate {
-    func didSelectTime(_ time: String) {
+extension GoalRoutineSettingViewController: CustomStartTimePickerDelegate {
+    func didSelectStartTime(_ time: String) {
         startTimeLabel.text = time
     }
     
-    func didSelectTimeAndUpdateUI() {
+    func didSelectStartTimeAndUpdateUI() {
         updateStartTimeUI()
+    }
+}
+
+extension GoalRoutineSettingViewController: CustomGoalTimePickerDelegate {
+    func didGoalSelectTime(_ time: String) {
+        goalTimeLabel.text = time
+    }
+    
+    func didSelectGoalTimeAndUpdateUI() {
+        updateGoalTimeUI()
     }
 }

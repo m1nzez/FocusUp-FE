@@ -1,19 +1,18 @@
 import UIKit
 
-protocol CustomDatePickerViewDelegate: AnyObject {
-    func didSelectTime(_ time: String)
-    func didSelectTimeAndUpdateUI()
+protocol CustomStartTimePickerDelegate: AnyObject {
+    func didSelectStartTime(_ time: String)
+    func didSelectStartTimeAndUpdateUI()
 }
 
-class CustomDatePickerView: UIView {
-    weak var delegate: CustomDatePickerViewDelegate?
+class CustomStartTimePickerView: UIView {
+    weak var delegate: CustomStartTimePickerDelegate?
     
     private let datePicker: UIDatePicker = {
         let picker = UIDatePicker()
         picker.datePickerMode = .time
         picker.locale = Locale(identifier: "en_US_POSIX")
         picker.preferredDatePickerStyle = .wheels
-        picker.backgroundColor = .clear // 배경을 투명으로 설정
         return picker
     }()
     
@@ -72,8 +71,8 @@ class CustomDatePickerView: UIView {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "h:mm a" // AM/PM 표시를 포함한 포맷
         let selectedTime = dateFormatter.string(from: datePicker.date)
-        delegate?.didSelectTime(selectedTime)
-        delegate?.didSelectTimeAndUpdateUI() // UI 업데이트 트리거
+        delegate?.didSelectStartTime(selectedTime)
+        delegate?.didSelectStartTimeAndUpdateUI() // UI 업데이트 트리거
         self.removeFromSuperview()
     }
 }

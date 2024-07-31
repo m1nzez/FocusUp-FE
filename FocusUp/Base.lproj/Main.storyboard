@@ -533,7 +533,7 @@
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="clock_before"/>
                                         <connections>
-                                            <action selector="setRoutineStartTimeButton:" destination="LXd-Ie-j0L" eventType="touchUpInside" id="Y7F-RN-sjt"/>
+                                            <action selector="setRoutineStartTime:" destination="LXd-Ie-j0L" eventType="touchUpInside" id="1qB-Ac-JZd"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -560,6 +560,9 @@
                                         <rect key="frame" x="126" y="16" width="24" height="24"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="clock_before"/>
+                                        <connections>
+                                            <action selector="setGoalTime:" destination="LXd-Ie-j0L" eventType="touchUpInside" id="M0a-J0-0Y1"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -611,6 +614,7 @@
                     <connections>
                         <outlet property="goalRoutineLabel" destination="2ly-5p-uzC" id="Cyv-6K-1L3"/>
                         <outlet property="goalRoutineTextField" destination="VdB-S6-PF2" id="agi-7V-wDn"/>
+                        <outlet property="goalTimeButton" destination="Zj7-E4-r32" id="mcJ-pb-OYC"/>
                         <outlet property="goalTimeLabel" destination="vsQ-S9-zAT" id="prU-b3-AnP"/>
                         <outlet property="goalTimeTitleLabel" destination="Ytc-LB-3r6" id="urP-pq-Ml3"/>
                         <outlet property="goalTimeView" destination="RDy-aP-7kx" id="ndg-H7-kWj"/>
