@@ -317,6 +317,10 @@
                                                 <color key="textColor" name="Primary4"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1El-sf-Q1W" customClass="FSCalendar">
+                                                <rect key="frame" x="16" y="454" width="361" height="301"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
@@ -330,14 +334,18 @@
                                             <constraint firstItem="fap-xi-kFv" firstAttribute="top" secondItem="ybe-o9-43w" secondAttribute="bottom" constant="8" id="M0r-NC-BII"/>
                                             <constraint firstItem="RRF-DN-Lst" firstAttribute="top" secondItem="gQV-zO-DtM" secondAttribute="bottom" constant="10" id="Mnh-D0-yxu"/>
                                             <constraint firstItem="RRF-DN-Lst" firstAttribute="leading" secondItem="KGk-KH-Tqr" secondAttribute="leading" constant="25" id="Ohm-Iz-TB0"/>
+                                            <constraint firstAttribute="trailing" secondItem="1El-sf-Q1W" secondAttribute="trailing" constant="16" id="Pg2-TD-90e"/>
                                             <constraint firstItem="fap-xi-kFv" firstAttribute="centerY" secondItem="tQC-7x-w0L" secondAttribute="centerY" id="QWu-tw-e8p"/>
                                             <constraint firstAttribute="trailing" secondItem="V35-83-o1X" secondAttribute="trailing" constant="27" id="ULJ-OQ-6jN"/>
                                             <constraint firstAttribute="trailing" secondItem="ybe-o9-43w" secondAttribute="trailing" constant="309" id="VaR-hN-V2A"/>
+                                            <constraint firstAttribute="bottom" secondItem="1El-sf-Q1W" secondAttribute="bottom" constant="60" id="WeC-RW-4Jz"/>
                                             <constraint firstItem="gQV-zO-DtM" firstAttribute="leading" secondItem="KGk-KH-Tqr" secondAttribute="leading" constant="27" id="XOh-zS-KC9"/>
                                             <constraint firstItem="N8u-q9-Xfv" firstAttribute="leading" secondItem="KGk-KH-Tqr" secondAttribute="leading" constant="25" id="Y5Z-ni-1Ok"/>
                                             <constraint firstAttribute="trailing" secondItem="VDq-jL-pcK" secondAttribute="trailing" constant="326" id="Ycf-XG-pq1"/>
                                             <constraint firstAttribute="trailing" secondItem="N8u-q9-Xfv" secondAttribute="trailing" constant="25" id="bfD-ST-H7F"/>
                                             <constraint firstItem="jwG-BS-dp2" firstAttribute="top" secondItem="N8u-q9-Xfv" secondAttribute="bottom" constant="11" id="g9b-ub-Wl8"/>
+                                            <constraint firstItem="1El-sf-Q1W" firstAttribute="top" secondItem="VDq-jL-pcK" secondAttribute="bottom" constant="20" id="hsU-Kn-qNm"/>
+                                            <constraint firstItem="1El-sf-Q1W" firstAttribute="leading" secondItem="KGk-KH-Tqr" secondAttribute="leading" constant="16" id="kXP-PB-okE"/>
                                             <constraint firstAttribute="trailing" secondItem="tQC-7x-w0L" secondAttribute="trailing" constant="27" id="mEQ-VT-ixR"/>
                                             <constraint firstItem="gQV-zO-DtM" firstAttribute="centerY" secondItem="V35-83-o1X" secondAttribute="centerY" id="nhh-kI-XkZ"/>
                                             <constraint firstItem="VDq-jL-pcK" firstAttribute="top" secondItem="ybe-o9-43w" secondAttribute="bottom" constant="126" id="nwb-C7-ZfJ"/>
@@ -378,6 +386,7 @@
                     <connections>
                         <outlet property="addNewRoutineButton" destination="RRF-DN-Lst" id="Yb0-A4-aVH"/>
                         <outlet property="calendarLabel" destination="VDq-jL-pcK" id="0R5-s5-GXJ"/>
+                        <outlet property="calendarView" destination="1El-sf-Q1W" id="sCl-21-7uC"/>
                         <outlet property="contentView" destination="KGk-KH-Tqr" id="IxY-wx-cmH"/>
                         <outlet property="goalRoutineLabel" destination="gQV-zO-DtM" id="L9q-Y8-jxX"/>
                         <outlet property="levelLabel" destination="jwG-BS-dp2" id="9ce-9y-YSQ"/>
@@ -509,7 +518,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="목표 루틴 입력" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VdB-S6-PF2">
-                                <rect key="frame" x="25" y="119" width="343" height="51"/>
+                                <rect key="frame" x="25" y="119" width="330" height="51"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="51" id="VqY-Dw-kFZ"/>
                                 </constraints>
@@ -523,7 +532,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="MJd-pC-Stz">
-                                <rect key="frame" x="25" y="255" width="343" height="42"/>
+                                <rect key="frame" x="25" y="255" width="330" height="42"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ltx-UB-Ty2">
                                         <rect key="frame" x="0.0" y="0.0" width="42" height="42"/>
@@ -601,7 +610,7 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2x2-zM-5Y1">
-                                        <rect key="frame" x="250" y="0.0" width="42" height="42"/>
+                                        <rect key="frame" x="250" y="0.0" width="30" height="42"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="42" id="Xvo-ud-rfG"/>
                                             <constraint firstAttribute="width" constant="42" id="tsY-2z-AWK"/>
@@ -616,7 +625,7 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZB8-wv-Zl6">
-                                        <rect key="frame" x="300" y="0.0" width="43" height="42"/>
+                                        <rect key="frame" x="288" y="0.0" width="42" height="42"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="42" id="828-8h-hPh"/>
                                             <constraint firstAttribute="width" constant="42" id="Cyv-g5-KrQ"/>

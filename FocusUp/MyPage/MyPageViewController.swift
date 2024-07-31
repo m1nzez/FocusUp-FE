@@ -6,8 +6,71 @@
 //
 
 import UIKit
+import FSCalendar
 
-class MyPageViewController: UIViewController {
+class CustomHeaderView: UIView {
+    
+    let previousButton: UIButton = {
+        let button = UIButton(type: .system)
+        let previousImage = UIImage(named: "calendar_arrow_left")
+        button.setImage(previousImage, for: .normal)
+        return button
+    }()
+    
+    let nextButton: UIButton = {
+        let button = UIButton(type: .system)
+        let nextImage = UIImage(named: "calendar_arrow_right")
+        button.setImage(nextImage, for: .normal)
+        return button
+    }()
+    
+    let monthLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "Pretendard-Medium", size: 24)
+        label.textColor = UIColor(named: "Primary4")
+        label.textAlignment = .center
+        return label
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupView()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setupView()
+    }
+    
+    private func setupView() {
+        addSubview(previousButton)
+        addSubview(nextButton)
+        addSubview(monthLabel)
+        
+        previousButton.translatesAutoresizingMaskIntoConstraints = false
+        nextButton.translatesAutoresizingMaskIntoConstraints = false
+        monthLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            previousButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 2),
+            previousButton.centerYAnchor.constraint(equalTo: centerYAnchor),
+            
+            monthLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            monthLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+            
+            nextButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -2),
+            nextButton.centerYAnchor.constraint(equalTo: centerYAnchor)
+        ])
+    }
+    
+    func updateMonthLabel(with date: Date) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM"
+        monthLabel.text = dateFormatter.string(from: date)
+    }
+}
+
+class MyPageViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
     // MARK: - property
     @IBOutlet weak var settingButton: UIBarButtonItem!
     @IBOutlet weak var goalRoutineLabel: UILabel!
@@ -21,8 +84,8 @@ class MyPageViewController: UIViewController {
     @IBOutlet weak var levelLabel: UIStackView!
     @IBOutlet weak var calendarLabel: UILabel!
     @IBOutlet weak var contentView: UIView!
-    
-    
+    @IBOutlet weak var calendarView: FSCalendar!
+    var calendarHeaderView: CustomHeaderView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +100,7 @@ class MyPageViewController: UIViewController {
         self.addUnderlineToPresentLevelLabel()
         self.setLevelLabel()
         self.calendarLabel.font = UIFont(name: "Pretendard-Medium", size: 15)
+        self.calendarView.appearance.weekdayFont = UIFont(name: "Pretendard-Regular", size: 14)
         
         // addNewRoutineButton 테두리 설정
         self.addNewRoutineButton.layer.cornerRadius = 8
@@ -63,8 +127,6 @@ class MyPageViewController: UIViewController {
             levelProgress.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -25),
             levelProgress.heightAnchor.constraint(equalToConstant: 10)
         ])
-
-        
         
         // 5개의 구간으로 나누어 진행 상황을 업데이트
         updateProgressView(to: 0.2) // 첫 번째 구간 (20%)
@@ -80,6 +142,19 @@ class MyPageViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
             self.updateProgressView(to: 1.0) // 다섯 번째 구간 (100%)
         }
+        
+        // 달력 설정
+        calendarView.delegate = self
+        calendarView.dataSource = self
+        
+        setWeekdayLabels() // 요일 영어로 변경
+        setupCalendarHeaderView() // 달력 헤더 설정
+        updateHeaderViewForCurrentMonth()
+        
+        calendarView.scope = .month
+        calendarView.scrollDirection = .horizontal // 스크롤 뱡향
+        
+        calendarView.placeholderType = .none // 현재 월만 표시
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -98,7 +173,7 @@ class MyPageViewController: UIViewController {
         
         // 탭바 아이템 타이틀 설정
         self.tabBarItem.title = "MyPage"
-        // 탭바 기본상태, 스크롤상태 background 및 shdow 색상 설정
+        // 탭바 기본상태, 스크롤상태 background 및 shadow 색상 설정
         if let tabBar = self.tabBarController?.tabBar {
             tabBar.barTintColor = UIColor.systemBackground
             tabBar.standardAppearance.shadowColor = .clear
@@ -116,7 +191,6 @@ class MyPageViewController: UIViewController {
         } else {
             print("커스텀 폰트를 로드할 수 없습니다.")
         }
-    
     }
 
     // MARK: - action
@@ -171,4 +245,58 @@ class MyPageViewController: UIViewController {
         label.font = UIFont(name: "Pretendard-Regular", size: 12)
     }
     
+}
+
+// MARK: - 달력 설정
+extension MyPageViewController {
+    
+    // 요일 영어로 변경
+    private func setWeekdayLabels() {
+        let weekdaySymbols = ["S", "M", "T", "W", "T", "F", "S"]
+        for (index, label) in calendarView.calendarWeekdayView.weekdayLabels.enumerated() {
+            label.text = weekdaySymbols[index]
+            label.font = UIFont(name: "Pretendard-Regular", size: 12)
+            label.textColor = UIColor(red: 0.42, green: 0.44, blue: 0.45, alpha: 1)
+        }
+    }
+    
+    // 달력 헤더 설정
+    private func setupCalendarHeaderView() {
+        calendarHeaderView = CustomHeaderView()
+        view.addSubview(calendarHeaderView)
+        
+        calendarHeaderView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            calendarHeaderView.topAnchor.constraint(equalTo: calendarView.topAnchor),
+            calendarHeaderView.leadingAnchor.constraint(equalTo: calendarView.leadingAnchor),
+            calendarHeaderView.trailingAnchor.constraint(equalTo: calendarView.trailingAnchor),
+            calendarHeaderView.heightAnchor.constraint(equalToConstant: 44)
+        ])
+        
+        calendarHeaderView.previousButton.addTarget(self, action: #selector(didTapPreviousMonthButton), for: .touchUpInside)
+        calendarHeaderView.nextButton.addTarget(self, action: #selector(didTapNextMonthButton), for: .touchUpInside)
+        
+        calendarView.calendarHeaderView.isHidden = true
+    }
+    
+    @objc private func didTapPreviousMonthButton() {
+        let currentPage = calendarView.currentPage
+        let previousMonth = Calendar.current.date(byAdding: .month, value: -1, to: currentPage)!
+        calendarView.setCurrentPage(previousMonth, animated: true)
+    }
+    
+    @objc private func didTapNextMonthButton() {
+        let currentPage = calendarView.currentPage
+        let nextMonth = Calendar.current.date(byAdding: .month, value: 1, to: currentPage)!
+        calendarView.setCurrentPage(nextMonth, animated: true)
+    }
+    
+    private func updateHeaderViewForCurrentMonth() {
+        let currentPage = calendarView.currentPage
+        calendarHeaderView.updateMonthLabel(with: currentPage)
+    }
+    
+    func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
+        updateHeaderViewForCurrentMonth()
+    }
 }
