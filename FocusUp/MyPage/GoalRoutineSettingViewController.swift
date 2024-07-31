@@ -176,7 +176,7 @@ class GoalRoutineSettingViewController: UIViewController {
         
         guard let contentViewController = self.storyboard?.instantiateViewController(identifier: "InformationViewController") as? InformationViewController else { return }
 
-        let bottomSheetViewController = BottomSheetViewController(contentViewController: contentViewController, defaultHeight: 230, cornerRadius: 26, dimmedAlpha: 1, isPannedable: true)
+        let bottomSheetViewController = BottomSheetViewController(contentViewController: contentViewController, defaultHeight: 230, cornerRadius: 26, dimmedAlpha: 1, isPannedable: false)
         
         self.present(bottomSheetViewController, animated: true, completion: nil)
     }
