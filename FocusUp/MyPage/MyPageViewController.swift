@@ -71,7 +71,7 @@ class CustomHeaderView: UIView {
 }
 
 class MyPageViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
-    // MARK: - property
+    // MARK: - properties
     @IBOutlet weak var settingButton: UIBarButtonItem!
     @IBOutlet weak var goalRoutineLabel: UILabel!
     @IBOutlet weak var moreButton: UIButton!
@@ -80,7 +80,6 @@ class MyPageViewController: UIViewController, FSCalendarDelegate, FSCalendarData
     @IBOutlet weak var levelNoticeLabel: UILabel!
     @IBOutlet weak var presentLevelLabel: UILabel!
     @IBOutlet weak var levelProgress: UIProgressView!
-    
     @IBOutlet weak var levelLabel: UIStackView!
     @IBOutlet weak var calendarLabel: UILabel!
     @IBOutlet weak var contentView: UIView!
@@ -147,14 +146,19 @@ class MyPageViewController: UIViewController, FSCalendarDelegate, FSCalendarData
         calendarView.delegate = self
         calendarView.dataSource = self
         
-        setWeekdayLabels() // 요일 영어로 변경
         setupCalendarHeaderView() // 달력 헤더 설정
         updateHeaderViewForCurrentMonth()
         
         calendarView.scope = .month
-        calendarView.scrollDirection = .horizontal // 스크롤 뱡향
-        
+        calendarView.scrollDirection = .horizontal // 스크롤 방향
         calendarView.placeholderType = .none // 현재 월만 표시
+        
+        setupCalendarAppearance()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        setWeekdayLabels() // 요일 영어로 변경
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -163,7 +167,7 @@ class MyPageViewController: UIViewController, FSCalendarDelegate, FSCalendarData
         let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         self.navigationController?.navigationBar.titleTextAttributes = textAttributes
         
-        // 네이게이션 바 타이틀 설정
+        // 네비게이션 바 타이틀 설정
         self.navigationItem.title = "마이페이지"
         let navigationBarAppearance = UINavigationBarAppearance()
         navigationBarAppearance.backgroundColor = .systemBackground
@@ -244,7 +248,6 @@ class MyPageViewController: UIViewController, FSCalendarDelegate, FSCalendarData
     private func setLabel(_ label: UILabel) {
         label.font = UIFont(name: "Pretendard-Regular", size: 12)
     }
-    
 }
 
 // MARK: - 달력 설정
@@ -279,6 +282,15 @@ extension MyPageViewController {
         calendarView.calendarHeaderView.isHidden = true
     }
     
+    private func setupCalendarAppearance() {
+        // FSCalendar appearance 설정
+        calendarView.appearance.todayColor = UIColor.clear // 현재 날짜의 배경색 제거
+        calendarView.appearance.todaySelectionColor = UIColor.clear // 선택된 현재 날짜의 배경색 제거
+        calendarView.appearance.selectionColor = UIColor.clear // 기본 선택 배경색 제거
+        calendarView.appearance.titleSelectionColor = UIColor.black // 선택된 날짜의 제목 색상 설정
+        calendarView.appearance.titleTodayColor = UIColor.black // 현재 날짜의 제목 색상 설정
+    }
+    
     @objc private func didTapPreviousMonthButton() {
         let currentPage = calendarView.currentPage
         let previousMonth = Calendar.current.date(byAdding: .month, value: -1, to: currentPage)!
@@ -298,5 +310,15 @@ extension MyPageViewController {
     
     func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
         updateHeaderViewForCurrentMonth()
+    }
+    
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
+        // 기본 배경색을 투명으로 설정
+        return UIColor.clear
+    }
+    
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleSelectionColorFor date: Date) -> UIColor? {
+        // 선택된 날짜의 제목 색상 설정
+        return appearance.titleDefaultColor // 기본 제목 색상 유지
     }
 }
