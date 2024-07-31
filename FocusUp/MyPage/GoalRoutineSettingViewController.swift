@@ -79,7 +79,7 @@ class GoalRoutineSettingViewController: UIViewController {
         }
         
         let backButton = UIImage(named: "arrow_left.svg")
-        let leftBarButton: UIBarButtonItem = UIBarButtonItem(image: backButton, style: .plain, target: self, action: #selector(completeButtonDidTap))
+        let leftBarButton: UIBarButtonItem = UIBarButtonItem(image: backButton, style: .plain, target: self, action: #selector(backButtonDidTap))
         self.navigationItem.leftBarButtonItem = leftBarButton
         
         let rightBarButton: UIBarButtonItem = UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(completeButtonDidTap))
@@ -149,7 +149,7 @@ class GoalRoutineSettingViewController: UIViewController {
         button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
     }
     
-    @objc func completeButtonDidTap(_ sender: UIBarButtonItem) {
+    @objc func backButtonDidTap(_ sender: UIBarButtonItem) {
         guard let customAlertCancelViewController = self.storyboard?.instantiateViewController(identifier: "CustomAlertCancelViewController") as? CustomAlertCancelViewController else { return }
 
         customAlertCancelViewController.delegate = self
@@ -158,6 +158,17 @@ class GoalRoutineSettingViewController: UIViewController {
         customAlertCancelViewController.modalTransitionStyle = .crossDissolve
         
         self.present(customAlertCancelViewController, animated: true, completion: nil)
+    }
+    
+    @objc func completeButtonDidTap(_ sender: UIBarButtonItem) {
+        guard let customAlertAddViewController = self.storyboard?.instantiateViewController(identifier: "CustomAlertAddViewController") as? CustomAlertAddViewController else { return }
+
+        customAlertAddViewController.delegate = self
+        
+        customAlertAddViewController.modalPresentationStyle = .overFullScreen
+        customAlertAddViewController.modalTransitionStyle = .crossDissolve
+        
+        self.present(customAlertAddViewController, animated: true, completion: nil)
     }
     
     @objc func customButtonDidTap(_ sender: UIButton) {
@@ -260,9 +271,9 @@ extension GoalRoutineSettingViewController: CustomGoalTimePickerDelegate {
     }
 }
 
-extension GoalRoutineSettingViewController: CustomAlertCancelDelegate {
+extension GoalRoutineSettingViewController: CustomAlertCancelDelegate, CustomAlertAddDelegate {
     func action() {
-        
+        print("action")
     }
     
     func exit() {

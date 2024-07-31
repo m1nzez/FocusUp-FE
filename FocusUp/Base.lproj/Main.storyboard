@@ -783,6 +783,98 @@
             </objects>
             <point key="canvasLocation" x="5126" y="2020"/>
         </scene>
+        <!--Custom Alert Add View Controller-->
+        <scene sceneID="M5c-hC-ZQY">
+            <objects>
+                <viewController storyboardIdentifier="CustomAlertAddViewController" id="vCj-0L-CFE" customClass="CustomAlertAddViewController" customModule="FocusUp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="72m-H2-h8d">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0WF-aA-Usb">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ah3-xy-X3K">
+                                        <rect key="frame" x="61.666666666666657" y="374" width="270" height="104"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PAG-6d-ZeS">
+                                                <rect key="frame" x="0.0" y="60" width="135" height="44"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="135" id="J1j-vo-IMB"/>
+                                                    <constraint firstAttribute="height" constant="44" id="Ucl-xu-d7a"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="취소">
+                                                    <color key="titleColor" name="BlueGray7"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="cancelButtonTapped:" destination="vCj-0L-CFE" eventType="touchUpInside" id="DXG-8R-ddz"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O88-Es-VYQ">
+                                                <rect key="frame" x="135" y="60" width="135" height="44"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="4IS-YK-pNC"/>
+                                                    <constraint firstAttribute="width" constant="135" id="r31-8s-qdu"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="확인">
+                                                    <color key="titleColor" name="Primary4"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="confirmButtonTapped:" destination="vCj-0L-CFE" eventType="touchUpInside" id="Pya-wW-gvl"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="새로운 루틴을 추가하시겠습니까?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qv3-eO-FvG">
+                                                <rect key="frame" x="29.666666666666671" y="19" width="210.33333333333331" height="19.333333333333329"/>
+                                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="16"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="Qv3-eO-FvG" firstAttribute="top" secondItem="ah3-xy-X3K" secondAttribute="top" constant="19" id="4I7-Ih-pBw"/>
+                                            <constraint firstAttribute="bottom" secondItem="PAG-6d-ZeS" secondAttribute="bottom" id="5Hb-u2-A7Z"/>
+                                            <constraint firstItem="PAG-6d-ZeS" firstAttribute="leading" secondItem="ah3-xy-X3K" secondAttribute="leading" id="Y5Z-Ei-d52"/>
+                                            <constraint firstAttribute="width" constant="270" id="bhF-z9-ih8"/>
+                                            <constraint firstItem="Qv3-eO-FvG" firstAttribute="centerX" secondItem="ah3-xy-X3K" secondAttribute="centerX" id="cjb-AI-Rlx"/>
+                                            <constraint firstAttribute="trailing" secondItem="O88-Es-VYQ" secondAttribute="trailing" id="iTi-Ot-QI0"/>
+                                            <constraint firstAttribute="bottom" secondItem="O88-Es-VYQ" secondAttribute="bottom" id="uNd-EH-mGb"/>
+                                            <constraint firstAttribute="height" constant="104" id="wHO-Iu-IrZ"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="ah3-xy-X3K" firstAttribute="centerY" secondItem="0WF-aA-Usb" secondAttribute="centerY" id="Rzg-LW-kp3"/>
+                                    <constraint firstItem="ah3-xy-X3K" firstAttribute="centerX" secondItem="0WF-aA-Usb" secondAttribute="centerX" id="iyW-Zg-UYw"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="lfT-W4-i56"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="0WF-aA-Usb" firstAttribute="trailing" secondItem="lfT-W4-i56" secondAttribute="trailing" id="GGl-sU-41m"/>
+                            <constraint firstItem="0WF-aA-Usb" firstAttribute="top" secondItem="72m-H2-h8d" secondAttribute="top" id="N9Z-uX-Ak4"/>
+                            <constraint firstItem="0WF-aA-Usb" firstAttribute="centerY" secondItem="72m-H2-h8d" secondAttribute="centerY" id="Tch-94-4E4"/>
+                            <constraint firstItem="0WF-aA-Usb" firstAttribute="centerX" secondItem="72m-H2-h8d" secondAttribute="centerX" id="hKy-j0-d70"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="alertView" destination="ah3-xy-X3K" id="9fS-yN-zKs"/>
+                        <outlet property="background" destination="0WF-aA-Usb" id="O7B-tT-Hei"/>
+                        <outlet property="cancelButton" destination="PAG-6d-ZeS" id="aHM-D3-upy"/>
+                        <outlet property="confirmButton" destination="O88-Es-VYQ" id="gXj-M0-wb9"/>
+                        <outlet property="titleLabel" destination="Qv3-eO-FvG" id="4Tw-5m-sJz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kl0-oz-KuF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5900" y="2020"/>
+        </scene>
         <!--Information View Controller-->
         <scene sceneID="Jts-9B-SIl">
             <objects>
