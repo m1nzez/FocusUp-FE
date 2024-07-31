@@ -32,13 +32,13 @@ class CustomAlertAddViewController: UIViewController {
     // MARK: - Action
     @IBAction func cancelButtonTapped(_ sender: Any) {
         self.dismiss(animated: true) {
-            self.delegate?.action()
+            self.delegate?.exit()
         }
     }
     
     @IBAction func confirmButtonTapped(_ sender: Any) {
         self.dismiss(animated: true) {
-            self.delegate?.exit()
+            self.delegate?.action()
         }
     }
     

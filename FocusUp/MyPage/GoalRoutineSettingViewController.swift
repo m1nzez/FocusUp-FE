@@ -273,10 +273,9 @@ extension GoalRoutineSettingViewController: CustomGoalTimePickerDelegate {
 
 extension GoalRoutineSettingViewController: CustomAlertCancelDelegate, CustomAlertAddDelegate {
     func action() {
-        print("action")
+        self.navigationController?.popViewController(animated: true)
     }
     
     func exit() {
-        self.navigationController?.popViewController(animated: true)
     }
 }
