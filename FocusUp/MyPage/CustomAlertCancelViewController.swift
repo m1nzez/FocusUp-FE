@@ -7,12 +7,12 @@
 
 import UIKit
 
-protocol CustomAlertDelegate {
+protocol CustomAlertCancelDelegate {
     func action()
     func exit()
 }
 
-class CustomAlertViewController: UIViewController {
+class CustomAlertCancelViewController: UIViewController {
     // MARK: - Property
     @IBOutlet weak var background: UIView!
     @IBOutlet weak var alertView: UIView!
@@ -21,11 +21,7 @@ class CustomAlertViewController: UIViewController {
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var confirmButton: UIButton!
     
-    var alertText = ""
-    var cancelButtonText = ""
-    var confirmButtonText = ""
-    
-    var delegate: CustomAlertDelegate?
+    var delegate: CustomAlertCancelDelegate?
     
     // MARK: - viewDidLoad
     override func viewDidLoad() {

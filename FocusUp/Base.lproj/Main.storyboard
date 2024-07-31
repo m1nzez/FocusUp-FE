@@ -630,10 +630,10 @@
             </objects>
             <point key="canvasLocation" x="4348.8549618320612" y="1266.9014084507044"/>
         </scene>
-        <!--Custom Alert View Controller-->
+        <!--Custom Alert Cancel View Controller-->
         <scene sceneID="cDy-19-b6l">
             <objects>
-                <viewController storyboardIdentifier="CustomAlertViewController" id="ATw-Ch-CV0" customClass="CustomAlertViewController" customModule="FocusUp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CustomAlertCancelViewController" id="ATw-Ch-CV0" customClass="CustomAlertCancelViewController" customModule="FocusUp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="y7r-vA-UJW">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -679,7 +679,7 @@
                                                 <attributedString key="attributedText">
                                                     <fragment content="목표">
                                                         <attributes>
-                                                            <font key="NSFont" size="16" name=".AppleSDGothicNeoI-Regular"/>
+                                                            <font key="NSFont" metaFont="system" size="16"/>
                                                             <font key="NSOriginalFont" metaFont="system" size="16"/>
                                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="3" tighteningFactorForTruncation="0.0"/>
                                                         </attributes>
@@ -692,7 +692,7 @@
                                                     </fragment>
                                                     <fragment content="루틴">
                                                         <attributes>
-                                                            <font key="NSFont" size="16" name=".AppleSDGothicNeoI-Regular"/>
+                                                            <font key="NSFont" metaFont="system" size="16"/>
                                                             <font key="NSOriginalFont" metaFont="system" size="16"/>
                                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="3" tighteningFactorForTruncation="0.0"/>
                                                         </attributes>
@@ -705,7 +705,7 @@
                                                     </fragment>
                                                     <fragment content="설정을">
                                                         <attributes>
-                                                            <font key="NSFont" size="16" name=".AppleSDGothicNeoI-Regular"/>
+                                                            <font key="NSFont" metaFont="system" size="16"/>
                                                             <font key="NSOriginalFont" metaFont="system" size="16"/>
                                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="3" tighteningFactorForTruncation="0.0"/>
                                                         </attributes>
@@ -718,7 +718,7 @@
                                                     </fragment>
                                                     <fragment content="취소하시겠습니까">
                                                         <attributes>
-                                                            <font key="NSFont" size="16" name=".AppleSDGothicNeoI-Regular"/>
+                                                            <font key="NSFont" metaFont="system" size="16"/>
                                                             <font key="NSOriginalFont" metaFont="system" size="16"/>
                                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="3" tighteningFactorForTruncation="0.0"/>
                                                         </attributes>
@@ -781,7 +781,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tql-3E-62W" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3555" y="2020"/>
+            <point key="canvasLocation" x="5126" y="2020"/>
         </scene>
         <!--Information View Controller-->
         <scene sceneID="Jts-9B-SIl">

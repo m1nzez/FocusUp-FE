@@ -150,14 +150,14 @@ class GoalRoutineSettingViewController: UIViewController {
     }
     
     @objc func completeButtonDidTap(_ sender: UIBarButtonItem) {
-        guard let customAlertViewController = self.storyboard?.instantiateViewController(identifier: "CustomAlertViewController") as? CustomAlertViewController else { return }
+        guard let customAlertCancelViewController = self.storyboard?.instantiateViewController(identifier: "CustomAlertCancelViewController") as? CustomAlertCancelViewController else { return }
 
-        customAlertViewController.delegate = self
+        customAlertCancelViewController.delegate = self
         
-        customAlertViewController.modalPresentationStyle = .overFullScreen
-        customAlertViewController.modalTransitionStyle = .crossDissolve
+        customAlertCancelViewController.modalPresentationStyle = .overFullScreen
+        customAlertCancelViewController.modalTransitionStyle = .crossDissolve
         
-        self.present(customAlertViewController, animated: true, completion: nil)
+        self.present(customAlertCancelViewController, animated: true, completion: nil)
     }
     
     @objc func customButtonDidTap(_ sender: UIButton) {
@@ -260,7 +260,7 @@ extension GoalRoutineSettingViewController: CustomGoalTimePickerDelegate {
     }
 }
 
-extension GoalRoutineSettingViewController: CustomAlertDelegate {
+extension GoalRoutineSettingViewController: CustomAlertCancelDelegate {
     func action() {
         
     }
