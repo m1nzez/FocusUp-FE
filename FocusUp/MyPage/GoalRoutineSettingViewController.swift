@@ -150,7 +150,14 @@ class GoalRoutineSettingViewController: UIViewController {
     }
     
     @objc func completeButtonDidTap(_ sender: UIBarButtonItem) {
-        self.navigationController?.popViewController(animated: true)
+        guard let customAlertViewController = self.storyboard?.instantiateViewController(identifier: "CustomAlertViewController") as? CustomAlertViewController else { return }
+
+        customAlertViewController.delegate = self
+        
+        customAlertViewController.modalPresentationStyle = .overFullScreen
+        customAlertViewController.modalTransitionStyle = .crossDissolve
+        
+        self.present(customAlertViewController, animated: true, completion: nil)
     }
     
     @objc func customButtonDidTap(_ sender: UIButton) {
@@ -250,5 +257,15 @@ extension GoalRoutineSettingViewController: CustomGoalTimePickerDelegate {
     
     func didSelectGoalTimeAndUpdateUI() {
         updateGoalTimeUI()
+    }
+}
+
+extension GoalRoutineSettingViewController: CustomAlertDelegate {
+    func action() {
+        
+    }
+    
+    func exit() {
+        self.navigationController?.popViewController(animated: true)
     }
 }
