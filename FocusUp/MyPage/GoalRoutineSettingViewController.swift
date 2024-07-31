@@ -174,13 +174,11 @@ class GoalRoutineSettingViewController: UIViewController {
     @objc func customButtonDidTap(_ sender: UIButton) {
         print("Information.")
         
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let contentViewController = storyboard.instantiateViewController(withIdentifier: "InformationViewController") as? InformationViewController {
-            let bottomSheetViewController = BottomSheetViewController(contentViewController: contentViewController, defaultHeight: 230, cornerRadius: 26, dimmedAlpha: 1, isPannedable: true)
-            self.present(bottomSheetViewController, animated: true)
-        } else {
-            print("InformationViewController를 인스턴스화할 수 없습니다.")
-        }
+        guard let contentViewController = self.storyboard?.instantiateViewController(identifier: "InformationViewController") as? InformationViewController else { return }
+
+        let bottomSheetViewController = BottomSheetViewController(contentViewController: contentViewController, defaultHeight: 230, cornerRadius: 26, dimmedAlpha: 1, isPannedable: true)
+        
+        self.present(bottomSheetViewController, animated: true, completion: nil)
     }
     
     @objc private func buttonTapped(_ sender: UIButton) {
