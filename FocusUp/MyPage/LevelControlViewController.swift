@@ -147,19 +147,23 @@ class LevelControlViewController: UIViewController {
         stackView.spacing = 12
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
-        let imageView = UIImageView(image: UIImage(systemName: "square"))
-        imageView.tintColor = UIColor(red: 0.89, green: 0.9, blue: 0.9, alpha: 1)
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.widthAnchor.constraint(equalToConstant: 25).isActive = true
-        imageView.heightAnchor.constraint(equalToConstant: 25).isActive = true
-        
+        // square 이미지를 대체하는 버튼 생성
+        let squareButton = UIButton(type: .system)
+        squareButton.translatesAutoresizingMaskIntoConstraints = false
+        squareButton.backgroundColor = UIColor.clear
+        squareButton.layer.cornerRadius = 4
+        squareButton.layer.borderWidth = 1
+        squareButton.layer.borderColor = UIColor(red: 0.89, green: 0.9, blue: 0.9, alpha: 1).cgColor
+        squareButton.widthAnchor.constraint(equalToConstant: 25).isActive = true
+        squareButton.heightAnchor.constraint(equalToConstant: 25).isActive = true
+
         let titleLabel = UILabel()
         titleLabel.text = title
         titleLabel.font = UIFont(name: "Pretendard-Regular", size: 14)
         titleLabel.textColor = .black
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        stackView.addArrangedSubview(imageView)
+        stackView.addArrangedSubview(squareButton)
         stackView.addArrangedSubview(titleLabel)
         
         button.addSubview(stackView)
@@ -181,10 +185,10 @@ class LevelControlViewController: UIViewController {
         
         // Check 이미지 Constraints
         NSLayoutConstraint.activate([
-            checkImageView.centerXAnchor.constraint(equalTo: imageView.centerXAnchor),
-            checkImageView.centerYAnchor.constraint(equalTo: imageView.centerYAnchor),
-            checkImageView.widthAnchor.constraint(equalToConstant: 15),
-            checkImageView.heightAnchor.constraint(equalToConstant: 15)
+            checkImageView.centerXAnchor.constraint(equalTo: squareButton.centerXAnchor),
+            checkImageView.centerYAnchor.constraint(equalTo: squareButton.centerYAnchor),
+            checkImageView.widthAnchor.constraint(equalToConstant: 20),
+            checkImageView.heightAnchor.constraint(equalToConstant: 20)
         ])
         
         button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
@@ -192,12 +196,51 @@ class LevelControlViewController: UIViewController {
         return button
     }
     
+    private var selectedButton: UIButton? // 현재 선택된 버튼을 추적
+    
     @objc private func buttonTapped(_ sender: UIButton) {
-        // 버튼 클릭 시 상태 변경
-        if let checkImageView = sender.subviews.compactMap({ $0 as? UIImageView }).last {
-            checkImageView.isHidden.toggle()
+        // 현재 선택된 버튼이 있다면 그 버튼의 선택 상태 해제
+        if let previousSelectedButton = selectedButton {
+            // 이전 선택 버튼의 상태를 해제
+            if let previousCheckImageView = previousSelectedButton.subviews.compactMap({ $0 as? UIImageView }).last {
+                previousCheckImageView.isHidden = true
+            }
+            if let previousSquareButton = previousSelectedButton.subviews.compactMap({ $0 as? UIStackView }).first?.arrangedSubviews.compactMap({ $0 as? UIButton }).first {
+                if previousSquareButton.layer.borderColor == UIColor(named: "Primary4")?.cgColor {
+                    previousSquareButton.layer.borderColor = UIColor(red: 0.89, green: 0.9, blue: 0.9, alpha: 1).cgColor
+                    previousSquareButton.backgroundColor = UIColor.clear
+                }
+            }
+            if previousSelectedButton.layer.borderColor == UIColor(named: "Primary4")?.cgColor {
+                previousSelectedButton.layer.borderColor = UIColor(named: "BlueGray3")?.cgColor
+            }
         }
+        
+        // 새로운 버튼의 선택 상태 설정
+        if let checkImageView = sender.subviews.compactMap({ $0 as? UIImageView }).last {
+            checkImageView.isHidden = !checkImageView.isHidden
+        }
+        if let squareButton = sender.subviews.compactMap({ $0 as? UIStackView }).first?.arrangedSubviews.compactMap({ $0 as? UIButton }).first {
+            if squareButton.layer.borderColor == UIColor(red: 0.89, green: 0.9, blue: 0.9, alpha: 1).cgColor {
+                squareButton.layer.borderColor = UIColor(named: "Primary4")?.cgColor
+                squareButton.backgroundColor = UIColor(named: "Primary4")?.withAlphaComponent(0.1)
+            } else {
+                squareButton.layer.borderColor = UIColor(red: 0.89, green: 0.9, blue: 0.9, alpha: 1).cgColor
+                squareButton.backgroundColor = .clear
+            }
+        }
+        if sender.layer.borderColor == UIColor(named: "BlueGray3")?.cgColor {
+            sender.layer.borderColor = UIColor(named: "Primary4")?.cgColor
+        } else {
+            sender.layer.borderColor = UIColor(named: "BlueGray3")?.cgColor
+        }
+        
+        // 선택된 버튼 업데이트
+        selectedButton = sender
     }
+
+
 }
+
 
 
