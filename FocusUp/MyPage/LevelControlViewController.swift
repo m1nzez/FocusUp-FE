@@ -10,7 +10,7 @@ import UIKit
 class LevelControlViewController: UIViewController {
     
     private var userLevel: Int = 3 // 유저의 레벨을 설정(추후 변경)
-
+    
     private let headerView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemBackground
@@ -89,7 +89,16 @@ class LevelControlViewController: UIViewController {
             
             levelLabel.attributedText = attributedString
         }
-
+        
+        // 취소 버튼의 액션 추가
+        if let cancelButton = headerView.subviews.compactMap({ $0 as? UIButton }).first(where: { $0.currentTitle == "취소" }) {
+            cancelButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
+        }
+        
+        // 완료 버튼의 액션 추가
+        if let completeButton = headerView.subviews.compactMap({ $0 as? UIButton }).first(where: { $0.currentTitle == "완료" }) {
+            completeButton.addTarget(self, action: #selector(completeButtonTapped), for: .touchUpInside)
+        }
     }
     
     private func setupUI() {
@@ -110,7 +119,7 @@ class LevelControlViewController: UIViewController {
     }
     
     private func setupLevelButtons() {
-        let myLevelButton = createButton(withTitle: "My Level")
+        let myLevelButton = createButton(withTitle: "My Level", type: "myLevelButton")
         contentView.addSubview(myLevelButton)
         
         NSLayoutConstraint.activate([
@@ -123,7 +132,7 @@ class LevelControlViewController: UIViewController {
         var previousButton: UIButton = myLevelButton
         
         for level in 1..<userLevel {
-            let levelButton = createButton(withTitle: "Level \(level)")
+            let levelButton = createButton(withTitle: "Level \(level)", type: "levelButton")
             contentView.addSubview(levelButton)
             
             NSLayoutConstraint.activate([
@@ -137,9 +146,10 @@ class LevelControlViewController: UIViewController {
         }
     }
 
-    private func createButton(withTitle title: String) -> UIButton {
+    private func createButton(withTitle title: String, type: String) -> UIButton {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.accessibilityIdentifier = type // 버튼의 타입을 accessibilityIdentifier에 저장
         
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -201,7 +211,7 @@ class LevelControlViewController: UIViewController {
     @objc private func buttonTapped(_ sender: UIButton) {
         // 현재 선택된 버튼이 있다면 그 버튼의 선택 상태 해제
         if let previousSelectedButton = selectedButton {
-            // 이전 선택 버튼의 상태를 해제
+            // 선택 상태 해제
             if let previousCheckImageView = previousSelectedButton.subviews.compactMap({ $0 as? UIImageView }).last {
                 previousCheckImageView.isHidden = true
             }
@@ -216,7 +226,7 @@ class LevelControlViewController: UIViewController {
             }
         }
         
-        // 새로운 버튼의 선택 상태 설정
+        // 새로운 버튼 선택 상태 설정
         if let checkImageView = sender.subviews.compactMap({ $0 as? UIImageView }).last {
             checkImageView.isHidden = !checkImageView.isHidden
         }
@@ -238,9 +248,32 @@ class LevelControlViewController: UIViewController {
         // 선택된 버튼 업데이트
         selectedButton = sender
     }
-
+    
+    // 취소 버튼 클릭 시 호출되는 메서드
+    @objc private func cancelButtonTapped() {
+        // 현재 뷰 컨트롤러를 화면에서 제거
+        dismiss(animated: true, completion: nil)
+    }
+    
+    // 완료 버튼 클릭 시 호출되는 메서드
+    @objc private func completeButtonTapped() {
+        let buttonType = selectedButton?.accessibilityIdentifier ?? "none"
+        
+        if buttonType == "myLevelButton" {
+            NotificationCenter.default.post(name: .didCancelLevelSelection, object: nil)
+        } else {
+            NotificationCenter.default.post(name: .didCompleteLevelSelection, object: nil, userInfo: ["buttonType": buttonType])
+        }
+        dismiss(animated: true, completion: nil)
+    }
 
 }
+
+extension Notification.Name {
+    static let didCompleteLevelSelection = Notification.Name("didCompleteLevelSelection")
+    static let didCancelLevelSelection = Notification.Name("didCancelLevelSelection")
+}
+
 
 
 

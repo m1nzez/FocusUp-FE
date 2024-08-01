@@ -8,6 +8,7 @@
 import UIKit
 import FSCalendar
 
+// MARK: - calendar header custom
 class CustomHeaderView: UIView {
     
     let previousButton: UIButton = {
@@ -70,6 +71,7 @@ class CustomHeaderView: UIView {
     }
 }
 
+// MARK: - mypage
 class MyPageViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
     // MARK: - properties
     @IBOutlet weak var settingButton: UIBarButtonItem!
@@ -155,6 +157,9 @@ class MyPageViewController: UIViewController, FSCalendarDelegate, FSCalendarData
         calendarView.placeholderType = .none // 현재 월만 표시
         
         setupCalendarAppearance()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(handleLevelSelectionCompletion), name: .didCompleteLevelSelection, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleCancelLevelSelection), name: .didCancelLevelSelection, object: nil)
     }
     
     override func viewDidLayoutSubviews() {
@@ -237,7 +242,11 @@ class MyPageViewController: UIViewController, FSCalendarDelegate, FSCalendarData
     }
     
     private func updateProgressView(to progress: Float) {
-        levelProgress.setProgress(progress, animated: true)
+        if let levelProgress = levelProgress {
+            levelProgress.setProgress(progress, animated: true)
+        } else {
+            print("Error: levelProgress is nil")
+        }
     }
 
     private func setLevelLabel() {
@@ -248,6 +257,97 @@ class MyPageViewController: UIViewController, FSCalendarDelegate, FSCalendarData
     
     private func setLabel(_ label: UILabel) {
         label.font = UIFont(name: "Pretendard-Regular", size: 12)
+    }
+    
+    @objc private func handleNotification(_ notification: Notification) {
+        // Notification에서 전달된 userInfo를 확인
+        if let buttonType = notification.userInfo?["buttonType"] as? String, buttonType == "levelButton" {
+            handleLevelSelectionCompletion()
+        }
+    }
+    
+    @objc private func handleLevelSelectionCompletion() {
+
+        // UI 요소를 숨김
+        levelNoticeLabel?.isHidden = true
+        presentLevelLabel?.isHidden = true
+        levelProgress?.isHidden = true
+        levelLabel?.isHidden = true
+
+        // 새로운 레이블 생성 및 설정
+        let levelDownLabel = UILabel()
+        levelDownLabel.text = "현재 레벨 하향 기능을 사용하였습니다."
+        levelDownLabel.font = UIFont(name: "Pretendard-Regular", size: 13)
+        levelDownLabel.textColor = UIColor(named: "EmphasizeError")
+        levelDownLabel.textAlignment = .center
+
+        let modifyNoticeLabel = UILabel()
+        modifyNoticeLabel.text = "하향된 레벨을 사용 중에는 레벨업 도달 횟수가 증가하지 않습니다.\n레벨을 복원할 경우 이전에 저장된 도달 횟수부터 다시 증가합니다."
+        modifyNoticeLabel.font = UIFont(name: "Pretendard-Regular", size: 12)
+        modifyNoticeLabel.textColor = UIColor.black
+        modifyNoticeLabel.textAlignment = .center
+        modifyNoticeLabel.numberOfLines = 2
+
+        // NSMutableParagraphStyle 생성 및 줄간격 설정
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 5 // 원하는 줄간격 값 설정
+
+        // AttributedString 생성
+        let attributedString = NSMutableAttributedString(string: modifyNoticeLabel.text ?? "")
+        attributedString.addAttribute(.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attributedString.length))
+
+        // 레이블에 AttributedString 설정
+        modifyNoticeLabel.attributedText = attributedString
+
+        // 새로운 레이블을 뷰에 추가
+        view.addSubview(levelDownLabel)
+        view.addSubview(modifyNoticeLabel)
+
+        // 레이블의 오토레이아웃 설정
+        levelDownLabel.translatesAutoresizingMaskIntoConstraints = false
+        modifyNoticeLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            levelDownLabel.leadingAnchor.constraint(equalTo: levelStateLabel.leadingAnchor),
+            levelDownLabel.topAnchor.constraint(equalTo: levelStateLabel.bottomAnchor, constant: 19),
+            modifyNoticeLabel.leadingAnchor.constraint(equalTo: levelStateLabel.leadingAnchor),
+            modifyNoticeLabel.topAnchor.constraint(equalTo: levelDownLabel.bottomAnchor, constant: 10)
+        ])
+        
+        // 저장
+        self.levelDownLabel = levelDownLabel
+        self.modifyNoticeLabel = modifyNoticeLabel
+    }
+    
+    private var levelDownLabel: UILabel?
+    private var modifyNoticeLabel: UILabel?
+    
+    // MARK: - didTapCompleteButton 메서드
+    @objc private func didTapCompleteButton() {
+        // 숨겨진 UI 요소를 다시 표시
+        levelNoticeLabel?.isHidden = false
+        presentLevelLabel?.isHidden = false
+        levelProgress?.isHidden = false
+        levelLabel?.isHidden = false
+        
+        // 추가된 레이블을 제거
+        levelDownLabel?.removeFromSuperview()
+        modifyNoticeLabel?.removeFromSuperview()
+    }
+
+    @objc private func didTapMyLevelButton() {
+        // handleLevelSelectionCompletion 호출
+        handleLevelSelectionCompletion()
+    }
+    
+    @objc private func handleCancelLevelSelection() {
+        didTapCompleteButton()
+    }
+    
+    deinit {
+        // NotificationCenter에서 옵저버 제거
+        NotificationCenter.default.removeObserver(self, name: .didCompleteLevelSelection, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .didCancelLevelSelection, object: nil)
     }
 }
 
