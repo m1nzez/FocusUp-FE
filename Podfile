@@ -7,5 +7,6 @@ target 'FocusUp' do
 
   # Pods for FocusUp
  pod 'Alamofire'
+ pod 'FSCalendar'
 
 end
