@@ -290,18 +290,24 @@ class MyPageViewController: UIViewController, FSCalendarDelegate, FSCalendarData
         let attributedTitle = NSAttributedString(string: title, attributes: [
             .font: font ?? .systemFont(ofSize: 10),
             .underlineStyle: NSUnderlineStyle.single.rawValue,
-            .foregroundColor: UIColor.black
+            .foregroundColor: UIColor.black,
+            .baselineOffset: 3.0
         ])
         moreButton.setAttributedTitle(attributedTitle, for: .normal)
     }
     
     private func addUnderlineToPresentLevelLabel() {
         guard let title = presentLevelLabel.text else { return }
-        let attributedTitle = NSAttributedString(string: title, attributes: [
-            .font: presentLevelLabel.font ?? UIFont.systemFont(ofSize: 12),
-            .underlineStyle: NSUnderlineStyle.single.rawValue
-        ])
-        presentLevelLabel.attributedText = attributedTitle
+        let attributedString = NSMutableAttributedString(string: title)
+        
+        let underlineStyle = NSUnderlineStyle.single.rawValue
+        
+        attributedString.addAttributes([
+            .underlineStyle: underlineStyle,
+            .baselineOffset: 3.0
+        ], range: NSRange(location: 0, length: title.count))
+        
+        presentLevelLabel.attributedText = attributedString
     }
     
     private func updateProgressView(to progress: Float) {
