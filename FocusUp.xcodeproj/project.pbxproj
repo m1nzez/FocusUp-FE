@@ -11,6 +11,11 @@
 		1961F9492C511474000D9652 /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1961F9482C511474000D9652 /* BottomSheetViewController.swift */; };
 		19AC29F12C51002600CB8554 /* CharacterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19AC29F02C51002600CB8554 /* CharacterViewController.swift */; };
 		232B79122C47E278001D2934 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232B79112C47E278001D2934 /* LoginViewController.swift */; };
+		23C9F8FD2C57AA200052B213 /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C9F8FC2C57AA1F0052B213 /* InformationViewController.swift */; };
+		23C9F8FF2C584D7D0052B213 /* CustomStartTimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C9F8FE2C584D7D0052B213 /* CustomStartTimePickerView.swift */; };
+		23C9F9012C5A4ED60052B213 /* CustomGoalTimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C9F9002C5A4ED60052B213 /* CustomGoalTimePickerView.swift */; };
+		23C9F9052C5AD7B10052B213 /* CustomAlertCancelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C9F9042C5AD7B10052B213 /* CustomAlertCancelViewController.swift */; };
+		23C9F9072C5AE41E0052B213 /* CustomAlertAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C9F9062C5AE41E0052B213 /* CustomAlertAddViewController.swift */; };
 		23E51D6F2C466B6B0099C44B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E51D6E2C466B6B0099C44B /* AppDelegate.swift */; };
 		23E51D712C466B6B0099C44B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E51D702C466B6B0099C44B /* SceneDelegate.swift */; };
 		23E51D762C466B6B0099C44B /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 23E51D752C466B6B0099C44B /* Base */; };
@@ -26,10 +31,12 @@
 		23E51D952C4678580099C44B /* Pretendard-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 23E51D8C2C4678580099C44B /* Pretendard-Light.otf */; };
 		23E51D962C4678580099C44B /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 23E51D8D2C4678580099C44B /* Pretendard-SemiBold.otf */; };
 		23E51D982C46DD210099C44B /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E51D972C46DD210099C44B /* CustomTabBarController.swift */; };
+		8BB17DD22C5A28D300D6F6E4 /* LevelControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB17DD12C5A28D300D6F6E4 /* LevelControlViewController.swift */; };
 		8BBD00802C50DB99008E1E0C /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBD007F2C50DB99008E1E0C /* SettingViewController.swift */; };
 		8BBD00822C50DCC0008E1E0C /* GoalRoutineListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBD00812C50DCC0008E1E0C /* GoalRoutineListViewController.swift */; };
 		8BBD00842C50DDAE008E1E0C /* GoalRoutineSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBD00832C50DDAE008E1E0C /* GoalRoutineSettingViewController.swift */; };
 		8BE3FC0E2C50066C00B2AF0D /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE3FC0D2C50066C00B2AF0D /* MyPageViewController.swift */; };
+		A2976B3D7E9AF48D6B546DF2 /* Pods_FocusUp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9223F7AACC3AAE4DC0BCC9A9 /* Pods_FocusUp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +44,11 @@
 		1961F9482C511474000D9652 /* BottomSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
 		19AC29F02C51002600CB8554 /* CharacterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewController.swift; sourceTree = "<group>"; };
 		232B79112C47E278001D2934 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		23C9F8FC2C57AA1F0052B213 /* InformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
+		23C9F8FE2C584D7D0052B213 /* CustomStartTimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStartTimePickerView.swift; sourceTree = "<group>"; };
+		23C9F9002C5A4ED60052B213 /* CustomGoalTimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGoalTimePickerView.swift; sourceTree = "<group>"; };
+		23C9F9042C5AD7B10052B213 /* CustomAlertCancelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertCancelViewController.swift; sourceTree = "<group>"; };
+		23C9F9062C5AE41E0052B213 /* CustomAlertAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertAddViewController.swift; sourceTree = "<group>"; };
 		23E51D6B2C466B6B0099C44B /* FocusUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FocusUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23E51D6E2C466B6B0099C44B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		23E51D702C466B6B0099C44B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -54,10 +66,14 @@
 		23E51D8C2C4678580099C44B /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
 		23E51D8D2C4678580099C44B /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		23E51D972C46DD210099C44B /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
+		681D61088C21307186F6C7CA /* Pods-FocusUp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FocusUp.debug.xcconfig"; path = "Target Support Files/Pods-FocusUp/Pods-FocusUp.debug.xcconfig"; sourceTree = "<group>"; };
+		68BCC6391660372A0497B43C /* Pods-FocusUp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FocusUp.release.xcconfig"; path = "Target Support Files/Pods-FocusUp/Pods-FocusUp.release.xcconfig"; sourceTree = "<group>"; };
+		8BB17DD12C5A28D300D6F6E4 /* LevelControlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelControlViewController.swift; sourceTree = "<group>"; };
 		8BBD007F2C50DB99008E1E0C /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		8BBD00812C50DCC0008E1E0C /* GoalRoutineListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalRoutineListViewController.swift; sourceTree = "<group>"; };
 		8BBD00832C50DDAE008E1E0C /* GoalRoutineSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalRoutineSettingViewController.swift; sourceTree = "<group>"; };
 		8BE3FC0D2C50066C00B2AF0D /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
+		9223F7AACC3AAE4DC0BCC9A9 /* Pods_FocusUp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FocusUp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2976B3D7E9AF48D6B546DF2 /* Pods_FocusUp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +103,8 @@
 			children = (
 				23E51D6D2C466B6B0099C44B /* FocusUp */,
 				23E51D6C2C466B6B0099C44B /* Products */,
+				4C02D7D1F0674B9D40BE1588 /* Pods */,
+				2C17B525046BC13B81C6B9CC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,6 +124,7 @@
 				23E51D6E2C466B6B0099C44B /* AppDelegate.swift */,
 				23E51D702C466B6B0099C44B /* SceneDelegate.swift */,
 				23E51D742C466B6B0099C44B /* Main.storyboard */,
+				23C9F8FC2C57AA1F0052B213 /* InformationViewController.swift */,
 				232B79112C47E278001D2934 /* LoginViewController.swift */,
 				23E51D992C46DD2F0099C44B /* NavBar */,
 				19AC29EF2C50FB2E00CB8554 /* Character */,
@@ -139,6 +159,23 @@
 			path = NavBar;
 			sourceTree = "<group>";
 		};
+		2C17B525046BC13B81C6B9CC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9223F7AACC3AAE4DC0BCC9A9 /* Pods_FocusUp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4C02D7D1F0674B9D40BE1588 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				681D61088C21307186F6C7CA /* Pods-FocusUp.debug.xcconfig */,
+				68BCC6391660372A0497B43C /* Pods-FocusUp.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		8BE3FC0C2C50058700B2AF0D /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
@@ -146,6 +183,11 @@
 				8BBD007F2C50DB99008E1E0C /* SettingViewController.swift */,
 				8BBD00812C50DCC0008E1E0C /* GoalRoutineListViewController.swift */,
 				8BBD00832C50DDAE008E1E0C /* GoalRoutineSettingViewController.swift */,
+				8BB17DD12C5A28D300D6F6E4 /* LevelControlViewController.swift */,
+				23C9F8FE2C584D7D0052B213 /* CustomStartTimePickerView.swift */,
+				23C9F9002C5A4ED60052B213 /* CustomGoalTimePickerView.swift */,
+				23C9F9042C5AD7B10052B213 /* CustomAlertCancelViewController.swift */,
+				23C9F9062C5AE41E0052B213 /* CustomAlertAddViewController.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -157,9 +199,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 23E51D7F2C466B6C0099C44B /* Build configuration list for PBXNativeTarget "FocusUp" */;
 			buildPhases = (
+				A8C231B5BB22A57D4D579D90 /* [CP] Check Pods Manifest.lock */,
 				23E51D672C466B6B0099C44B /* Sources */,
 				23E51D682C466B6B0099C44B /* Frameworks */,
 				23E51D692C466B6B0099C44B /* Resources */,
+				DF30F48B8F824F8C9FEF100C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -225,6 +269,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		A8C231B5BB22A57D4D579D90 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FocusUp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DF30F48B8F824F8C9FEF100C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FocusUp/Pods-FocusUp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FocusUp/Pods-FocusUp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FocusUp/Pods-FocusUp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		23E51D672C466B6B0099C44B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -232,15 +318,21 @@
 			files = (
 				8BE3FC0E2C50066C00B2AF0D /* MyPageViewController.swift in Sources */,
 				232B79122C47E278001D2934 /* LoginViewController.swift in Sources */,
+				8BB17DD22C5A28D300D6F6E4 /* LevelControlViewController.swift in Sources */,
 				1961F9492C511474000D9652 /* BottomSheetViewController.swift in Sources */,
 				19AC29F12C51002600CB8554 /* CharacterViewController.swift in Sources */,
 				23E51D6F2C466B6B0099C44B /* AppDelegate.swift in Sources */,
+				23C9F8FF2C584D7D0052B213 /* CustomStartTimePickerView.swift in Sources */,
 				23E51D712C466B6B0099C44B /* SceneDelegate.swift in Sources */,
 				1961F9472C5113FB000D9652 /* ContentViewController.swift in Sources */,
+				23C9F9072C5AE41E0052B213 /* CustomAlertAddViewController.swift in Sources */,
 				23E51D982C46DD210099C44B /* CustomTabBarController.swift in Sources */,
 				8BBD00802C50DB99008E1E0C /* SettingViewController.swift in Sources */,
 				8BBD00822C50DCC0008E1E0C /* GoalRoutineListViewController.swift in Sources */,
+				23C9F9052C5AD7B10052B213 /* CustomAlertCancelViewController.swift in Sources */,
+				23C9F9012C5A4ED60052B213 /* CustomGoalTimePickerView.swift in Sources */,
 				8BBD00842C50DDAE008E1E0C /* GoalRoutineSettingViewController.swift in Sources */,
+				23C9F8FD2C57AA200052B213 /* InformationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,12 +479,14 @@
 		};
 		23E51D802C466B6C0099C44B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 681D61088C21307186F6C7CA /* Pods-FocusUp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FocusUp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -415,12 +509,14 @@
 		};
 		23E51D812C466B6C0099C44B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 68BCC6391660372A0497B43C /* Pods-FocusUp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FocusUp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
