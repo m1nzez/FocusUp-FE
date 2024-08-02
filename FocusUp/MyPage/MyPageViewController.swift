@@ -8,24 +8,22 @@
 import UIKit
 import FSCalendar
 
-// MARK: - calendar header custom
+// MARK: - Custom Calendar Header View
 class CustomHeaderView: UIView {
     
     let previousButton: UIButton = {
         let button = UIButton(type: .system)
-        let previousImage = UIImage(named: "calendar_arrow_left")
-        button.setImage(previousImage, for: .normal)
+        button.setImage(UIImage(named: "calendar_arrow_left"), for: .normal)
         return button
     }()
     
     let nextButton: UIButton = {
         let button = UIButton(type: .system)
-        let nextImage = UIImage(named: "calendar_arrow_right")
-        button.setImage(nextImage, for: .normal)
+        button.setImage(UIImage(named: "calendar_arrow_right"), for: .normal)
         return button
     }()
     
-    let monthLabel: UILabel = {
+    private let monthLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "Pretendard-Medium", size: 24)
         label.textColor = UIColor(named: "Primary4")
@@ -71,9 +69,10 @@ class CustomHeaderView: UIView {
     }
 }
 
-// MARK: - mypage
+// MARK: - MyPage ViewController
 class MyPageViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
-    // MARK: - properties
+    
+    // MARK: - Outlets
     @IBOutlet weak var settingButton: UIBarButtonItem!
     @IBOutlet weak var goalRoutineLabel: UILabel!
     @IBOutlet weak var moreButton: UIButton!
@@ -87,36 +86,59 @@ class MyPageViewController: UIViewController, FSCalendarDelegate, FSCalendarData
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var calendarView: FSCalendar!
     
-    var calendarHeaderView: CustomHeaderView!
+    private var calendarHeaderView: CustomHeaderView!
+    private var levelDownLabel: UILabel?
+    private var modifyNoticeLabel: UILabel?
     
+    // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
+        setupCalendar()
+        setupNotifications()
+        updateLevelLabel()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        setWeekdayLabels()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureNavigationBar()
+        configureTabBar()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    // MARK: - UI Setup
+    private func setupUI() {
+        goalRoutineLabel.font = UIFont(name: "Pretendard-Medium", size: 15)
+        addUnderlineToMoreButton()
+        addNewRoutineButton.titleLabel?.font = UIFont(name: "Pretendard-Medium", size: 15)
+        levelStateLabel.font = UIFont(name: "Pretendard-Medium", size: 15)
+        levelNoticeLabel.font = UIFont(name: "Pretendard-Regular", size: 12)
         
-        // 폰트 적용
-        self.goalRoutineLabel.font = UIFont(name: "Pretendard-Medium", size: 15)
-        self.addUnderlineToMoreButton()
-        self.addNewRoutineButton.titleLabel?.font = UIFont(name: "Pretendard-Medium", size: 15)
-        self.levelStateLabel.font = UIFont(name: "Pretendard-Medium", size: 15)
-        self.levelNoticeLabel.font = UIFont(name: "Pretendard-Regular", size: 12)
-        self.presentLevelLabel.font = UIFont(name: "Pretendard-Regular", size: 12)
-        self.addUnderlineToPresentLevelLabel()
-        self.setLevelLabel()
-        self.calendarLabel.font = UIFont(name: "Pretendard-Medium", size: 15)
-        self.calendarView.appearance.weekdayFont = UIFont(name: "Pretendard-Regular", size: 14)
+        presentLevelLabel.font = UIFont(name: "Pretendard-Regular", size: 12)
         
-        // addNewRoutineButton 테두리 설정
-        self.addNewRoutineButton.layer.cornerRadius = 8
-        self.addNewRoutineButton.layer.borderWidth = 1
-        self.addNewRoutineButton.layer.borderColor = UIColor(named: "BlueGray3")?.cgColor
+        addUnderlineToPresentLevelLabel()
+        setLevelLabel()
+        calendarLabel.font = UIFont(name: "Pretendard-Medium", size: 15)
+        calendarView.appearance.weekdayFont = UIFont(name: "Pretendard-Regular", size: 14)
         
-        // progressView 설정
+        addNewRoutineButton.layer.cornerRadius = 8
+        addNewRoutineButton.layer.borderWidth = 1
+        addNewRoutineButton.layer.borderColor = UIColor(named: "BlueGray3")?.cgColor
+        
         levelProgress.layer.cornerRadius = 5
         levelProgress.clipsToBounds = true
         levelProgress.translatesAutoresizingMaskIntoConstraints = false
         levelProgress.progress = 0.0
-        self.view.addSubview(levelProgress)
+        view.addSubview(levelProgress)
         
-        // UIProgressView의 서브뷰인 progress 부분의 모서리 둥글게 만들기
         if let progressLayer = levelProgress.subviews.last {
             progressLayer.layer.cornerRadius = 5
             progressLayer.clipsToBounds = true
@@ -130,151 +152,82 @@ class MyPageViewController: UIViewController, FSCalendarDelegate, FSCalendarData
             levelProgress.heightAnchor.constraint(equalToConstant: 10)
         ])
         
-        // 5개의 구간으로 나누어 진행 상황을 업데이트
-        updateProgressView(to: 0.2) // 첫 번째 구간 (20%)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.updateProgressView(to: 0.4) // 두 번째 구간 (40%)
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.updateProgressView(to: 0.6) // 세 번째 구간 (60%)
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            self.updateProgressView(to: 0.8) // 네 번째 구간 (80%)
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-            self.updateProgressView(to: 1.0) // 다섯 번째 구간 (100%)
-        }
-        
-        // 달력 설정
+        updateProgressView(to: 0.2) // Initial progress
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { self.updateProgressView(to: 0.4) }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { self.updateProgressView(to: 0.6) }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { self.updateProgressView(to: 0.8) }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4) { self.updateProgressView(to: 1.0) }
+    }
+    
+    private func setupCalendar() {
         calendarView.delegate = self
         calendarView.dataSource = self
-        
-        setupCalendarHeaderView() // 달력 헤더 설정
+        setupCalendarHeaderView()
         updateHeaderViewForCurrentMonth()
         
         calendarView.scope = .month
-        calendarView.scrollDirection = .horizontal // 스크롤 방향
-        calendarView.placeholderType = .none // 현재 월만 표시
+        calendarView.scrollDirection = .horizontal
+        calendarView.placeholderType = .none
         
         setupCalendarAppearance()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(handleLevelSelectionCompletion), name: .didCompleteLevelSelection, object: nil)
+    }
+    
+    private func setupNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleNotification(_:)), name: .didCompleteLevelSelection, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleCancelLevelSelection), name: .didCancelLevelSelection, object: nil)
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        setWeekdayLabels() // 요일 영어로 변경
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
+    private func configureNavigationBar() {
         let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
-        self.navigationController?.navigationBar.titleTextAttributes = textAttributes
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
+        navigationItem.title = "마이페이지"
         
-        // 네비게이션 바 타이틀 설정
-        self.navigationItem.title = "마이페이지"
         let navigationBarAppearance = UINavigationBarAppearance()
         navigationBarAppearance.backgroundColor = .systemBackground
         navigationBarAppearance.shadowColor = .clear
         navigationController?.navigationBar.standardAppearance = navigationBarAppearance
-        navigationController!.navigationBar.scrollEdgeAppearance = navigationBarAppearance
-        
-        // 탭바 아이템 타이틀 설정
-        self.tabBarItem.title = "MyPage"
-        // 탭바 기본상태, 스크롤상태 background 및 shadow 색상 설정
-        if let tabBar = self.tabBarController?.tabBar {
+        navigationController?.navigationBar.scrollEdgeAppearance = navigationBarAppearance
+    }
+    
+    private func configureTabBar() {
+        tabBarItem.title = "MyPage"
+        if let tabBar = tabBarController?.tabBar {
             tabBar.barTintColor = UIColor.systemBackground
             tabBar.standardAppearance.shadowColor = .clear
             tabBar.scrollEdgeAppearance?.shadowColor = .clear
             tabBar.shadowImage = UIImage()
             tabBar.backgroundImage = UIImage()
         }
-        
-        if let customFont = UIFont(name: "Pretendard-Regular", size: 18) {
-            let textAttributes = [
-                NSAttributedString.Key.foregroundColor: UIColor.black,
-                NSAttributedString.Key.font: customFont
-            ]
-            self.navigationController?.navigationBar.titleTextAttributes = textAttributes
-        } else {
-            print("커스텀 폰트를 로드할 수 없습니다.")
-        }
     }
-
-    // MARK: - action
+    
+    // MARK: - Actions
     @IBAction func didTapSettingBtn(_ sender: Any) {
-        guard let toSettingVC = self.storyboard?.instantiateViewController(identifier: "SettingViewController") else { return }
-        self.navigationController?.pushViewController(toSettingVC, animated: true)
+        guard let toSettingVC = storyboard?.instantiateViewController(identifier: "SettingViewController") else { return }
+        navigationController?.pushViewController(toSettingVC, animated: true)
     }
     
     @IBAction func didTapMoreBtn(_ sender: Any) {
-        guard let toGoalRoutineListVC = self.storyboard?.instantiateViewController(identifier: "GoalRoutineListViewController") else { return }
-        self.navigationController?.pushViewController(toGoalRoutineListVC, animated: true)
+        guard let toGoalRoutineListVC = storyboard?.instantiateViewController(identifier: "GoalRoutineListViewController") else { return }
+        navigationController?.pushViewController(toGoalRoutineListVC, animated: true)
     }
     
     @IBAction func didTapAddNewRoutineBtn(_ sender: Any) {
-        guard let toGoalRoutineSettingVC = self.storyboard?.instantiateViewController(identifier: "GoalRoutineSettingViewController") else { return }
-        self.navigationController?.pushViewController(toGoalRoutineSettingVC, animated: true)
-    }
-    
-    private func addUnderlineToMoreButton() {
-        let title = "더보기"
-        let font = UIFont(name: "Pretendard-Regular", size: 10)
-        let attributedTitle = NSAttributedString(string: title, attributes: [
-            .font: font ?? .systemFont(ofSize: 10),
-            .underlineStyle: NSUnderlineStyle.single.rawValue,
-            .foregroundColor: UIColor.black
-        ])
-        moreButton.setAttributedTitle(attributedTitle, for: .normal)
-    }
-    
-    private func addUnderlineToPresentLevelLabel() {
-        guard let title = presentLevelLabel.text else {
-            return
-        }
-        let attributedTitle = NSAttributedString(string: title, attributes: [
-            .font: presentLevelLabel.font ?? UIFont.systemFont(ofSize: 12),
-            .underlineStyle: NSUnderlineStyle.single.rawValue
-        ])
-        presentLevelLabel.attributedText = attributedTitle
-    }
-    
-    private func updateProgressView(to progress: Float) {
-        if let levelProgress = levelProgress {
-            levelProgress.setProgress(progress, animated: true)
-        } else {
-            print("Error: levelProgress is nil")
-        }
-    }
-
-    private func setLevelLabel() {
-        for case let label as UILabel in levelLabel.arrangedSubviews {
-            setLabel(label)
-        }
-    }
-    
-    private func setLabel(_ label: UILabel) {
-        label.font = UIFont(name: "Pretendard-Regular", size: 12)
+        guard let toGoalRoutineSettingVC = storyboard?.instantiateViewController(identifier: "GoalRoutineSettingViewController") else { return }
+        navigationController?.pushViewController(toGoalRoutineSettingVC, animated: true)
     }
     
     @objc private func handleNotification(_ notification: Notification) {
-        // Notification에서 전달된 userInfo를 확인
         if let buttonType = notification.userInfo?["buttonType"] as? String, buttonType == "levelButton" {
             handleLevelSelectionCompletion()
         }
     }
     
     @objc private func handleLevelSelectionCompletion() {
-
-        // UI 요소를 숨김
         levelNoticeLabel?.isHidden = true
         presentLevelLabel?.isHidden = true
         levelProgress?.isHidden = true
         levelLabel?.isHidden = true
-
-        // 새로운 레이블 생성 및 설정
+        
         let levelDownLabel = UILabel()
         levelDownLabel.text = "현재 레벨 하향 기능을 사용하였습니다."
         levelDownLabel.font = UIFont(name: "Pretendard-Regular", size: 13)
@@ -287,26 +240,20 @@ class MyPageViewController: UIViewController, FSCalendarDelegate, FSCalendarData
         modifyNoticeLabel.textColor = UIColor.black
         modifyNoticeLabel.textAlignment = .center
         modifyNoticeLabel.numberOfLines = 2
-
-        // NSMutableParagraphStyle 생성 및 줄간격 설정
+        
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 5 // 원하는 줄간격 값 설정
+        paragraphStyle.lineSpacing = 5
 
-        // AttributedString 생성
         let attributedString = NSMutableAttributedString(string: modifyNoticeLabel.text ?? "")
         attributedString.addAttribute(.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attributedString.length))
-
-        // 레이블에 AttributedString 설정
         modifyNoticeLabel.attributedText = attributedString
-
-        // 새로운 레이블을 뷰에 추가
+        
         view.addSubview(levelDownLabel)
         view.addSubview(modifyNoticeLabel)
-
-        // 레이블의 오토레이아웃 설정
+        
         levelDownLabel.translatesAutoresizingMaskIntoConstraints = false
         modifyNoticeLabel.translatesAutoresizingMaskIntoConstraints = false
-
+        
         NSLayoutConstraint.activate([
             levelDownLabel.leadingAnchor.constraint(equalTo: levelStateLabel.leadingAnchor),
             levelDownLabel.topAnchor.constraint(equalTo: levelStateLabel.bottomAnchor, constant: 19),
@@ -314,47 +261,64 @@ class MyPageViewController: UIViewController, FSCalendarDelegate, FSCalendarData
             modifyNoticeLabel.topAnchor.constraint(equalTo: levelDownLabel.bottomAnchor, constant: 10)
         ])
         
-        // 저장
         self.levelDownLabel = levelDownLabel
         self.modifyNoticeLabel = modifyNoticeLabel
     }
     
-    private var levelDownLabel: UILabel?
-    private var modifyNoticeLabel: UILabel?
-    
-    // MARK: - didTapCompleteButton 메서드
     @objc private func didTapCompleteButton() {
-        // 숨겨진 UI 요소를 다시 표시
         levelNoticeLabel?.isHidden = false
         presentLevelLabel?.isHidden = false
         levelProgress?.isHidden = false
         levelLabel?.isHidden = false
         
-        // 추가된 레이블을 제거
         levelDownLabel?.removeFromSuperview()
         modifyNoticeLabel?.removeFromSuperview()
-    }
-
-    @objc private func didTapMyLevelButton() {
-        // handleLevelSelectionCompletion 호출
-        handleLevelSelectionCompletion()
     }
     
     @objc private func handleCancelLevelSelection() {
         didTapCompleteButton()
     }
     
-    deinit {
-        // NotificationCenter에서 옵저버 제거
-        NotificationCenter.default.removeObserver(self, name: .didCompleteLevelSelection, object: nil)
-        NotificationCenter.default.removeObserver(self, name: .didCancelLevelSelection, object: nil)
+    @objc private func didTapMyLevelButton() {
+        handleLevelSelectionCompletion()
     }
-}
-
-// MARK: - 달력 설정
-extension MyPageViewController {
     
-    // 요일 영어로 변경
+    // MARK: - Helper Methods
+    private func addUnderlineToMoreButton() {
+        let title = "더보기"
+        let font = UIFont(name: "Pretendard-Regular", size: 10)
+        let attributedTitle = NSAttributedString(string: title, attributes: [
+            .font: font ?? .systemFont(ofSize: 10),
+            .underlineStyle: NSUnderlineStyle.single.rawValue,
+            .foregroundColor: UIColor.black
+        ])
+        moreButton.setAttributedTitle(attributedTitle, for: .normal)
+    }
+    
+    private func addUnderlineToPresentLevelLabel() {
+        guard let title = presentLevelLabel.text else { return }
+        let attributedTitle = NSAttributedString(string: title, attributes: [
+            .font: presentLevelLabel.font ?? UIFont.systemFont(ofSize: 12),
+            .underlineStyle: NSUnderlineStyle.single.rawValue
+        ])
+        presentLevelLabel.attributedText = attributedTitle
+    }
+    
+    private func updateProgressView(to progress: Float) {
+        levelProgress.setProgress(progress, animated: true)
+    }
+    
+    private func setLevelLabel() {
+        for case let label as UILabel in levelLabel.arrangedSubviews {
+            label.font = UIFont(name: "Pretendard-Regular", size: 12)
+        }
+    }
+    
+    private func updateLevelLabel() {
+        let userLevel = LevelControlViewController.sharedData.userLevel
+        presentLevelLabel.text = "현재 Level \(userLevel)"
+    }
+    
     private func setWeekdayLabels() {
         let weekdaySymbols = ["S", "M", "T", "W", "T", "F", "S"]
         for (index, label) in calendarView.calendarWeekdayView.weekdayLabels.enumerated() {
@@ -364,7 +328,6 @@ extension MyPageViewController {
         }
     }
     
-    // 달력 헤더 설정
     private func setupCalendarHeaderView() {
         calendarHeaderView = CustomHeaderView()
         view.addSubview(calendarHeaderView)
@@ -384,12 +347,29 @@ extension MyPageViewController {
     }
     
     private func setupCalendarAppearance() {
-        // FSCalendar appearance 설정
-        calendarView.appearance.todayColor = UIColor.clear // 현재 날짜의 배경색 제거
-        calendarView.appearance.todaySelectionColor = UIColor.clear // 선택된 현재 날짜의 배경색 제거
-        calendarView.appearance.selectionColor = UIColor.clear // 기본 선택 배경색 제거
-        calendarView.appearance.titleSelectionColor = UIColor.black // 선택된 날짜의 제목 색상 설정
-        calendarView.appearance.titleTodayColor = UIColor.black // 현재 날짜의 제목 색상 설정
+        calendarView.appearance.todayColor = UIColor.clear
+        calendarView.appearance.todaySelectionColor = UIColor.clear
+        calendarView.appearance.selectionColor = UIColor.clear
+        calendarView.appearance.titleSelectionColor = UIColor.black
+        calendarView.appearance.titleTodayColor = UIColor.black
+    }
+    
+    private func updateHeaderViewForCurrentMonth() {
+        let currentPage = calendarView.currentPage
+        calendarHeaderView.updateMonthLabel(with: currentPage)
+    }
+    
+    // MARK: - FSCalendar Delegate and DataSource Methods
+    func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
+        updateHeaderViewForCurrentMonth()
+    }
+    
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
+        return UIColor.clear
+    }
+    
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleSelectionColorFor date: Date) -> UIColor? {
+        return appearance.titleDefaultColor
     }
     
     @objc private func didTapPreviousMonthButton() {
@@ -403,23 +383,5 @@ extension MyPageViewController {
         let nextMonth = Calendar.current.date(byAdding: .month, value: 1, to: currentPage)!
         calendarView.setCurrentPage(nextMonth, animated: true)
     }
-    
-    private func updateHeaderViewForCurrentMonth() {
-        let currentPage = calendarView.currentPage
-        calendarHeaderView.updateMonthLabel(with: currentPage)
-    }
-    
-    func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
-        updateHeaderViewForCurrentMonth()
-    }
-    
-    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
-        // 기본 배경색을 투명으로 설정
-        return UIColor.clear
-    }
-    
-    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleSelectionColorFor date: Date) -> UIColor? {
-        // 선택된 날짜의 제목 색상 설정
-        return appearance.titleDefaultColor // 기본 제목 색상 유지
-    }
 }
+

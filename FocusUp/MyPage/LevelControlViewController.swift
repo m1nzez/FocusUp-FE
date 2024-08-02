@@ -9,7 +9,21 @@ import UIKit
 
 class LevelControlViewController: UIViewController {
     
-    private var userLevel: Int = 3 // 유저의 레벨을 설정(추후 변경)
+    // MARK: - Properties
+    static var sharedData = LevelControlSharedData()
+        
+    private var userLevel: Int {
+        get {
+            return LevelControlViewController.sharedData.userLevel
+        }
+        set {
+            LevelControlViewController.sharedData.userLevel = newValue
+        }
+    }
+    
+    private var selectedButton: UIButton? // 현재 선택된 버튼을 추적
+    
+    // MARK: - Views
     
     private let headerView: UIView = {
         let view = UIView()
@@ -18,8 +32,8 @@ class LevelControlViewController: UIViewController {
         
         // 하단 보더 추가
         let bottomBorder = CALayer()
-        bottomBorder.backgroundColor = UIColor(named: "BlueGray4")?.cgColor // 보더 색상 설정
-        bottomBorder.frame = CGRect(x: 0, y: 56, width: UIScreen.main.bounds.width, height: 1) // 보더의 위치 및 두께 설정
+        bottomBorder.backgroundColor = UIColor(named: "BlueGray4")?.cgColor
+        bottomBorder.frame = CGRect(x: 0, y: 56, width: UIScreen.main.bounds.width, height: 1)
         view.layer.addSublayer(bottomBorder)
         
         let cancelButton = UIButton(type: .system)
@@ -61,45 +75,18 @@ class LevelControlViewController: UIViewController {
         return view
     }()
 
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .systemBackground
         setupUI()
         setupLevelButtons()
-        
-        if let levelLabel = headerView.subviews.compactMap({ $0 as? UILabel }).first {
-            let levelText = "My Level : \(userLevel)"
-            
-            // 문자열에 밑줄을 추가하는 속성 설정
-            let attributedString = NSMutableAttributedString(string: levelText)
-            
-            // 기본 글꼴과 색상
-            let font = UIFont(name: "Pretendard-Regular", size: 15) ?? UIFont.systemFont(ofSize: 15)
-            let textColor = UIColor.black
-            let underlineStyle = NSUnderlineStyle.single.rawValue
-            
-            // 전체 텍스트에 속성 적용
-            attributedString.addAttributes([
-                .font: font,
-                .foregroundColor: textColor,
-                .underlineStyle: underlineStyle,
-                .baselineOffset: 3.8 // 조정이 필요할 경우, 적절한 값으로 수정
-            ], range: NSRange(location: 0, length: levelText.count))
-            
-            levelLabel.attributedText = attributedString
-        }
-        
-        // 취소 버튼의 액션 추가
-        if let cancelButton = headerView.subviews.compactMap({ $0 as? UIButton }).first(where: { $0.currentTitle == "취소" }) {
-            cancelButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
-        }
-        
-        // 완료 버튼의 액션 추가
-        if let completeButton = headerView.subviews.compactMap({ $0 as? UIButton }).first(where: { $0.currentTitle == "완료" }) {
-            completeButton.addTarget(self, action: #selector(completeButtonTapped), for: .touchUpInside)
-        }
+        configureHeaderView()
     }
+    
+    // MARK: - UI Setup
     
     private func setupUI() {
         view.addSubview(headerView)
@@ -109,7 +96,7 @@ class LevelControlViewController: UIViewController {
             headerView.topAnchor.constraint(equalTo: view.topAnchor),
             headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            headerView.heightAnchor.constraint(equalToConstant: 57), // 헤더 높이 설정
+            headerView.heightAnchor.constraint(equalToConstant: 57),
             
             contentView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
             contentView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -145,11 +132,43 @@ class LevelControlViewController: UIViewController {
             previousButton = levelButton
         }
     }
-
+    
+    private func configureHeaderView() {
+        if let levelLabel = headerView.subviews.compactMap({ $0 as? UILabel }).first {
+            let levelText = "My Level : \(userLevel)"
+            let attributedString = NSMutableAttributedString(string: levelText)
+            
+            let font = UIFont(name: "Pretendard-Regular", size: 15) ?? UIFont.systemFont(ofSize: 15)
+            let textColor = UIColor.black
+            let underlineStyle = NSUnderlineStyle.single.rawValue
+            
+            attributedString.addAttributes([
+                .font: font,
+                .foregroundColor: textColor,
+                .underlineStyle: underlineStyle,
+                .baselineOffset: 3.8
+            ], range: NSRange(location: 0, length: levelText.count))
+            
+            levelLabel.attributedText = attributedString
+        }
+        
+        // 취소 버튼의 액션 추가
+        if let cancelButton = headerView.subviews.compactMap({ $0 as? UIButton }).first(where: { $0.currentTitle == "취소" }) {
+            cancelButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
+        }
+        
+        // 완료 버튼의 액션 추가
+        if let completeButton = headerView.subviews.compactMap({ $0 as? UIButton }).first(where: { $0.currentTitle == "완료" }) {
+            completeButton.addTarget(self, action: #selector(completeButtonTapped), for: .touchUpInside)
+        }
+    }
+    
+    // MARK: - Button Creation
+    
     private func createButton(withTitle title: String, type: String) -> UIButton {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.accessibilityIdentifier = type // 버튼의 타입을 accessibilityIdentifier에 저장
+        button.accessibilityIdentifier = type
         
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -190,10 +209,9 @@ class LevelControlViewController: UIViewController {
         // Check 이미지 추가
         let checkImageView = UIImageView(image: UIImage(named: "check"))
         checkImageView.translatesAutoresizingMaskIntoConstraints = false
-        checkImageView.isHidden = true // 기본적으로 숨겨진 상태
+        checkImageView.isHidden = true
         button.addSubview(checkImageView)
         
-        // Check 이미지 Constraints
         NSLayoutConstraint.activate([
             checkImageView.centerXAnchor.constraint(equalTo: squareButton.centerXAnchor),
             checkImageView.centerYAnchor.constraint(equalTo: squareButton.centerYAnchor),
@@ -206,31 +224,42 @@ class LevelControlViewController: UIViewController {
         return button
     }
     
-    private var selectedButton: UIButton? // 현재 선택된 버튼을 추적
+    // MARK: - Actions
     
     @objc private func buttonTapped(_ sender: UIButton) {
         // 현재 선택된 버튼이 있다면 그 버튼의 선택 상태 해제
         if let previousSelectedButton = selectedButton {
-            // 선택 상태 해제
-            if let previousCheckImageView = previousSelectedButton.subviews.compactMap({ $0 as? UIImageView }).last {
-                previousCheckImageView.isHidden = true
-            }
-            if let previousSquareButton = previousSelectedButton.subviews.compactMap({ $0 as? UIStackView }).first?.arrangedSubviews.compactMap({ $0 as? UIButton }).first {
-                if previousSquareButton.layer.borderColor == UIColor(named: "Primary4")?.cgColor {
-                    previousSquareButton.layer.borderColor = UIColor(red: 0.89, green: 0.9, blue: 0.9, alpha: 1).cgColor
-                    previousSquareButton.backgroundColor = UIColor.clear
-                }
-            }
-            if previousSelectedButton.layer.borderColor == UIColor(named: "Primary4")?.cgColor {
-                previousSelectedButton.layer.borderColor = UIColor(named: "BlueGray3")?.cgColor
-            }
+            resetButtonSelection(previousSelectedButton)
         }
         
         // 새로운 버튼 선택 상태 설정
-        if let checkImageView = sender.subviews.compactMap({ $0 as? UIImageView }).last {
+        updateButtonSelection(sender)
+        
+        // 선택된 버튼 업데이트
+        selectedButton = sender
+    }
+    
+    private func resetButtonSelection(_ button: UIButton) {
+        // 선택 상태 해제
+        if let previousCheckImageView = button.subviews.compactMap({ $0 as? UIImageView }).last {
+            previousCheckImageView.isHidden = true
+        }
+        if let previousSquareButton = button.subviews.compactMap({ $0 as? UIStackView }).first?.arrangedSubviews.compactMap({ $0 as? UIButton }).first {
+            if previousSquareButton.layer.borderColor == UIColor(named: "Primary4")?.cgColor {
+                previousSquareButton.layer.borderColor = UIColor(red: 0.89, green: 0.9, blue: 0.9, alpha: 1).cgColor
+                previousSquareButton.backgroundColor = UIColor.clear
+            }
+        }
+        if button.layer.borderColor == UIColor(named: "Primary4")?.cgColor {
+            button.layer.borderColor = UIColor(named: "BlueGray3")?.cgColor
+        }
+    }
+    
+    private func updateButtonSelection(_ button: UIButton) {
+        if let checkImageView = button.subviews.compactMap({ $0 as? UIImageView }).last {
             checkImageView.isHidden = !checkImageView.isHidden
         }
-        if let squareButton = sender.subviews.compactMap({ $0 as? UIStackView }).first?.arrangedSubviews.compactMap({ $0 as? UIButton }).first {
+        if let squareButton = button.subviews.compactMap({ $0 as? UIStackView }).first?.arrangedSubviews.compactMap({ $0 as? UIButton }).first {
             if squareButton.layer.borderColor == UIColor(red: 0.89, green: 0.9, blue: 0.9, alpha: 1).cgColor {
                 squareButton.layer.borderColor = UIColor(named: "Primary4")?.cgColor
                 squareButton.backgroundColor = UIColor(named: "Primary4")?.withAlphaComponent(0.1)
@@ -239,23 +268,17 @@ class LevelControlViewController: UIViewController {
                 squareButton.backgroundColor = .clear
             }
         }
-        if sender.layer.borderColor == UIColor(named: "BlueGray3")?.cgColor {
-            sender.layer.borderColor = UIColor(named: "Primary4")?.cgColor
+        if button.layer.borderColor == UIColor(named: "BlueGray3")?.cgColor {
+            button.layer.borderColor = UIColor(named: "Primary4")?.cgColor
         } else {
-            sender.layer.borderColor = UIColor(named: "BlueGray3")?.cgColor
+            button.layer.borderColor = UIColor(named: "BlueGray3")?.cgColor
         }
-        
-        // 선택된 버튼 업데이트
-        selectedButton = sender
     }
     
-    // 취소 버튼 클릭 시 호출되는 메서드
     @objc private func cancelButtonTapped() {
-        // 현재 뷰 컨트롤러를 화면에서 제거
         dismiss(animated: true, completion: nil)
     }
     
-    // 완료 버튼 클릭 시 호출되는 메서드
     @objc private func completeButtonTapped() {
         let buttonType = selectedButton?.accessibilityIdentifier ?? "none"
         
@@ -266,14 +289,19 @@ class LevelControlViewController: UIViewController {
         }
         dismiss(animated: true, completion: nil)
     }
-
 }
+
+// MARK: - Notification Names
 
 extension Notification.Name {
     static let didCompleteLevelSelection = Notification.Name("didCompleteLevelSelection")
     static let didCancelLevelSelection = Notification.Name("didCancelLevelSelection")
 }
 
+// 공유 데이터 모델 정의
+class LevelControlSharedData {
+    var userLevel: Int = 3
+}
 
 
 
