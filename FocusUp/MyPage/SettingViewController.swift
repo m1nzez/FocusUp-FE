@@ -11,7 +11,6 @@ class SettingViewController: UIViewController {
     // MARK: - property
     @IBOutlet weak var levelManageButton: UIButton!
     @IBOutlet weak var logoutButton: UIButton!
-    @IBOutlet weak var levelControlButton: UIButton!
     
     
     
@@ -58,7 +57,7 @@ class SettingViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    @IBAction func didTapLevelCotrolBtn(_ sender: Any) {
+    @IBAction func didTapLevelManageButton(_ sender: Any) {
         let levelControlVC = LevelControlViewController()
         levelControlVC.modalPresentationStyle = .pageSheet
         
