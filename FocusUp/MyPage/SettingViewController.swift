@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import KakaoSDKAuth
+import KakaoSDKUser
 import NaverThirdPartyLogin
 
 class SettingViewController: UIViewController {
@@ -52,6 +54,19 @@ class SettingViewController: UIViewController {
         
         let logout = UIAlertAction(title: "로그아웃", style: .default, handler: { (action) in
             self.naverLoginInstance?.requestDeleteToken()
+            
+            UserApi.shared.logout {(error) in
+                if let error = error {
+                    print(error)
+                } else {
+                    guard let loginVC = self.storyboard?.instantiateViewController(identifier: "LoginViewController") as? LoginViewController else { return }
+                    loginVC.modalTransitionStyle = .coverVertical
+                    loginVC.modalPresentationStyle = .fullScreen
+                    self.present(loginVC, animated: true, completion: nil)
+                    
+                    print("Kakao logout Success.")
+                }
+            }
         })
         alert.addAction(logout)
         logout.setValue(UIColor(named: "Primary4"), forKey: "titleTextColor")
@@ -85,7 +100,7 @@ class SettingViewController: UIViewController {
 // MARK: - extension
 extension SettingViewController: NaverThirdPartyLoginConnectionDelegate {
     func oauth20ConnectionDidFinishRequestACTokenWithAuthCode() {
-        print("login Success.")
+        print("Naver login Success.")
     }
     
     func oauth20ConnectionDidFinishRequestACTokenWithRefreshToken() {
@@ -98,7 +113,7 @@ extension SettingViewController: NaverThirdPartyLoginConnectionDelegate {
         loginVC.modalPresentationStyle = .fullScreen
         self.present(loginVC, animated: true, completion: nil)
         
-        print("logout Success.")
+        print("Naver logout Success.")
     }
     
     func oauth20Connection(_ oauthConnection: NaverThirdPartyLoginConnection!, didFailWithError error: (any Error)!) {

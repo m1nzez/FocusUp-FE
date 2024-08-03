@@ -30,6 +30,7 @@ class LoginViewController: UIViewController {
         if (UserApi.isKakaoTalkLoginAvailable()) {
             UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
                 if let error = error {
+                    print("Error.")
                     print(error)
                 }
                 else {
@@ -81,7 +82,7 @@ extension LoginViewController: NaverThirdPartyLoginConnectionDelegate {
         mainVC.modalPresentationStyle = .fullScreen
         self.present(mainVC, animated: true, completion: nil)
         
-        print("login Success.")
+        print("Naver login Success.")
     }
     
     func oauth20ConnectionDidFinishRequestACTokenWithRefreshToken() {
@@ -89,7 +90,7 @@ extension LoginViewController: NaverThirdPartyLoginConnectionDelegate {
     }
     
     func oauth20ConnectionDidFinishDeleteToken() {
-        print("logout Success.")
+        print("Naver logout Success.")
     }
     
     func oauth20Connection(_ oauthConnection: NaverThirdPartyLoginConnection!, didFailWithError error: (any Error)!) {
