@@ -51,6 +51,11 @@ class LoginViewController: UIViewController {
                 } else {
                     print("loginWithKakaoAccount() success.")
                     
+                    guard let mainVC = self.storyboard?.instantiateViewController(identifier: "CustomTabBarController") as? CustomTabBarController else { return }
+                    mainVC.modalTransitionStyle = .coverVertical
+                    mainVC.modalPresentationStyle = .fullScreen
+                    self.present(mainVC, animated: true, completion: nil)
+                    
                     _ = oauthToken
                 }
             }
