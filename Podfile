@@ -8,5 +8,8 @@ target 'FocusUp' do
   # Pods for FocusUp
  pod 'Alamofire'
  pod 'FSCalendar'
+ pod 'KakaoSDKCommon'
+ pod 'KakaoSDKAuth'
+ pod 'KakaoSDKUser'
 
 end

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import KakaoSDKUser
 
 class LoginViewController: UIViewController {
     // MARK: - Properties
@@ -20,6 +21,31 @@ class LoginViewController: UIViewController {
     }
     
     // MARK: - Action
+    @IBAction func kakaoButtonTapped(_ sender: Any) {
+        if (UserApi.isKakaoTalkLoginAvailable()) {
+            UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
+                if let error = error {
+                    print(error)
+                }
+                else {
+                    print("loginWithKakaoTalk() success.")
+                    
+                    _ = oauthToken
+                }
+            }
+        } else {
+            UserApi.shared.loginWithKakaoAccount {(oauthToken, error) in
+                if let error = error {
+                    print(error)
+                } else {
+                    print("loginWithKakaoAccount() success.")
+                    
+                    _ = oauthToken
+                }
+            }
+        }
+    }
+    
     
     // MARK: - Function
     func setAttribute() {
