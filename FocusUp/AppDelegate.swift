@@ -7,6 +7,7 @@
 
 import UIKit
 import KakaoSDKCommon
+import KakaoSDKAuth
 import NaverThirdPartyLogin
 import UserNotifications
 
@@ -82,5 +83,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             NotificationCenter.default.post(name: Notification.Name("OpenAlarmViewController"), object: nil)
         }
         completionHandler()
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        if AuthApi.isKakaoTalkLoginUrl(url) {
+            return AuthController.handleOpenUrl(url: url)
+        }
+
+        NaverThirdPartyLoginConnection.getSharedInstance().receiveAccessToken(url)
+        return true
     }
 }
