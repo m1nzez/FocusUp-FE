@@ -11,5 +11,6 @@ target 'FocusUp' do
  pod 'KakaoSDKCommon'
  pod 'KakaoSDKAuth'
  pod 'KakaoSDKUser'
+ pod 'naveridlogin-sdk-ios'
 
 end

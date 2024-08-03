@@ -1089,6 +1089,9 @@
                                 <state key="normal" title="네이버로 시작하기" image="naver">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="naverButtonTapped:" destination="mgW-Lj-VXY" eventType="touchUpInside" id="d5t-cf-MHJ"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fhg-jo-bz2"/>

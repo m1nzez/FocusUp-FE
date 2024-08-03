@@ -7,17 +7,22 @@
 
 import UIKit
 import KakaoSDKUser
+import NaverThirdPartyLogin
 
 class LoginViewController: UIViewController {
     // MARK: - Properties
     @IBOutlet weak var kakaoButton: UIButton!
     @IBOutlet weak var naverButton: UIButton!
     
+    let naverLoginInstance = NaverThirdPartyLoginConnection.getSharedInstance()
+    
     // MARK: - viewDidLoad()
     override func viewDidLoad() {
         super.viewDidLoad()
         setAttribute()
         setFont()
+        
+        naverLoginInstance?.delegate = self
     }
     
     // MARK: - Action
@@ -51,6 +56,9 @@ class LoginViewController: UIViewController {
         }
     }
     
+    @IBAction func naverButtonTapped(_ sender: Any) {
+        naverLoginInstance?.requestThirdPartyLogin()
+    }
     
     // MARK: - Function
     func setAttribute() {
@@ -63,4 +71,30 @@ class LoginViewController: UIViewController {
         kakaoButton.titleLabel?.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.85)
         naverButton.titleLabel?.font = UIFont(name: "Pretendard-Medium", size: 15)
     }
+}
+
+// MARK: - extension
+extension LoginViewController: NaverThirdPartyLoginConnectionDelegate {
+    func oauth20ConnectionDidFinishRequestACTokenWithAuthCode() {
+        guard let mainVC = self.storyboard?.instantiateViewController(identifier: "CustomTabBarController") as? CustomTabBarController else { return }
+        mainVC.modalTransitionStyle = .coverVertical
+        mainVC.modalPresentationStyle = .fullScreen
+        self.present(mainVC, animated: true, completion: nil)
+        
+        print("login Success.")
+    }
+    
+    func oauth20ConnectionDidFinishRequestACTokenWithRefreshToken() {
+        naverLoginInstance?.accessToken
+    }
+    
+    func oauth20ConnectionDidFinishDeleteToken() {
+        print("logout Success.")
+    }
+    
+    func oauth20Connection(_ oauthConnection: NaverThirdPartyLoginConnection!, didFailWithError error: (any Error)!) {
+        print("error = \(error.localizedDescription)")
+        self.naverLoginInstance?.requestDeleteToken()
+    }
+    
 }
