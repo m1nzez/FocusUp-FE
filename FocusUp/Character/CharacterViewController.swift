@@ -1,7 +1,15 @@
+//
+//  CharacterViewController.swift
+//  FocusUp
+//
+//  Created by 김서윤 on 7/24/24.
+//
+
 import UIKit
+import Alamofire
+import UserNotifications
 
 class CharacterViewController: UIViewController {
-    
     @IBOutlet var shellfishView: UIView!
     @IBOutlet var bottomButton: UIButton!
     @IBOutlet var shopButton: UIButton!
@@ -16,7 +24,10 @@ class CharacterViewController: UIViewController {
         setupShellfishViewBorder()
         setupBottomButtonBorder()
         setupShopButtonAppearance()
-//        setupVerticalTextForButton()
+        shopButton.configureButtonWithTitleBelowImage(spacing: 6.0)
+        
+        fetchDataFromURL()
+        scheduleCharacterNotification()
     }
     
     private func setupBottomButtonBorder() {
@@ -56,10 +67,6 @@ class CharacterViewController: UIViewController {
         shopButton.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
     }
     
-    private func setupVerticalTextForButton() {
-        // 수정 예정
-    }
-    
     @IBAction func configureButton(_ sender: Any) {
         self.showBottomSheet()
     }
@@ -80,6 +87,59 @@ class CharacterViewController: UIViewController {
         setupBottomButtonBorder()
         setupShellfishViewBorder()
         setupShopButtonAppearance()
-//        setupVerticalTextForButton()
+    }
+    
+    private func fetchDataFromURL() {
+        // Alamofire를 사용하여 GET 요청을 보냅니다.
+        let url = "http://15.165.198.110:80/test"
+        AF.request(url, method: .get).response { response in
+            // 응답을 받았는지 확인합니다.
+            if let error = response.error {
+                print("Error: \(error.localizedDescription)")
+                return
+            }
+
+            // 상태 코드와 응답 데이터 처리
+            if let statusCode = response.response?.statusCode {
+                print("HTTP Status Code: \(statusCode)")
+            }
+
+            if let data = response.data, let responseString = String(data: data, encoding: .utf8) {
+                print("Response Data: \(responseString)")
+            }
+        }
+    }
+    
+    private func scheduleCharacterNotification() {
+        // 알림 예약 예제: 현재 시간에서 10초 후
+        let now = Date()
+        let futureDate = Calendar.current.date(byAdding: .second, value: 5, to: now)!
+        
+        // UNUserNotificationCenter 인스턴스를 가져옴
+        UNUserNotificationCenter.current().addNotificationRequest(date: futureDate) { error in
+            if let error = error {
+                print("Error adding notification request: \(error.localizedDescription)")
+            } else {
+                print("Notification scheduled for \(futureDate)")
+            }
+        }
     }
 }
+
+extension UIButton {
+    func configureButtonWithTitleBelowImage(spacing: CGFloat = 4.0) {
+        guard let currentImage = self.imageView?.image,
+              let currentTitle = self.titleLabel?.text else {
+            return
+        }
+        
+        var configuration = UIButton.Configuration.plain()
+        configuration.image = currentImage
+        configuration.title = currentTitle
+        configuration.imagePlacement = .top
+        configuration.imagePadding = spacing
+        
+        self.configuration = configuration
+    }
+}
+

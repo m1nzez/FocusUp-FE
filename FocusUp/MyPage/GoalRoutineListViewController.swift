@@ -39,7 +39,7 @@ class GoalRoutineListViewController: UIViewController {
             print("커스텀 폰트를 로드할 수 없습니다.")
         }
         
-        let backButton = UIImage(named: "arrow_left.svg")
+        let backButton = UIImage(named: "arrow_left")
         let leftBarButton: UIBarButtonItem = UIBarButtonItem(image: backButton, style: .plain, target: self, action: #selector(completeButtonDidTap))
         self.navigationItem.leftBarButtonItem = leftBarButton
     }

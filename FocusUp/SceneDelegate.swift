@@ -1,22 +1,45 @@
-//
-//  SceneDelegate.swift
-//  FocusUp
-//
-//  Created by 김미주 on 16/07/2024.
-//
-
 import UIKit
+import KakaoSDKAuth
+import NaverThirdPartyLogin
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        
+        window = UIWindow(windowScene: windowScene)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        // 기본 뷰 컨트롤러 설정
+        let initialViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
+        window?.rootViewController = initialViewController
+        window?.makeKeyAndVisible()
+
+        // NotificationCenter를 통해 알림 받음
+        NotificationCenter.default.addObserver(self, selector: #selector(openAlarmViewController), name: Notification.Name("OpenAlarmViewController"), object: nil)
+    }
+    
+    @objc func openAlarmViewController() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let alarmViewController = storyboard.instantiateViewController(withIdentifier: "AlarmViewController")
+        window?.rootViewController = alarmViewController
+        window?.makeKeyAndVisible()
+    }
+    
+    // 로그인
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        if let url = URLContexts.first?.url {
+            if (AuthApi.isKakaoTalkLoginUrl(url)) {
+                _ = AuthController.handleOpenUrl(url: url)
+            }
+        }
+        
+        NaverThirdPartyLoginConnection.getSharedInstance().receiveAccessToken(URLContexts.first?.url)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -29,6 +52,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+        UIApplication.shared.applicationIconBadgeNumber = 0
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
@@ -39,6 +63,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneWillEnterForeground(_ scene: UIScene) {
         // Called as the scene transitions from the background to the foreground.
         // Use this method to undo the changes made on entering the background.
+        UIApplication.shared.applicationIconBadgeNumber = 0
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
@@ -46,7 +71,4 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-
-
 }
-

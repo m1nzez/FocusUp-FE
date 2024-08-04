@@ -6,16 +6,20 @@
 //
 
 import UIKit
+import KakaoSDKAuth
+import KakaoSDKUser
+import NaverThirdPartyLogin
 
 class SettingViewController: UIViewController {
     // MARK: - property
     @IBOutlet weak var levelManageButton: UIButton!
     @IBOutlet weak var logoutButton: UIButton!
     
-    
+    let naverLoginInstance = NaverThirdPartyLoginConnection.getSharedInstance()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        naverLoginInstance?.delegate = self
 
         self.navigationController?.navigationBar.tintColor = UIColor.black
         self.navigationController?.navigationBar.topItem?.title = ""
@@ -35,7 +39,7 @@ class SettingViewController: UIViewController {
             print("커스텀 폰트를 로드할 수 없습니다.")
         }
         
-        let backButton = UIImage(named: "arrow_left.svg")
+        let backButton = UIImage(named: "arrow_left")
         let leftBarButton: UIBarButtonItem = UIBarButtonItem(image: backButton, style: .plain, target: self, action: #selector(completeButtonDidTap))
         self.navigationItem.leftBarButtonItem = leftBarButton
     }
@@ -48,7 +52,22 @@ class SettingViewController: UIViewController {
         alert.addAction(Cancel)
         Cancel.setValue(UIColor(named: "BlueGray7"), forKey: "titleTextColor")
         
-        let logout = UIAlertAction(title: "로그아웃", style: .default, handler: { (action) -> Void in})
+        let logout = UIAlertAction(title: "로그아웃", style: .default, handler: { (action) in
+            self.naverLoginInstance?.requestDeleteToken()
+            
+            UserApi.shared.logout {(error) in
+                if let error = error {
+                    print(error)
+                } else {
+                    guard let loginVC = self.storyboard?.instantiateViewController(identifier: "LoginViewController") as? LoginViewController else { return }
+                    loginVC.modalTransitionStyle = .coverVertical
+                    loginVC.modalPresentationStyle = .fullScreen
+                    self.present(loginVC, animated: true, completion: nil)
+                    
+                    print("Kakao logout Success.")
+                }
+            }
+        })
         alert.addAction(logout)
         logout.setValue(UIColor(named: "Primary4"), forKey: "titleTextColor")
         
@@ -57,8 +76,50 @@ class SettingViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
+    @IBAction func didTapLevelManageButton(_ sender: Any) {
+        let levelControlVC = LevelControlViewController()
+        levelControlVC.modalPresentationStyle = .pageSheet
+        
+        if let sheet = levelControlVC.sheetPresentationController {
+            let customDetent = UISheetPresentationController.Detent.custom { context in
+                return 547 // 높이 설정
+            }
+            sheet.detents = [customDetent] // 사용자 지정 높이만 사용
+            sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+            sheet.preferredCornerRadius = 8
+        }
+        
+        present(levelControlVC, animated: true, completion: nil)
+    }
     
     @objc func completeButtonDidTap(_ sender: UIBarButtonItem) {
         self.navigationController?.popViewController(animated: true)
     }
+}
+
+// MARK: - extension
+extension SettingViewController: NaverThirdPartyLoginConnectionDelegate {
+    func oauth20ConnectionDidFinishRequestACTokenWithAuthCode() {
+        print("Naver login Success.")
+    }
+    
+    func oauth20ConnectionDidFinishRequestACTokenWithRefreshToken() {
+        naverLoginInstance?.accessToken
+    }
+    
+    func oauth20ConnectionDidFinishDeleteToken() {
+        guard let loginVC = self.storyboard?.instantiateViewController(identifier: "LoginViewController") as? LoginViewController else { return }
+        loginVC.modalTransitionStyle = .coverVertical
+        loginVC.modalPresentationStyle = .fullScreen
+        self.present(loginVC, animated: true, completion: nil)
+        
+        print("Naver logout Success.")
+    }
+    
+    func oauth20Connection(_ oauthConnection: NaverThirdPartyLoginConnection!, didFailWithError error: (any Error)!) {
+        print("error = \(error.localizedDescription)")
+        self.naverLoginInstance?.requestDeleteToken()
+    }
+    
+    
 }
